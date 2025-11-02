@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woof Gang Sales & Inventory", "Woof Gang Sales & Inventory\Woof Gang Sales & Inventory.csproj", "{3F5065BB-4DFD-42E7-9ACD-0ECF618E3A5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F5065BB-4DFD-42E7-9ACD-0ECF618E3A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5065BB-4DFD-42E7-9ACD-0ECF618E3A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5065BB-4DFD-42E7-9ACD-0ECF618E3A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5065BB-4DFD-42E7-9ACD-0ECF618E3A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBEBB0F2-1839-4242-B169-A8706FE71D29}
+	EndGlobalSection
+EndGlobal
