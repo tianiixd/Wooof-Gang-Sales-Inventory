@@ -22,6 +22,13 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         // --- Form State ---
         public bool IsEditMode { get; set; } = false;
         private int productID = 0;
+        private string? _existingSku = null;
+
+        // ✅ --- FIX 1: Add private fields to store selection ---
+        private int _editCategoryID = 0;
+        private int _editSubCategoryID = 0;
+        private int _editSupplierID = 0;
+        private string _editUnit = "";
 
         // --- Image Handling State (from FrmCreateEditUser) ---
         private string selectedImagePath = string.Empty;
@@ -49,18 +56,24 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 this.lblTitle.Text = "Add New Product";
                 this.btnSave.Text = "Add";
                 // picProductImage.Image = Properties.Resources.placeholder; // Set default image
-                toggleProductStatus.Checked = false; // ✅ Default to Active
+                toggleProductStatus.Checked = true;
                 toggleProductStatus.Enabled = false;
+
                 lblProductStatus.Text = "";
+               
             }
             else
             {
                 // --- Edit Mode ---
                 toggleProductStatus.Enabled = true;
+
+                // ✅ --- FIX 3: Set ComboBox values AFTER they are loaded ---
+                cmbCategory.SelectedValue = _editCategoryID;
+                cmbSubCategory.SelectedValue = _editSubCategoryID;
+                cmbSupplier.SelectedValue = _editSupplierID;
+                cmbUnit.Text = _editUnit;
             }
         }
-
-        #region ComboBox Loading Logic
 
         private void LoadAllComboBoxData()
         {
@@ -72,7 +85,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             cmbSupplier.SelectedIndex = -1; // No selection by default
 
             // 2. Load All SubCategories (for filtering)
-            // We load this *once* to prevent hitting the database on every click
             allSubCategories = subCategoryRepo.GetSubCategories(""); // Gets all active subcategories
 
             // 3. Load Categories
@@ -88,82 +100,74 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // --- This is the Cascading Dropdown Logic ---
-
             if (cmbCategory.SelectedValue == null)
             {
                 cmbSubCategory.DataSource = null;
-                cmbUnit.DataSource = null; // Also clear units
+                cmbUnit.Items.Clear();
                 return;
             }
 
             try
             {
-                int selectedCategoryID = (int)cmbCategory.SelectedValue;
-
-                // Filter the in-memory list we loaded earlier
-                var filteredSubs = allSubCategories
-                    .Where(s => s.CategoryID == selectedCategoryID)
-                    .ToList();
-
-                cmbSubCategory.DataSource = filteredSubs;
-                cmbSubCategory.DisplayMember = "SubCategoryName";
-                cmbSubCategory.ValueMember = "SubCategoryID";
-
-                if (filteredSubs.Count == 0)
+                if (cmbCategory.SelectedValue is int selectedCategoryID)
                 {
-                    cmbSubCategory.Text = "No subcategories found";
+                    var filteredSubs = allSubCategories
+                        .Where(s => s.CategoryID == selectedCategoryID)
+                        .ToList();
+
+                    cmbSubCategory.DataSource = filteredSubs;
+                    cmbSubCategory.DisplayMember = "SubCategoryName";
+                    cmbSubCategory.ValueMember = "SubCategoryID";
+
+                    if (filteredSubs.Count == 0)
+                    {
+                        cmbSubCategory.Text = "No subcategories found";
+                        cmbSubCategory.DataSource = null;
+                    }
+
+                    // --- Populate cmbUnit based on Category ---
+                    cmbUnit.Items.Clear();
+                    string selectedCategoryName = cmbCategory.Text;
+
+                    switch (selectedCategoryName)
+                    {
+                        case "Dog Food":
+                        case "Cat Food":
+                            cmbUnit.Items.AddRange(new string[] { "Bag", "Can", "Pouch", "Box", "Kg", "g" });
+                            break;
+                        case "Pet Treats":
+                            cmbUnit.Items.AddRange(new string[] { "Pack", "Box", "Piece", "g" });
+                            break;
+                        case "Pet Grooming":
+                            cmbUnit.Items.AddRange(new string[] { "Bottle", "mL", "Piece" });
+                            break;
+                        case "Pet Accessories":
+                            cmbUnit.Items.AddRange(new string[] { "Piece", "Set" });
+                            break;
+                        case "Pet Health":
+                            cmbUnit.Items.AddRange(new string[] { "Bottle", "Box", "mL", "g", "Tablet" });
+                            break;
+                        case "Pet Toys":
+                            cmbUnit.Items.AddRange(new string[] { "Piece", "Pack" });
+                            break;
+                        default:
+                            cmbUnit.Items.AddRange(new string[] { "Piece", "Pack", "Box", "Kg", "g", "mL", "L" });
+                            break;
+                    }
+                    if (cmbUnit.Items.Count > 0)
+                        cmbUnit.SelectedIndex = 0;
                 }
-
-                // ✅ --- ADDED: Populate cmbUnit based on Category ---
-                cmbUnit.Items.Clear();
-                string selectedCategoryName = cmbCategory.Text;
-
-                switch (selectedCategoryName)
-                {
-                    case "Dog Food":
-                    case "Cat Food":
-                        cmbUnit.Items.AddRange(new string[] { "Bag", "Can", "Pouch", "Box", "Kg", "g" });
-                        break;
-                    case "Pet Treats":
-                        cmbUnit.Items.AddRange(new string[] { "Pack", "Box", "Piece", "g" });
-                        break;
-                    case "Pet Grooming":
-                        cmbUnit.Items.AddRange(new string[] { "Bottle", "mL", "Piece" });
-                        break;
-                    case "Pet Accessories":
-                        cmbUnit.Items.AddRange(new string[] { "Piece", "Set" });
-                        break;
-                    case "Pet Health":
-                        cmbUnit.Items.AddRange(new string[] { "Bottle", "Box", "mL", "g", "Tablet" });
-                        break;
-                    case "Pet Toys":
-                        cmbUnit.Items.AddRange(new string[] { "Piece", "Pack" });
-                        break;
-                    default:
-                        cmbUnit.Items.AddRange(new string[] { "Piece", "Pack", "Box", "Kg", "g", "mL", "L" });
-                        break;
-                }
-                if (cmbUnit.Items.Count > 0)
-                    cmbUnit.SelectedIndex = 0;
-                // ✅ --- END OF ADDED SECTION ---
-
             }
             catch (Exception)
             {
-                // Handle case where SelectedValue might not be an int (e.g., during load)
                 cmbSubCategory.DataSource = null;
             }
         }
 
-        #endregion
-
-        #region Image Handling Logic (Copied from FrmCreateEditUser)
-
         private Image LoadImageWithoutLock(string path)
         {
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
-                return null; // Or return placeholder image
+                return null;
 
             try
             {
@@ -175,13 +179,12 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             catch (Exception ex)
             {
                 Console.WriteLine("Error loading image: " + ex.Message);
-                return null; // Or return placeholder
+                return null;
             }
         }
 
         private void DisposeCurrentImage()
         {
-            // if (picProductImage.Image != null && picProductImage.Image != Properties.Resources.placeholder)
             if (picProductImage.Image != null)
             {
                 var img = picProductImage.Image;
@@ -221,10 +224,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             base.OnFormClosing(e);
         }
 
-        #endregion
-
-        #region Save, Edit, and Validation Logic
-
         public void EditProduct(Product product)
         {
             this.lblTitle.Text = "Edit Product";
@@ -233,32 +232,25 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             // Set text fields
             txtProductName.Text = product.ProductName;
-            // txtSKU.Text = product.SKU; // REMOVED
-            txtBrand.Text = product.Brand;
-            txtWeight.Text = product.Weight?.ToString();
+            txtBrand.Text = product.Brand; // ✅ Re-added this
+            txtWeight.Text = product.Weight?.ToString(); // ✅ Re-added this
             txtSellingPrice.Text = product.SellingPrice.ToString("F2");
 
-            // ✅ CHANGED: Set Guna2NumericUpDown values
             numQuantity.Value = product.Quantity;
-            numOrderLevel.Value = product.ReorderLevel ?? 0; // Default to 0 if null
+            numOrderLevel.Value = product.ReorderLevel ?? 5;
 
-            // --- Set ComboBoxes (Handle cascading) ---
-
-            // Set Category first. This will auto-trigger the cmbCategory_SelectedIndexChanged event
-            // which will populate the SubCategory and Unit lists.
-            cmbCategory.SelectedValue = product.CategoryID;
-
-            // NOW we can safely set the SubCategory, Supplier, and Unit
-            cmbSubCategory.SelectedValue = product.SubCategoryID;
-            cmbSupplier.SelectedValue = product.SupplierID;
-            cmbUnit.Text = product.Unit; // Set Unit by text
+            // --- ✅ FIX 2: Store values instead of setting ComboBoxes ---
+            _editCategoryID = product.CategoryID;
+            _editSubCategoryID = product.SubCategoryID ?? 0;
+            _editSupplierID = product.SupplierID ?? 0;
+            _editUnit = product.Unit;
 
             // Set Status
             toggleProductStatus.Checked = product.IsActive;
-            lblStatus.Text = product.IsActive ? "Active" : "Archived";
-            lblStatus.ForeColor = product.IsActive ? Color.Green : Color.Red;
+            lblProductStatus.Text = product.IsActive ? "Active" : "Archived";
+            lblProductStatus.ForeColor = product.IsActive ? Color.Green : Color.Red;
 
-            // Set Image (Copied from FrmCreateEditUser)
+            // Set Image
             if (!string.IsNullOrEmpty(product.ImagePath) && File.Exists(product.ImagePath))
             {
                 DisposeCurrentImage();
@@ -270,22 +262,22 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             }
             else
             {
-                // picProductImage.Image = Properties.Resources.placeholder;
                 selectedImagePath = string.Empty;
                 previousImagePath = string.Empty;
                 imageChanged = false;
             }
 
-            // Set internal ID
+            // Set internal IDs
             this.productID = product.ProductID;
+            this._existingSku = product.SKU;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!VerifyInput()) return;
 
-            // --- Step 1: Handle Image Saving (Copied from FrmCreateEditUser) ---
-            string imagePath = previousImagePath; // Default: keep existing image
+            // --- Step 1: Handle Image Saving ---
+            string imagePath = previousImagePath;
 
             if (!IsEditMode || imageChanged)
             {
@@ -294,25 +286,25 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     try
                     {
                         string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                        // ✅ CHANGED: Save to "ProductImages" folder
                         string productImagesDir = Path.Combine(desktopPath, "ProductImages");
 
                         if (!Directory.Exists(productImagesDir))
                             Directory.CreateDirectory(productImagesDir);
 
-                        // ✅ CHANGED: Build filename from ProductName
                         string safeProductName = txtProductName.Text.Trim().Replace(" ", "_");
-                        // string safeSku = txtSKU.Text.Trim(); // REMOVED
+                        string safeBrand = txtBrand.Text.Trim().Replace(" ", "_");
                         string imageExtension = Path.GetExtension(selectedImagePath) ?? ".jpg";
-                        string imageFileName = $"{safeProductName}{imageExtension}"; // REMOVED SKU
+
+                        string imageFileName = $"{safeProductName}_{safeBrand}{imageExtension}";
 
                         imagePath = Path.Combine(productImagesDir, imageFileName);
 
-                        // Avoid overwriting (simplified)
-                        if (File.Exists(imagePath) && imagePath != previousImagePath)
+                        int count = 1;
+                        while (File.Exists(imagePath) && imagePath != previousImagePath)
                         {
-                            imageFileName = $"{safeProductName}_{DateTime.Now.Ticks}{imageExtension}"; // REMOVED SKU
+                            imageFileName = $"{safeProductName}_{safeBrand}_{count}{imageExtension}";
                             imagePath = Path.Combine(productImagesDir, imageFileName);
+                            count++;
                         }
 
                         using (var imageCopy = new Bitmap(picProductImage.Image))
@@ -320,7 +312,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                             imageCopy.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
                         }
 
-                        // Delete old image if it changed
                         if (IsEditMode && !string.IsNullOrEmpty(previousImagePath) && File.Exists(previousImagePath) && previousImagePath != imagePath)
                         {
                             try
@@ -353,25 +344,18 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             {
                 ProductID = this.productID,
                 ProductName = txtProductName.Text.Trim(),
-                SKU = null, // ✅ CHANGED: Set to null since there is no textbox
+
+                SKU = this._existingSku,
+
                 Brand = string.IsNullOrWhiteSpace(txtBrand.Text) ? null : txtBrand.Text.Trim(),
-
-                // ✅ CHANGED: Read from cmbUnit
                 Unit = string.IsNullOrWhiteSpace(cmbUnit.Text) ? null : cmbUnit.Text,
-
-                // Handle numeric conversions
                 Weight = decimal.TryParse(txtWeight.Text, out decimal weight) ? (decimal?)weight : null,
-                SellingPrice = decimal.Parse(txtSellingPrice.Text), // Verified in VerifyInput
-
-                // ✅ CHANGED: Read from Guna2NumericUpDown
+                SellingPrice = decimal.Parse(txtSellingPrice.Text),
                 Quantity = (int)numQuantity.Value,
-                ReorderLevel = (int)numOrderLevel.Value == 0 ? (int?)null : (int)numOrderLevel.Value, // Handle 0 as null
-
-                // Get IDs from ComboBoxes
+                ReorderLevel = (int)numOrderLevel.Value < 5 ? 5 : (int)numOrderLevel.Value,
                 CategoryID = (int)cmbCategory.SelectedValue,
                 SubCategoryID = (int)cmbSubCategory.SelectedValue,
                 SupplierID = (int)cmbSupplier.SelectedValue,
-
                 IsActive = toggleProductStatus.Checked,
                 ImagePath = imagePath
             };
@@ -389,10 +373,13 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             if (success)
             {
+                if (!IsEditMode)
+                {
+                    ResetInput();
+                }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            // Errors are handled by the repository's DialogHelper
         }
 
         private bool VerifyInput()
@@ -406,23 +393,22 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             }
 
             // 2. Check ComboBoxes
-            if (cmbCategory.SelectedValue == null || (int)cmbCategory.SelectedValue == 0)
+            if (cmbCategory.SelectedValue == null || (int)cmbCategory.SelectedValue <= 0)
             {
                 DialogHelper.ShowCustomDialog("Missing Information", "Please select a Category.", "warning");
                 return false;
             }
-            if (cmbSubCategory.SelectedValue == null || (int)cmbSubCategory.SelectedValue == 0)
+            if (cmbSubCategory.SelectedValue == null || (int)cmbSubCategory.SelectedValue <= 0)
             {
                 DialogHelper.ShowCustomDialog("Missing Information", "Please select a SubCategory.", "warning");
                 return false;
             }
-            if (cmbSupplier.SelectedValue == null || (int)cmbSupplier.SelectedValue == 0)
+            if (cmbSupplier.SelectedValue == null || (int)cmbSupplier.SelectedValue <= 0)
             {
                 DialogHelper.ShowCustomDialog("Missing Information", "Please select a Supplier.", "warning");
                 return false;
             }
-            // ✅ ADDED: Check cmbUnit
-            if (string.IsNullOrWhiteSpace(cmbUnit.Text))
+            if (string.IsNullOrWhiteSpace(cmbUnit.Text) || cmbUnit.SelectedIndex < 0)
             {
                 DialogHelper.ShowCustomDialog("Missing Information", "Please select a Unit (e.g., Bag, Kg, Piece).", "warning");
                 return false;
@@ -435,15 +421,9 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 return false;
             }
 
-            // ✅ CHANGED: No regex needed for Guna2NumericUpDown, just check value
-            if (numQuantity.Value < 0)
+            if (numOrderLevel.Value < 5 && numOrderLevel.Value != 0) // Allow 0, but not 1-4
             {
-                DialogHelper.ShowCustomDialog("Invalid Input", "Quantity cannot be a negative number.", "warning");
-                return false;
-            }
-            if (numOrderLevel.Value < 0)
-            {
-                DialogHelper.ShowCustomDialog("Invalid Input", "Reorder Level cannot be a negative number.", "warning");
+                DialogHelper.ShowCustomDialog("Invalid Input", "Reorder Level must be 0 or 5 or more.", "warning");
                 return false;
             }
 
@@ -465,14 +445,13 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private void ResetInput()
         {
             txtProductName.Text = string.Empty;
-            // txtSKU.Text = string.Empty; // REMOVED
             txtBrand.Text = string.Empty;
             txtWeight.Text = string.Empty;
             txtSellingPrice.Text = string.Empty;
 
-            // ✅ CHANGED: Reset Guna2NumericUpDown and cmbUnit
             numQuantity.Value = 0;
-            numOrderLevel.Value = 0;
+            numOrderLevel.Value = 5;
+
             cmbUnit.DataSource = null;
             cmbUnit.Items.Clear();
 
@@ -487,10 +466,23 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             selectedImagePath = string.Empty;
             previousImagePath = string.Empty;
             imageChanged = false;
+
+            _existingSku = null;
         }
 
-        #endregion
+        private void toggleProductStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            if (toggleProductStatus.Checked)
+            {
+                lblProductStatus.Text = "Active";
+                lblProductStatus.ForeColor = Color.Green;
+            }
+            else
+            {
+                lblProductStatus.Text = "Archived";
+                lblProductStatus.ForeColor = Color.Red;
+            }
+        }
     }
 }
-
 

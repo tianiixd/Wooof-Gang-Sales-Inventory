@@ -16,14 +16,13 @@ using Woof_Gang_Sales___Inventory.Util;   // ✅ Added Util
 
 namespace Woof_Gang_Sales___Inventory.Forms.Admin
 {
+    // ✅ This inherits from Sample, which is correct for your pattern
     public partial class FrmProductView : Sample
     {
         private ProductRepository productRepo = new ProductRepository();
 
-        // ✅ Added CategoryRepo to load the filter
         private CategoryRepository categoryRepo = new CategoryRepository();
 
-        // ✅ Changed to "Archived" for consistency
         private string[] statusFilter = { "Active Products", "Archived Products", "All Products" };
 
         public FrmProductView()
@@ -40,13 +39,13 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     {
                         e.CellStyle.ForeColor = Color.Green;
                         e.CellStyle.SelectionForeColor = Color.Green;
-                        e.CellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold); // Matched your user form
+                        e.CellStyle.Font = new Font("Segoe UI", 10F);
                     }
                     else if (value.Equals("Archived", StringComparison.OrdinalIgnoreCase))
                     {
                         e.CellStyle.ForeColor = Color.Red;
                         e.CellStyle.SelectionForeColor = Color.Red;
-                        e.CellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold); // Matched your user form
+                        e.CellStyle.Font = new Font("Segoe UI", 10F);
                     }
                 }
 
@@ -56,20 +55,19 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     if (e.Value != null)
                     {
                         decimal price;
-                        if (decimal.TryParse(e.Value.ToString(), out price))
+                        if (Decimal.TryParse(e.Value.ToString(), out price))
                         {
-                            // "C" formats as currency (e.g., ₱1,234.50)
                             e.Value = price.ToString("C");
                             e.FormattingApplied = true;
                         }
                     }
                 }
 
-                // --- ✅ NEW: Format StockLevel Column ---
+                // --- Format StockLevel Column ---
                 if (dgvProduct.Columns[e.ColumnIndex].Name == "StockLevel")
                 {
                     string value = e.Value?.ToString() ?? "";
-                    e.CellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                    e.CellStyle.Font = new Font("Segoe UI", 10F);
 
                     if (value.Equals("Out of Stock", StringComparison.OrdinalIgnoreCase))
                     {
@@ -87,11 +85,11 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                         e.CellStyle.SelectionForeColor = Color.Green;
                     }
                 }
-                // --- END NEW FORMATTING ---
             };
 
-            // Call ReadProducts here AFTER InitializeComponent
-            ReadProducts();
+            // ✅ --- BUG FIX 1: REMOVED ReadProducts() from here. ---
+            // It was causing a NullReferenceException because filters weren't loaded.
+
             cmbFilterStatus.SelectedIndexChanged += FilterChanged;
             cmbFilterCategory.SelectedIndexChanged += FilterChanged;
         }
@@ -107,31 +105,26 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             // Load Category Filter from Database
             LoadCategoryFilter();
+
+            // ✅ --- BUG FIX 2: Call ReadProducts() here. ---
+            // This runs AFTER the ComboBoxes are loaded and ready.
+            ReadProducts();
         }
 
-        /// <summary>
-        /// Loads Categories from DB into the filter ComboBox
-        /// </summary>
         private void LoadCategoryFilter()
         {
             try
             {
-                // 1. Create a "dummy" category for "All Categories"
                 var allCategories = new Category { CategoryID = 0, CategoryName = "All Categories" };
-
-                // 2. Get the real categories from the DB
-                var realCategories = categoryRepo.GetCategories(""); // Gets active categories
-
-                // 3. Combine them into a new list
+                var realCategories = categoryRepo.GetCategories("");
                 var categoryDataSource = new List<Category>();
                 categoryDataSource.Add(allCategories);
                 categoryDataSource.AddRange(realCategories);
 
-                // 4. Bind the list to the ComboBox
                 cmbFilterCategory.DisplayMember = "CategoryName";
                 cmbFilterCategory.ValueMember = "CategoryID";
                 cmbFilterCategory.DataSource = categoryDataSource;
-                cmbFilterCategory.SelectedIndex = 0; // Default to "All Categories"
+                cmbFilterCategory.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -146,10 +139,11 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         }
 
         // --- CRUD Button Clicks ---
+        // (These are 'private' which is correct as they are wired up
+        // in your FrmProductView.Designer.cs file)
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Use the pattern from your FrmCreateEditUser
             FrmCreateEditProduct form = new FrmCreateEditProduct();
             form.IsEditMode = false;
 
@@ -213,9 +207,9 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             if (result == DialogResult.No) return;
 
-            bool success = productRepo.DeleteProduct(productID); // This is the soft-delete
+            bool success = productRepo.DeleteProduct(productID);
             if (success)
-                ReadProducts(); // Refresh the grid
+                ReadProducts();
         }
 
         // --- Search and Data Loading ---
@@ -230,19 +224,22 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         /// </summary>
         private void ReadProducts()
         {
-            string searchText = txtSearch.Text.Trim();
-            string selectedStatus = cmbFilterStatus.SelectedItem?.ToString() ?? "Active Products";
-
-            // Get the *ID* from the category combobox
-            int selectedCategoryID = 0;
-            if (cmbFilterCategory.SelectedValue != null)
+            // ✅ --- BUG FIX 3: Add a safety check ---
+            // This prevents ReadProducts() from running before the filters are ready
+            if (cmbFilterStatus.SelectedItem == null || cmbFilterCategory.SelectedValue == null)
             {
-                int.TryParse(cmbFilterCategory.SelectedValue.ToString(), out selectedCategoryID);
+                return; // Exit the method; it will be called again when filters are set.
             }
+
+            string searchText = txtSearch.Text.Trim();
+            string selectedStatus = cmbFilterStatus.SelectedItem.ToString();
+
+            int selectedCategoryID = 0;
+            int.TryParse(cmbFilterCategory.SelectedValue.ToString(), out selectedCategoryID);
 
             List<Models.Product> products;
 
-            // 1. Get List based on Status (and DB search if active)
+            // 1. Get List based on Status
             if (selectedStatus == "Active Products")
             {
                 products = productRepo.GetProducts(searchText);
@@ -250,7 +247,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             else if (selectedStatus == "Archived Products")
             {
                 products = productRepo.GetAllInactiveProducts();
-                // Filter archived list using LINQ (client-side) as per your FrmUserView pattern
+                // Filter archived list using LINQ
                 if (!string.IsNullOrWhiteSpace(searchText))
                 {
                     string searchLower = searchText.ToLower();
@@ -288,12 +285,14 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 products = products.Where(p => p.CategoryID == selectedCategoryID).ToList();
             }
 
-            // 3. Build DataTable to bind (as per your pattern)
+            // 3. Build DataTable to bind
             DataTable dt = new DataTable();
             dt.Columns.Add("ProductID");
             dt.Columns.Add("SKU");
             dt.Columns.Add("ProductName");
             dt.Columns.Add("Brand");
+
+            // ✅ --- BUG FIX 4: Removed the stray word "Services" ---
             dt.Columns.Add("CategoryName");
             dt.Columns.Add("SubCategoryName");
             dt.Columns.Add("SupplierName");
@@ -302,14 +301,14 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             dt.Columns.Add("SellingPrice", typeof(decimal));
             dt.Columns.Add("Quantity");
             dt.Columns.Add("ReorderLevel");
-            dt.Columns.Add("StockLevel"); // ✅ NEW Column
+            dt.Columns.Add("StockLevel");
             dt.Columns.Add("Status");
 
             foreach (var p in products)
             {
                 var row = dt.NewRow();
                 row["ProductID"] = p.ProductID;
-                row["SKU"] = p.SKU;
+                row["SKU"] = p.SKU ?? "";
                 row["ProductName"] = p.ProductName;
                 row["Brand"] = p.Brand;
                 row["CategoryName"] = p.CategoryName;
@@ -322,16 +321,13 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 row["ReorderLevel"] = p.ReorderLevel.HasValue ? p.ReorderLevel.Value.ToString() : null;
                 row["Status"] = p.IsActive ? "Active" : "Archived";
 
-                // ✅ --- NEW STOCK LEVEL LOGIC ---
                 int quantity = p.Quantity;
-                // Use 0 if reorder level is null
                 int reorder = p.ReorderLevel ?? 0;
 
                 if (quantity == 0)
                 {
                     row["StockLevel"] = "Out of Stock";
                 }
-                // Only "Critical" if ReorderLevel is set (greater than 0)
                 else if (reorder > 0 && quantity <= reorder)
                 {
                     row["StockLevel"] = "Critical";
@@ -340,26 +336,24 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 {
                     row["StockLevel"] = "Sufficient";
                 }
-                // --- END NEW LOGIC ---
 
                 dt.Rows.Add(row);
             }
 
             dgvProduct.DataSource = dt;
 
-            // Hide the ID column (as per your pattern)
+            // Hide the ID column
             if (dgvProduct.Columns.Contains("ProductID"))
                 dgvProduct.Columns["ProductID"].Visible = false;
 
             // Apply your custom styler
-            DataGridViewStyler.ApplyStyle(dgvProduct, "ProductID");
+            DataGridViewStyler.ApplyStyle(dgvProduct, "SKU");
 
-            // --- ✅ NEW: HIDE UNNECESSARY COLUMNS ---
-            // We're replacing ReorderLevel with StockLevel, so hide it.
+            // --- HIDE UNNECESSARY COLUMNS ---
             if (dgvProduct.Columns.Contains("ReorderLevel"))
                 dgvProduct.Columns["ReorderLevel"].Visible = false;
 
-            // Optional, but good for space
+            // ✅ --- BUG FIX 5: Fixed typo dgVProduct -> dgvProduct ---
             if (dgvProduct.Columns.Contains("Brand"))
                 dgvProduct.Columns["Brand"].Visible = false;
             if (dgvProduct.Columns.Contains("SubCategoryName"))
@@ -370,7 +364,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 dgvProduct.Columns["Weight"].Visible = false;
             if (dgvProduct.Columns.Contains("Unit"))
                 dgvProduct.Columns["Unit"].Visible = false;
-            // --- END HIDE COLUMNS ---
         }
     }
 }

@@ -57,12 +57,12 @@
             this.cmbSubCategory = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnChoose = new Guna.UI2.WinForms.Guna2Button();
-            this.picProductImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.cmbSupplier = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.lblProductStatus = new System.Windows.Forms.Label();
+            this.picProductImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.numOrderLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -117,11 +117,6 @@
             this.numQuantity.Font = new System.Drawing.Font("Nunito", 12F);
             this.numQuantity.Location = new System.Drawing.Point(290, 719);
             this.numQuantity.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
-            this.numQuantity.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(320, 41);
             this.numQuantity.TabIndex = 43;
@@ -246,6 +241,7 @@
             this.toggleProductStatus.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.toggleProductStatus.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.toggleProductStatus.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.toggleProductStatus.CheckedChanged += new System.EventHandler(this.toggleProductStatus_CheckedChanged);
             // 
             // txtWeight
             // 
@@ -374,7 +370,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Inter", 13F);
-            this.label2.Location = new System.Drawing.Point(97, 228);
+            this.label2.Location = new System.Drawing.Point(97, 227);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 41);
@@ -480,25 +476,14 @@
             this.btnChoose.Image = global::Woof_Gang_Sales___Inventory.Properties.Resources.photo;
             this.btnChoose.ImageOffset = new System.Drawing.Point(-2, 0);
             this.btnChoose.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnChoose.Location = new System.Drawing.Point(824, 476);
+            this.btnChoose.Location = new System.Drawing.Point(804, 535);
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.ShadowDecoration.BorderRadius = 8;
             this.btnChoose.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.btnChoose.Size = new System.Drawing.Size(180, 50);
             this.btnChoose.TabIndex = 49;
             this.btnChoose.Text = "Upload Image";
-            // 
-            // picProductImage
-            // 
-            this.picProductImage.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.picProductImage.ImageRotate = 0F;
-            this.picProductImage.Location = new System.Drawing.Point(815, 228);
-            this.picProductImage.Name = "picProductImage";
-            this.picProductImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.picProductImage.Size = new System.Drawing.Size(200, 200);
-            this.picProductImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picProductImage.TabIndex = 48;
-            this.picProductImage.TabStop = false;
+            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
             // btnCancel
             // 
@@ -536,14 +521,14 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(59)))), ((int)(((byte)(120)))));
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.ImageOffset = new System.Drawing.Point(-4, 0);
-            this.btnSave.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSave.ImageOffset = new System.Drawing.Point(-8, 0);
+            this.btnSave.ImageSize = new System.Drawing.Size(35, 35);
             this.btnSave.Location = new System.Drawing.Point(102, 899);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 51);
             this.btnSave.TabIndex = 46;
             this.btnSave.Text = "Add";
-            this.btnSave.TextOffset = new System.Drawing.Point(-3, 0);
+            this.btnSave.TextOffset = new System.Drawing.Point(-5, 0);
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cmbSupplier
@@ -581,12 +566,23 @@
             // 
             // lblProductStatus
             // 
-            this.lblProductStatus.AutoSize = true;
-            this.lblProductStatus.Location = new System.Drawing.Point(296, 854);
+            this.lblProductStatus.Location = new System.Drawing.Point(304, 842);
             this.lblProductStatus.Name = "lblProductStatus";
-            this.lblProductStatus.Size = new System.Drawing.Size(59, 22);
+            this.lblProductStatus.Size = new System.Drawing.Size(306, 47);
             this.lblProductStatus.TabIndex = 54;
-            this.lblProductStatus.Text = "label13";
+            this.lblProductStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // picProductImage
+            // 
+            this.picProductImage.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            this.picProductImage.ImageRotate = 0F;
+            this.picProductImage.Location = new System.Drawing.Point(739, 227);
+            this.picProductImage.Name = "picProductImage";
+            this.picProductImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.picProductImage.Size = new System.Drawing.Size(300, 300);
+            this.picProductImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picProductImage.TabIndex = 48;
+            this.picProductImage.TabStop = false;
             // 
             // FrmCreateEditProduct
             // 
@@ -665,12 +661,12 @@
         private Guna.UI2.WinForms.Guna2Button btnCancel;
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2Button btnChoose;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox picProductImage;
         private Guna.UI2.WinForms.Guna2DataGridViewStyler guna2DataGridViewStyler1;
         private Guna.UI2.WinForms.Guna2ComboBox cmbSubCategory;
         private System.Windows.Forms.Label label11;
         private Guna.UI2.WinForms.Guna2ComboBox cmbSupplier;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblProductStatus;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox picProductImage;
     }
 }

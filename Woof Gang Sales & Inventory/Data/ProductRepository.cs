@@ -216,6 +216,14 @@ namespace Woof_Gang_Sales___Inventory.Data
                 {
                     conn.Open();
 
+                    // ✅ --- FIX: ADDED SKU GENERATION LOGIC TO UPDATE METHOD ---
+                    // This will fix any old products that have a NULL SKU
+                    if (string.IsNullOrWhiteSpace(product.SKU))
+                    {
+                        product.SKU = GenerateUniqueSKU(conn);
+                    }
+                    // --- END OF FIX ---
+
                     // Duplicate check (same as create, but ignoring its own ID)
                     string checkQuery = @"SELECT COUNT(*) FROM Products 
                                           WHERE LOWER(LTRIM(RTRIM(ProductName))) = LOWER(LTRIM(RTRIM(@ProductName)))
@@ -324,13 +332,14 @@ namespace Woof_Gang_Sales___Inventory.Data
         // --- Helper Methods ---
 
         /// <summary>
-        /// ✅ NEW: Helper method to generate a guaranteed unique SKU.
+        /// Helper method to generate a guaranteed unique SKU.
         /// </summary>
         private string GenerateUniqueSKU(SqlConnection conn)
         {
             string newSku;
             int attempts = 0;
             const int maxAttempts = 10; // Safety break to prevent infinite loop
+            var rand = new Random(); // Use one Random instance
 
             do
             {
@@ -341,7 +350,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                 }
 
                 // 1. Generate a new random SKU
-                newSku = $"WG-{new Random().Next(10000000, 99999999)}";
+                newSku = $"WG-{rand.Next(10000000, 99999999)}";
 
                 // 2. Check if this SKU already exists
                 string checkQuery = "SELECT COUNT(*) FROM Products WHERE SKU = @SKU";
