@@ -23,8 +23,11 @@ namespace Woof_Gang_Sales___Inventory.Models
         public int TotalSold { get; set; }
         public string? ImagePath { get; set; }
         public bool IsActive { get; set; } = true;
+        public DateTime? ExpirationDate { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+
+        
 
         // --- Display Properties (for JOINs) ---
         // These are not in the database table but will be

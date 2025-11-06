@@ -108,8 +108,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 ReadUsers();
                 return;
             }
-            var dashboard = FrmAdminDashboard.GetInstance();
-            bool isEditingSelf = dashboard.LoggedInUser?.UserID == userID;
+
+            bool isEditingSelf = SessionManager.CurrentUser?.UserID == userID;
 
             string originalRole = user.Role;
             bool wasActive = user.IsActive;
@@ -140,14 +140,17 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
                             FrmAdminDashboard.ResetInstance();
 
-                            
+                            SessionManager.CurrentUser = null;
+
                             frmLogin loginForm = new frmLogin();
                             loginForm.Show();
                             return;
                         }
                         else
                         {
-                            dashboard.LoggedInUser = updatedUser;
+                            SessionManager.CurrentUser = updatedUser;
+                            // Get the dashboard instance to refresh its UI
+                            var dashboard = FrmAdminDashboard.GetInstance();
                             dashboard.RefreshProfile(updatedUser);
                         }
                     }
@@ -165,6 +168,12 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             }
 
             var value = this.dgvUser.SelectedRows[0].Cells[0].Value.ToString();
+
+            if (int.TryParse(value, out int parsedUserID) && SessionManager.CurrentUser?.UserID == parsedUserID)
+            {
+                DialogHelper.ShowCustomDialog("Action Denied", "You cannot archive your own account while you are logged in.", "error");
+                return;
+            }
 
             var username = this.dgvUser.SelectedRows[0].Cells["Username"].Value.ToString();
 
@@ -233,23 +242,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             dgvUser.DataSource = dt;
             DataGridViewStyler.ApplyStyle(dgvUser, "UserID");
-
-            //dgvUser.DefaultCellStyle.SelectionForeColor = dgvUser.DefaultCellStyle.ForeColor;
-
-            foreach (DataGridViewRow row in dgvUser.Rows)
-            {
-                string status = row.Cells["Status"].Value?.ToString() ?? "";
-                if (status == "Activated")
-                {
-                    row.Cells["Status"].Style.ForeColor = Color.Green;
-                    row.Cells["Status"].Style.Font = new Font(dgvUser.Font, FontStyle.Bold);
-                }
-                else if (status == "Archived")
-                {
-                    row.Cells["Status"].Style.ForeColor = Color.Red;
-                    row.Cells["Status"].Style.Font = new Font(dgvUser.Font, FontStyle.Bold);
-                }
-            }
 
         }
 

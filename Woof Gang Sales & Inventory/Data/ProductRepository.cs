@@ -17,6 +17,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                 p.ProductID, p.SKU, p.Brand, p.ProductName, p.Weight, p.Unit,
                 p.SupplierID, p.SubCategoryID, p.SellingPrice, p.Quantity,
                 p.ReorderLevel, p.LastSoldDate, p.TotalSold, p.ImagePath,
+                p.ExpirationDate,
                 p.IsActive, p.CreatedAt, p.UpdatedAt,
                 ISNULL(s.SupplierName, 'N/A') AS SupplierName,
                 ISNULL(sc.SubCategoryName, 'N/A') AS SubCategoryName,
@@ -174,10 +175,10 @@ namespace Woof_Gang_Sales___Inventory.Data
                     string insertQuery = @"
                         INSERT INTO Products (
                             SKU, Brand, ProductName, Weight, Unit, SupplierID, SubCategoryID,
-                            SellingPrice, Quantity, ReorderLevel, ImagePath, IsActive, CreatedAt
+                            SellingPrice, Quantity, ReorderLevel, ImagePath, ExpirationDate,IsActive, CreatedAt
                         ) VALUES (
                             @SKU, @Brand, @ProductName, @Weight, @Unit, @SupplierID, @SubCategoryID,
-                            @SellingPrice, @Quantity, @ReorderLevel, @ImagePath, @IsActive, GETDATE()
+                            @SellingPrice, @Quantity, @ReorderLevel, @ImagePath, @ExpirationDate ,@IsActive, GETDATE()
                         )";
 
                     using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
@@ -256,6 +257,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                             Quantity = @Quantity,
                             ReorderLevel = @ReorderLevel,
                             ImagePath = @ImagePath,
+                            ExpirationDate = @ExpirationDate,
                             IsActive = @IsActive,
                             UpdatedAt = GETDATE()
                         WHERE ProductID = @ProductID";
@@ -285,6 +287,67 @@ namespace Woof_Gang_Sales___Inventory.Data
                 return false;
             }
         }
+
+        public bool UpdateStock(SqlConnection conn, SqlTransaction transaction, int productId, int quantityToChange)
+        {
+            // This query is safe from SQL injection because quantityToChange is an int.
+            // It also updates LastSoldDate and TotalSold for sales.
+            string query = @"
+                UPDATE Products 
+                SET 
+                Quantity = Quantity + @QuantityChange,
+                TotalSold = CASE WHEN @QuantityChange < 0 THEN TotalSold + (@QuantityChange * -1) ELSE TotalSold END,
+                LastSoldDate = CASE WHEN @QuantityChange < 0 THEN GETDATE() ELSE LastSoldDate END
+                WHERE ProductID = @ProductID 
+                AND (Quantity + @QuantityChange) >= 0";
+
+            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+            {
+                cmd.Parameters.AddWithValue("@QuantityChange", quantityToChange);
+                cmd.Parameters.AddWithValue("@ProductID", productId);
+
+                int rows = cmd.ExecuteNonQuery();
+                // We expect 1 row. If 0, something is wrong (like a bad ProductID).
+                // Throwing an exception here will safely roll back the entire transaction.
+                if (rows == 0)
+                {
+                    throw new Exception($"Failed to update stock for ProductID {productId}. Product not found or stock is invalid.");
+                }
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// NEW: Helper method to get the current stock for a product.
+        /// This will be used by FrmPOS to check availability.
+        /// </summary>
+        public int GetStock(int productId)
+        {
+            try
+            {
+                using (SqlConnection conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT Quantity FROM Products WHERE ProductID = @ProductID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductID", productId);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            return Convert.ToInt32(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // We don't show a dialog here, just log it. The POS will handle the "0 stock" result.
+                Console.WriteLine("Error in GetStock: " + ex.Message);
+            }
+            return 0; // Default to 0 if not found or error
+        }
+
 
         // --- Soft Delete / Restore ---
 
@@ -385,6 +448,16 @@ namespace Woof_Gang_Sales___Inventory.Data
             cmd.Parameters.AddWithValue("@ReorderLevel", (object?)product.ReorderLevel ?? DBNull.Value);
             cmd.Parameters.AddWithValue("@ImagePath", (object?)product.ImagePath ?? DBNull.Value);
             cmd.Parameters.AddWithValue("@IsActive", product.IsActive);
+
+            if (product.ExpirationDate.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@ExpirationDate", product.ExpirationDate.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ExpirationDate", DBNull.Value);
+            }
+
         }
 
         private Product MapToProduct(SqlDataReader reader)
@@ -402,6 +475,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                 SellingPrice = Convert.ToDecimal(reader["SellingPrice"]),
                 Quantity = Convert.ToInt32(reader["Quantity"]),
                 ReorderLevel = reader["ReorderLevel"] != DBNull.Value ? Convert.ToInt32(reader["ReorderLevel"]) : (int?)null,
+                ExpirationDate = reader["ExpirationDate"] as DateTime?,
                 LastSoldDate = reader["LastSoldDate"] as DateTime?,
                 TotalSold = Convert.ToInt32(reader["TotalSold"]),
                 ImagePath = reader["ImagePath"] != DBNull.Value ? reader["ImagePath"].ToString() : null,

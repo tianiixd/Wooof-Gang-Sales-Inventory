@@ -85,6 +85,33 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                         e.CellStyle.SelectionForeColor = Color.Green;
                     }
                 }
+
+                // ✅ --- ADD THIS NEW BLOCK ---
+                // --- Format ExpirationDate Column ---
+                if (dgvProduct.Columns[e.ColumnIndex].Name == "ExpirationDate")
+                {
+                    // If the value is null or empty, show "N/A"
+                    if (e.Value == null || e.Value == DBNull.Value)
+                    {
+                        e.Value = "N/A";
+                        e.FormattingApplied = true;
+                    }
+                    else if (e.Value is DateTime date)
+                    {
+                        // Format the date as "yyyy-MM-dd"
+                        e.Value = date.ToString("yyyy-MM-dd");
+                        e.FormattingApplied = true;
+
+                        // Color-code if expiring soon (e.g., within 10 days)
+                        if (date < DateTime.Today.AddDays(10))
+                        {
+                            e.CellStyle.ForeColor = Color.Red;
+                            e.CellStyle.SelectionForeColor = Color.Red;
+                            e.CellStyle.Font = new Font("Segoe UI", 10F);
+                        }
+                    }
+                }
+
             };
 
             // ✅ --- BUG FIX 1: REMOVED ReadProducts() from here. ---
@@ -302,6 +329,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             dt.Columns.Add("Quantity");
             dt.Columns.Add("ReorderLevel");
             dt.Columns.Add("StockLevel");
+            dt.Columns.Add("ExpirationDate", typeof(DateTime));
             dt.Columns.Add("Status");
 
             foreach (var p in products)
@@ -320,6 +348,15 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 row["Quantity"] = p.Quantity;
                 row["ReorderLevel"] = p.ReorderLevel.HasValue ? p.ReorderLevel.Value.ToString() : null;
                 row["Status"] = p.IsActive ? "Active" : "Archived";
+
+                if (p.ExpirationDate.HasValue)
+                {
+                    row["ExpirationDate"] = p.ExpirationDate.Value;
+                }
+                else
+                {
+                    row["ExpirationDate"] = DBNull.Value; // Use DBNull for null dates
+                }
 
                 int quantity = p.Quantity;
                 int reorder = p.ReorderLevel ?? 0;
@@ -356,6 +393,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             // ✅ --- BUG FIX 5: Fixed typo dgVProduct -> dgvProduct ---
             if (dgvProduct.Columns.Contains("Brand"))
                 dgvProduct.Columns["Brand"].Visible = false;
+            if (dgvProduct.Columns.Contains("CategoryName"))
+                dgvProduct.Columns["CategoryName"].Visible = false;
             if (dgvProduct.Columns.Contains("SubCategoryName"))
                 dgvProduct.Columns["SubCategoryName"].Visible = false;
             if (dgvProduct.Columns.Contains("SupplierName"))
@@ -364,6 +403,11 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 dgvProduct.Columns["Weight"].Visible = false;
             if (dgvProduct.Columns.Contains("Unit"))
                 dgvProduct.Columns["Unit"].Visible = false;
+            if (dgvProduct.Columns.Contains("ExpirationDate"))
+            {
+                dgvProduct.Columns["ExpirationDate"].HeaderText = "Expiration Date";
+                dgvProduct.Columns["ExpirationDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
         }
     }
 }

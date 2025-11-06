@@ -46,8 +46,50 @@
     <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.bouncy-castle-adapter, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.bouncy-castle-adapter.9.3.0\lib\net461\itext.bouncy-castle-adapter.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.bouncy-castle-connector, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.bouncy-castle-connector.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.commons, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.commons.9.3.0\lib\net461\itext.commons.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfua, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.pdfua.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=9.3.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.9.3.0\lib\net461\itext.svg.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -64,8 +106,14 @@
     <Reference Include="Microsoft.Extensions.Caching.Memory, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.8.0.1\lib\net462\Microsoft.Extensions.Caching.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.5.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.3, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.3\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
@@ -99,6 +147,9 @@
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.7.7.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -140,14 +191,17 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
-    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.1\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Pkcs.8.0.1\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.ProtectedData, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.ProtectedData.4.5.0\lib\net461\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=6.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.6.0.2\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
@@ -178,7 +232,10 @@
   <ItemGroup>
     <Compile Include="Data\CategoryRepository.cs" />
     <Compile Include="Data\Database\DBConnection.cs" />
+    <Compile Include="Data\DiscountRepository.cs" />
     <Compile Include="Data\ProductRepository.cs" />
+    <Compile Include="Data\SalesRepository.cs" />
+    <Compile Include="Data\StockTransactionRepository.cs" />
     <Compile Include="Data\SubCategoryRepository.cs" />
     <Compile Include="Data\SupplierRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
@@ -230,6 +287,18 @@
     <Compile Include="Forms\Admin\FrmCreateEditUser.Designer.cs">
       <DependentUpon>FrmCreateEditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\FrmPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmPayment.Designer.cs">
+      <DependentUpon>FrmPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmPOS.Designer.cs">
+      <DependentUpon>FrmPOS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Admin\FrmProductView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +323,12 @@
     <Compile Include="Forms\Admin\FrmUserView.Designer.cs">
       <DependentUpon>FrmUserView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\ProductCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\ProductCard.Designer.cs">
+      <DependentUpon>ProductCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,8 +341,13 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\SalesDetail.cs" />
+    <Compile Include="Models\StockTransaction.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\User.cs" />
@@ -296,6 +376,9 @@
     <Compile Include="frmView.Designer.cs">
       <DependentUpon>frmView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\PdfGenerator.cs" />
+    <Compile Include="Util\ReceiptPrinter.cs" />
+    <Compile Include="Util\SessionManager.cs" />
     <EmbeddedResource Include="Forms\Admin\FrmAdminDashboard.resx">
       <DependentUpon>FrmAdminDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,6 +403,12 @@
     <EmbeddedResource Include="Forms\Admin\FrmCreateEditUser.resx">
       <DependentUpon>FrmCreateEditUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\FrmPayment.resx">
+      <DependentUpon>FrmPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\FrmPOS.resx">
+      <DependentUpon>FrmPOS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\FrmProductView.resx">
       <DependentUpon>FrmProductView.cs</DependentUpon>
     </EmbeddedResource>
@@ -331,6 +420,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\FrmUserView.resx">
       <DependentUpon>FrmUserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\ProductCard.resx">
+      <DependentUpon>ProductCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd.resx">
       <DependentUpon>frmAdd.cs</DependentUpon>
@@ -448,10 +540,12 @@
     <Content Include="Resources\error.png" />
     <None Include="Resources\warning.png" />
     <None Include="Resources\error1.png" />
+    <Content Include="Resources\expired.png" />
     <Content Include="Resources\information.png" />
     <None Include="Resources\information1.png" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\photo.png" />
+    <Content Include="Resources\outofstock.png" />
     <Content Include="Resources\warning-yellow.png" />
     <None Include="Resources\warning-yellow1.png" />
   </ItemGroup>

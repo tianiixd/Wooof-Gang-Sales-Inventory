@@ -72,6 +72,8 @@ namespace Woof_Gang_Sales___Inventory
                     return;
                 }
 
+                SessionManager.CurrentUser = user;
+
                 // Successful login
                 string fullName = $"{user.FirstName} {user.LastName}";
                 DialogHelper.ShowCustomDialog("Login Successful", $"Welcome {fullName}! You are logged in as {user.Role}.", "success");

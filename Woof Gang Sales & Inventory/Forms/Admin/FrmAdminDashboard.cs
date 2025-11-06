@@ -27,6 +27,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
         private FrmCategoryView categoryView;
         private FrmSubCategoryView subCategoryView;
         private FrmSupplierView supplierView;
+        private FrmPOS posView;
         public static FrmAdminDashboard GetInstance(User? user = null)
         {
             if (formAdmin == null || formAdmin.IsDisposed)
@@ -164,10 +165,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
             Application.Exit();
         }
 
-        private void guna2Button4_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void guna2Panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -230,7 +228,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
         {
             if (subCategoryView == null || categoryView.IsDisposed)
             {
-                subCategoryView = new FrmSubCategoryView(); 
+                subCategoryView = new FrmSubCategoryView();
             }
 
             AddControls(subCategoryView);
@@ -244,6 +242,16 @@ namespace Woof_Gang_Sales___Inventory.Admin
             }
 
             AddControls(supplierView);
+        }
+
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+            if (posView == null || posView.IsDisposed)
+            {
+                posView = new FrmPOS();
+            }
+
+            AddControls(posView);   
         }
     }
 }

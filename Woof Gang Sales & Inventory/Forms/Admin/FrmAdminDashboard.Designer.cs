@@ -261,7 +261,7 @@
             this.btnSales.TabIndex = 5;
             this.btnSales.Text = "Sales";
             this.btnSales.TextOffset = new System.Drawing.Point(-10, 0);
-            this.btnSales.Click += new System.EventHandler(this.guna2Button4_Click);
+            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
             // 
             // btnProducts
             // 

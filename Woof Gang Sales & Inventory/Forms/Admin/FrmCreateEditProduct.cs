@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Azure.Core;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Data;
@@ -30,6 +32,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private int _editSupplierID = 0;
         private string _editUnit = "";
 
+        private DateTime? _editExpirationDate = null;
+
         // --- Image Handling State (from FrmCreateEditUser) ---
         private string selectedImagePath = string.Empty;
         private string previousImagePath = string.Empty;
@@ -43,12 +47,19 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         {
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
+            chkHasExpiration.CheckedChanged += chkHasExpiration_CheckedChanged;
+            dtpExpirationDate.MaxDate = DateTime.Today.AddYears(100);
+            dtpExpirationDate.MinDate = DateTime.Today.AddDays(1);
         }
 
         private void FrmCreateEditProduct_Load(object sender, EventArgs e)
         {
             // Load all data into ComboBoxes
             LoadAllComboBoxData();
+
+            
+            // This allows you to select any date in the future (up to 100 years)
+            
 
             if (!IsEditMode)
             {
@@ -60,7 +71,10 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 toggleProductStatus.Enabled = false;
 
                 lblProductStatus.Text = "";
-               
+
+                chkHasExpiration.Checked = false;
+                dtpExpirationDate.Enabled = false;
+                dtpExpirationDate.MinDate = DateTime.Today.AddDays(1);
             }
             else
             {
@@ -72,7 +86,38 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 cmbSubCategory.SelectedValue = _editSubCategoryID;
                 cmbSupplier.SelectedValue = _editSupplierID;
                 cmbUnit.Text = _editUnit;
+
+
+                if (_editExpirationDate.HasValue)
+                {
+                    chkHasExpiration.Checked = true;
+                    // Check if the saved date is valid (not in the past)
+                    if (_editExpirationDate.Value.Date < dtpExpirationDate.MinDate)
+                    {
+                        dtpExpirationDate.Value = dtpExpirationDate.MinDate; // Set to today
+                    }
+                    else
+                    {
+                        dtpExpirationDate.Value = _editExpirationDate.Value;
+                    }
+                }
+                else
+                {
+                    chkHasExpiration.Checked = false;
+                    dtpExpirationDate.Value = DateTime.Today.AddDays(1); // Default
+
+                }
+                // Manually trigger the event to set visibility
+                chkHasExpiration_CheckedChanged(null, null);
+
+
             }
+        }
+
+        private void chkHasExpiration_CheckedChanged(object sender, EventArgs e)
+        {
+            // This enables/disables the date picker
+            dtpExpirationDate.Enabled = chkHasExpiration.Checked;
         }
 
         private void LoadAllComboBoxData()
@@ -229,6 +274,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             this.lblTitle.Text = "Edit Product";
             this.lblID.Text = product.ProductID.ToString();
             this.btnSave.Text = "Save";
+            this.btnSave.Image = Properties.Resources.edit2;
 
             // Set text fields
             txtProductName.Text = product.ProductName;
@@ -244,6 +290,10 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             _editSubCategoryID = product.SubCategoryID ?? 0;
             _editSupplierID = product.SupplierID ?? 0;
             _editUnit = product.Unit;
+
+
+            _editExpirationDate = product.ExpirationDate;
+
 
             // Set Status
             toggleProductStatus.Checked = product.IsActive;
@@ -357,7 +407,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 SubCategoryID = (int)cmbSubCategory.SelectedValue,
                 SupplierID = (int)cmbSupplier.SelectedValue,
                 IsActive = toggleProductStatus.Checked,
-                ImagePath = imagePath
+                ImagePath = imagePath,
+                ExpirationDate = chkHasExpiration.Checked ? (DateTime?)dtpExpirationDate.Value.Date : null
             };
 
             // --- Step 3: Save to Database ---
@@ -433,6 +484,14 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 return false;
             }
 
+
+            if (chkHasExpiration.Checked && dtpExpirationDate.Value.Date < DateTime.Today)
+            {
+                DialogHelper.ShowCustomDialog("Invalid Date", "Expiration date cannot be in the past.", "warning");
+                return false;
+            }
+
+
             return true;
         }
 
@@ -459,6 +518,11 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             cmbSubCategory.DataSource = null;
             cmbSupplier.SelectedIndex = -1;
 
+            chkHasExpiration.Checked = false;
+            dtpExpirationDate.MinDate = DateTime.Today.AddDays(1);
+            dtpExpirationDate.Enabled = false;
+
+
             toggleProductStatus.Checked = false;
 
             DisposeCurrentImage();
@@ -474,7 +538,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         {
             if (toggleProductStatus.Checked)
             {
-                lblProductStatus.Text = "Active";
+                lblProductStatus.Text = "Activated";
                 lblProductStatus.ForeColor = Color.Green;
             }
             else

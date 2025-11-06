@@ -63,6 +63,15 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblProductStatus = new System.Windows.Forms.Label();
             this.picProductImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.chkHasExpiration = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.dtpExpirationDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.label13 = new System.Windows.Forms.Label();
+            this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
             ((System.ComponentModel.ISupportInitialize)(this.numOrderLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -76,7 +85,7 @@
             this.numOrderLevel.BorderRadius = 10;
             this.numOrderLevel.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.numOrderLevel.Font = new System.Drawing.Font("Nunito", 12F);
-            this.numOrderLevel.Location = new System.Drawing.Point(290, 780);
+            this.numOrderLevel.Location = new System.Drawing.Point(290, 812);
             this.numOrderLevel.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.numOrderLevel.Maximum = new decimal(new int[] {
             10,
@@ -100,7 +109,7 @@
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Inter", 13F);
-            this.label10.Location = new System.Drawing.Point(97, 780);
+            this.label10.Location = new System.Drawing.Point(97, 812);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(133, 41);
@@ -115,7 +124,7 @@
             this.numQuantity.BorderRadius = 10;
             this.numQuantity.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.numQuantity.Font = new System.Drawing.Font("Nunito", 12F);
-            this.numQuantity.Location = new System.Drawing.Point(290, 719);
+            this.numQuantity.Location = new System.Drawing.Point(290, 751);
             this.numQuantity.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(320, 41);
@@ -129,7 +138,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Inter", 13F);
-            this.label9.Location = new System.Drawing.Point(97, 719);
+            this.label9.Location = new System.Drawing.Point(97, 751);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(110, 41);
@@ -152,7 +161,7 @@
             this.txtSellingPrice.Font = new System.Drawing.Font("Nunito", 12F);
             this.txtSellingPrice.ForeColor = System.Drawing.Color.Black;
             this.txtSellingPrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSellingPrice.Location = new System.Drawing.Point(290, 658);
+            this.txtSellingPrice.Location = new System.Drawing.Point(290, 690);
             this.txtSellingPrice.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.txtSellingPrice.Name = "txtSellingPrice";
             this.txtSellingPrice.PlaceholderText = "Enter Selling Price";
@@ -174,7 +183,7 @@
             this.cmbUnit.ForeColor = System.Drawing.Color.Black;
             this.cmbUnit.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbUnit.ItemHeight = 36;
-            this.cmbUnit.Location = new System.Drawing.Point(290, 535);
+            this.cmbUnit.Location = new System.Drawing.Point(290, 567);
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(320, 42);
@@ -208,18 +217,19 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(298, 867);
+            this.lblStatus.Location = new System.Drawing.Point(286, 933);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 22);
             this.lblStatus.TabIndex = 38;
             // 
             // label8
             // 
+            this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Inter", 13F);
-            this.label8.Location = new System.Drawing.Point(97, 842);
+            this.label8.Location = new System.Drawing.Point(683, 745);
             this.label8.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(154, 47);
+            this.label8.Size = new System.Drawing.Size(144, 26);
             this.label8.TabIndex = 37;
             this.label8.Text = "Product Status:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -233,7 +243,7 @@
             this.toggleProductStatus.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.toggleProductStatus.CheckedState.InnerColor = System.Drawing.Color.White;
             this.toggleProductStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.toggleProductStatus.Location = new System.Drawing.Point(255, 856);
+            this.toggleProductStatus.Location = new System.Drawing.Point(833, 751);
             this.toggleProductStatus.Name = "toggleProductStatus";
             this.toggleProductStatus.Size = new System.Drawing.Size(35, 20);
             this.toggleProductStatus.TabIndex = 36;
@@ -258,7 +268,7 @@
             this.txtWeight.Font = new System.Drawing.Font("Nunito", 12F);
             this.txtWeight.ForeColor = System.Drawing.Color.Black;
             this.txtWeight.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtWeight.Location = new System.Drawing.Point(290, 597);
+            this.txtWeight.Location = new System.Drawing.Point(290, 629);
             this.txtWeight.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.PlaceholderText = "Enter Weight/Size";
@@ -269,7 +279,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Inter", 13F);
-            this.label7.Location = new System.Drawing.Point(97, 597);
+            this.label7.Location = new System.Drawing.Point(97, 629);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(133, 41);
@@ -326,7 +336,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Inter", 13F);
-            this.label6.Location = new System.Drawing.Point(97, 658);
+            this.label6.Location = new System.Drawing.Point(97, 690);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 41);
@@ -337,7 +347,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Inter", 13F);
-            this.label5.Location = new System.Drawing.Point(97, 535);
+            this.label5.Location = new System.Drawing.Point(97, 567);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 42);
@@ -381,21 +391,23 @@
             // lblID
             // 
             this.lblID.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.Location = new System.Drawing.Point(298, 167);
+            this.lblID.Location = new System.Drawing.Point(295, 173);
             this.lblID.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(244, 41);
             this.lblID.TabIndex = 23;
+            this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Inter", 13F);
-            this.label1.Location = new System.Drawing.Point(97, 167);
+            this.label1.Location = new System.Drawing.Point(97, 172);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 41);
             this.label1.TabIndex = 22;
             this.label1.Text = "Product ID";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // guna2Panel1
             // 
@@ -476,7 +488,7 @@
             this.btnChoose.Image = global::Woof_Gang_Sales___Inventory.Properties.Resources.photo;
             this.btnChoose.ImageOffset = new System.Drawing.Point(-2, 0);
             this.btnChoose.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnChoose.Location = new System.Drawing.Point(804, 535);
+            this.btnChoose.Location = new System.Drawing.Point(805, 496);
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.ShadowDecoration.BorderRadius = 8;
             this.btnChoose.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
@@ -500,7 +512,7 @@
             this.btnCancel.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.btnCancel.Image = global::Woof_Gang_Sales___Inventory.Properties.Resources.close1;
             this.btnCancel.ImageOffset = new System.Drawing.Point(-5, 0);
-            this.btnCancel.Location = new System.Drawing.Point(290, 899);
+            this.btnCancel.Location = new System.Drawing.Point(895, 807);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(139, 51);
             this.btnCancel.TabIndex = 47;
@@ -523,7 +535,7 @@
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageOffset = new System.Drawing.Point(-8, 0);
             this.btnSave.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnSave.Location = new System.Drawing.Point(102, 899);
+            this.btnSave.Location = new System.Drawing.Point(688, 807);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 51);
             this.btnSave.TabIndex = 46;
@@ -566,9 +578,9 @@
             // 
             // lblProductStatus
             // 
-            this.lblProductStatus.Location = new System.Drawing.Point(304, 842);
+            this.lblProductStatus.Location = new System.Drawing.Point(874, 736);
             this.lblProductStatus.Name = "lblProductStatus";
-            this.lblProductStatus.Size = new System.Drawing.Size(306, 47);
+            this.lblProductStatus.Size = new System.Drawing.Size(235, 47);
             this.lblProductStatus.TabIndex = 54;
             this.lblProductStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -576,7 +588,8 @@
             // 
             this.picProductImage.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.picProductImage.ImageRotate = 0F;
-            this.picProductImage.Location = new System.Drawing.Point(739, 227);
+            this.picProductImage.Location = new System.Drawing.Point(749, 183);
+            this.picProductImage.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.picProductImage.Name = "picProductImage";
             this.picProductImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.picProductImage.Size = new System.Drawing.Size(300, 300);
@@ -584,11 +597,123 @@
             this.picProductImage.TabIndex = 48;
             this.picProductImage.TabStop = false;
             // 
+            // chkHasExpiration
+            // 
+            this.chkHasExpiration.AutoSize = true;
+            this.chkHasExpiration.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkHasExpiration.CheckedState.BorderRadius = 3;
+            this.chkHasExpiration.CheckedState.BorderThickness = 0;
+            this.chkHasExpiration.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkHasExpiration.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkHasExpiration.Font = new System.Drawing.Font("Inter", 11.25F);
+            this.chkHasExpiration.Location = new System.Drawing.Point(688, 694);
+            this.chkHasExpiration.Name = "chkHasExpiration";
+            this.chkHasExpiration.Size = new System.Drawing.Size(177, 26);
+            this.chkHasExpiration.TabIndex = 55;
+            this.chkHasExpiration.Text = "This product expires\r\n";
+            this.chkHasExpiration.UncheckedState.BorderColor = System.Drawing.Color.Black;
+            this.chkHasExpiration.UncheckedState.BorderRadius = 3;
+            this.chkHasExpiration.UncheckedState.BorderThickness = 1;
+            this.chkHasExpiration.UncheckedState.FillColor = System.Drawing.Color.Transparent;
+            // 
+            // dtpExpirationDate
+            // 
+            this.dtpExpirationDate.Animated = true;
+            this.dtpExpirationDate.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.dtpExpirationDate.BorderRadius = 10;
+            this.dtpExpirationDate.BorderThickness = 1;
+            this.dtpExpirationDate.Checked = true;
+            this.dtpExpirationDate.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.dtpExpirationDate.CheckedState.FillColor = System.Drawing.Color.White;
+            this.dtpExpirationDate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dtpExpirationDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
+            this.dtpExpirationDate.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpExpirationDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
+            this.dtpExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpExpirationDate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.dtpExpirationDate.Location = new System.Drawing.Point(688, 640);
+            this.dtpExpirationDate.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.dtpExpirationDate.MaxDate = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
+            this.dtpExpirationDate.MinDate = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
+            this.dtpExpirationDate.Name = "dtpExpirationDate";
+            this.dtpExpirationDate.Size = new System.Drawing.Size(320, 41);
+            this.dtpExpirationDate.TabIndex = 56;
+            this.dtpExpirationDate.Value = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Inter", 13F);
+            this.label13.Location = new System.Drawing.Point(683, 612);
+            this.label13.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(141, 26);
+            this.label13.TabIndex = 57;
+            this.label13.Text = "Expiration Date";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2Separator1
+            // 
+            this.guna2Separator1.Location = new System.Drawing.Point(102, 159);
+            this.guna2Separator1.Name = "guna2Separator1";
+            this.guna2Separator1.Size = new System.Drawing.Size(508, 10);
+            this.guna2Separator1.TabIndex = 59;
+            // 
+            // guna2Separator2
+            // 
+            this.guna2Separator2.Location = new System.Drawing.Point(102, 549);
+            this.guna2Separator2.Name = "guna2Separator2";
+            this.guna2Separator2.Size = new System.Drawing.Size(508, 10);
+            this.guna2Separator2.TabIndex = 61;
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Poppins", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(96, 133);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(232, 30);
+            this.label14.TabIndex = 62;
+            this.label14.Text = "Product Details";
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Poppins", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(96, 523);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(253, 30);
+            this.label15.TabIndex = 63;
+            this.label15.Text = "Pricing && Inventory";
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Poppins", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(682, 563);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(253, 30);
+            this.label16.TabIndex = 65;
+            this.label16.Text = "Expiration && Status";
+            // 
+            // guna2Separator3
+            // 
+            this.guna2Separator3.Location = new System.Drawing.Point(688, 589);
+            this.guna2Separator3.Name = "guna2Separator3";
+            this.guna2Separator3.Size = new System.Drawing.Size(426, 10);
+            this.guna2Separator3.TabIndex = 64;
+            // 
             // FrmCreateEditProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 980);
+            this.ClientSize = new System.Drawing.Size(1200, 900);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.guna2Separator3);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.guna2Separator2);
+            this.Controls.Add(this.guna2Separator1);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.dtpExpirationDate);
+            this.Controls.Add(this.chkHasExpiration);
             this.Controls.Add(this.lblProductStatus);
             this.Controls.Add(this.cmbSupplier);
             this.Controls.Add(this.label12);
@@ -668,5 +793,14 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblProductStatus;
         private Guna.UI2.WinForms.Guna2CirclePictureBox picProductImage;
+        private Guna.UI2.WinForms.Guna2CheckBox chkHasExpiration;
+        private System.Windows.Forms.Label label13;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpExpirationDate;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label16;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
     }
 }
