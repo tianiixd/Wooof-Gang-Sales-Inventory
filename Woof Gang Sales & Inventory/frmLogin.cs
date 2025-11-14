@@ -1,6 +1,6 @@
 ﻿#nullable enable
-using Guna.UI2.WinForms;
 using BCrypt;
+using Guna.UI2.WinForms;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,15 +10,16 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Security;
 using System.Windows.Forms;
-using Woof_Gang_Sales___Inventory.Database;
-using Woof_Gang_Sales___Inventory.Models;
-using Woof_Gang_Sales___Inventory.Data;
 using Woof_Gang_Sales___Inventory.Admin;
-using Woof_Gang_Sales___Inventory.Util;
+using Woof_Gang_Sales___Inventory.Data;
+using Woof_Gang_Sales___Inventory.Database;
 using Woof_Gang_Sales___Inventory.Forms.Admin;
+using Woof_Gang_Sales___Inventory.Models;
+using Woof_Gang_Sales___Inventory.Util;
 namespace Woof_Gang_Sales___Inventory
 {
     public partial class frmLogin : Sample
@@ -149,10 +150,26 @@ namespace Woof_Gang_Sales___Inventory
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                SystemSounds.Hand.Play();
                 DialogHelper.ShowCustomDialog("Login Failed", "Please enter username and password", "warning");
                 return false;
             }
+
+
+            if (!Regex.IsMatch(username.Trim(), @"^[a-zA-Z0-9_-]{4,}$"))
+            {
+                DialogHelper.ShowCustomDialog("Invalid Username",
+                    "Username must be at least 4 characters long and can only contain letters, numbers, underscores, and hyphens.", "warning");
+                return false;
+            }
+
+            if (!Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"))
+            {
+                DialogHelper.ShowCustomDialog("Invalid Password",
+                    "Password must be at least 8 characters long and contain at least one letter and one number.", "warning");
+                return false;
+            }
+
+
             return true;
                 
         }

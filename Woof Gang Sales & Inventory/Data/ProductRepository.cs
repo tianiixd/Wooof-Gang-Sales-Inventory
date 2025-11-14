@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using Microsoft.Data.SqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Woof_Gang_Sales___Inventory.Database;
 using Woof_Gang_Sales___Inventory.Helpers;
@@ -347,6 +348,49 @@ namespace Woof_Gang_Sales___Inventory.Data
             }
             return 0; // Default to 0 if not found or error
         }
+
+
+
+        //Updates product stock when receiving a Purchase Order
+        public bool ReceiveStock(int productId, int quantityReceived, DateTime? expirationDate, SqlConnection conn, SqlTransaction transaction)
+        {
+            // This query does two things:
+            // 1. Adds the new quantity to the current quantity.
+            // 2. Sets the new expiration date.
+            string query = @"
+                UPDATE Products 
+                SET 
+                    Quantity = Quantity + @QuantityReceived,
+                    ExpirationDate = @ExpirationDate
+                WHERE ProductID = @ProductID";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+                {
+                    cmd.Parameters.AddWithValue("@QuantityReceived", quantityReceived);
+                    cmd.Parameters.AddWithValue("@ExpirationDate", (object?)expirationDate ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
+
+                    int rows = cmd.ExecuteNonQuery();
+
+                    if (rows == 0)
+                    {
+                        // If 0 rows, the ProductID was invalid. Throw an exception
+                        // to roll back the entire PO transaction.
+                        throw new Exception($"Failed to receive stock for ProductID {productId}. Product not found.");
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Re-throw the exception to ensure the main transaction in
+                // PurchaseOrderRepository is rolled back.
+                throw new Exception($"Error in ReceiveStock for ProductID {productId}: {ex.Message}", ex);
+            }
+        }
+
 
 
         // --- Soft Delete / Restore ---

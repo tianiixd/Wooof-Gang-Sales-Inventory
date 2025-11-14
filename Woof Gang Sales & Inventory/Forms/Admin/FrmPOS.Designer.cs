@@ -69,6 +69,8 @@
             // 
             // dgvCart
             // 
+            this.dgvCart.AllowUserToResizeColumns = false;
+            this.dgvCart.AllowUserToResizeRows = false;
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -81,6 +83,7 @@
             this.dgvCart.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.dgvCart.Location = new System.Drawing.Point(3, 91);
+            this.dgvCart.MultiSelect = false;
             this.dgvCart.Name = "dgvCart";
             this.dgvCart.Size = new System.Drawing.Size(342, 711);
             this.dgvCart.TabIndex = 2;

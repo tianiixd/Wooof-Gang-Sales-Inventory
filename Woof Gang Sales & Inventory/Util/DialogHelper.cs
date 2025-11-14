@@ -164,6 +164,11 @@ namespace Woof_Gang_Sales___Inventory.Util
                     iconImage = Properties.Resources.error;
                     sound = SystemSounds.Hand;
                     break;
+                case "info":
+                    headerColor = Color.FromArgb(47, 74, 145);
+                    iconImage = Properties.Resources.information;
+                    sound = SystemSounds.Asterisk;
+                    break;
                 default:
                     headerColor = Color.FromArgb(47, 74, 145);
                     iconImage = Properties.Resources.information;

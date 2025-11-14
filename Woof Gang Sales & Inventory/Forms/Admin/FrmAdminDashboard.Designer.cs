@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAdminDashboard));
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnReports = new Guna.UI2.WinForms.Guna2Button();
+            this.btnPurchaseOrders = new Guna.UI2.WinForms.Guna2Button();
             this.btnSuppliers = new Guna.UI2.WinForms.Guna2Button();
             this.btnSubCategory = new Guna.UI2.WinForms.Guna2Button();
             this.btnCategory = new Guna.UI2.WinForms.Guna2Button();
@@ -55,6 +57,8 @@
             // 
             this.guna2Panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
             this.guna2Panel3.BorderRadius = 5;
+            this.guna2Panel3.Controls.Add(this.btnReports);
+            this.guna2Panel3.Controls.Add(this.btnPurchaseOrders);
             this.guna2Panel3.Controls.Add(this.btnSuppliers);
             this.guna2Panel3.Controls.Add(this.btnSubCategory);
             this.guna2Panel3.Controls.Add(this.btnCategory);
@@ -71,6 +75,65 @@
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Size = new System.Drawing.Size(246, 1031);
             this.guna2Panel3.TabIndex = 5;
+            // 
+            // btnReports
+            // 
+            this.btnReports.Animated = true;
+            this.btnReports.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnReports.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnReports.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnReports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReports.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnReports.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnReports.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnReports.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnReports.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnReports.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnReports.Font = new System.Drawing.Font("Inter", 15F);
+            this.btnReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
+            this.btnReports.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
+            this.btnReports.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnReports.Image = ((System.Drawing.Image)(resources.GetObject("btnReports.Image")));
+            this.btnReports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnReports.ImageOffset = new System.Drawing.Point(3, 0);
+            this.btnReports.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnReports.Location = new System.Drawing.Point(0, 621);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(246, 45);
+            this.btnReports.TabIndex = 13;
+            this.btnReports.Text = "Reports";
+            this.btnReports.TextOffset = new System.Drawing.Point(-10, 0);
+            // 
+            // btnPurchaseOrders
+            // 
+            this.btnPurchaseOrders.Animated = true;
+            this.btnPurchaseOrders.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnPurchaseOrders.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnPurchaseOrders.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnPurchaseOrders.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPurchaseOrders.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPurchaseOrders.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPurchaseOrders.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPurchaseOrders.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPurchaseOrders.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnPurchaseOrders.FocusedColor = System.Drawing.Color.Red;
+            this.btnPurchaseOrders.Font = new System.Drawing.Font("Inter", 15F);
+            this.btnPurchaseOrders.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
+            this.btnPurchaseOrders.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
+            this.btnPurchaseOrders.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnPurchaseOrders.Image = ((System.Drawing.Image)(resources.GetObject("btnPurchaseOrders.Image")));
+            this.btnPurchaseOrders.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPurchaseOrders.ImageOffset = new System.Drawing.Point(2, 0);
+            this.btnPurchaseOrders.ImageSize = new System.Drawing.Size(40, 40);
+            this.btnPurchaseOrders.Location = new System.Drawing.Point(0, 448);
+            this.btnPurchaseOrders.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.btnPurchaseOrders.Name = "btnPurchaseOrders";
+            this.btnPurchaseOrders.Size = new System.Drawing.Size(246, 45);
+            this.btnPurchaseOrders.TabIndex = 12;
+            this.btnPurchaseOrders.Text = "Purchase Orders";
+            this.btnPurchaseOrders.TextOffset = new System.Drawing.Point(35, 0);
+            this.btnPurchaseOrders.Click += new System.EventHandler(this.btnPurchaseOrders_Click);
             // 
             // btnSuppliers
             // 
@@ -195,7 +258,7 @@
             this.btnLogOut.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnLogOut.ImageOffset = new System.Drawing.Point(8, 0);
             this.btnLogOut.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnLogOut.Location = new System.Drawing.Point(0, 622);
+            this.btnLogOut.Location = new System.Drawing.Point(0, 737);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(246, 45);
@@ -224,7 +287,7 @@
             this.btnUsers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnUsers.ImageOffset = new System.Drawing.Point(6, 0);
             this.btnUsers.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnUsers.Location = new System.Drawing.Point(0, 564);
+            this.btnUsers.Location = new System.Drawing.Point(0, 679);
             this.btnUsers.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(246, 45);
@@ -254,7 +317,7 @@
             this.btnSales.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSales.ImageOffset = new System.Drawing.Point(3, 0);
             this.btnSales.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSales.Location = new System.Drawing.Point(0, 506);
+            this.btnSales.Location = new System.Drawing.Point(0, 563);
             this.btnSales.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnSales.Name = "btnSales";
             this.btnSales.Size = new System.Drawing.Size(246, 45);
@@ -284,7 +347,7 @@
             this.btnProducts.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnProducts.ImageOffset = new System.Drawing.Point(2, 0);
             this.btnProducts.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnProducts.Location = new System.Drawing.Point(0, 448);
+            this.btnProducts.Location = new System.Drawing.Point(0, 505);
             this.btnProducts.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnProducts.Name = "btnProducts";
             this.btnProducts.Size = new System.Drawing.Size(246, 45);
@@ -455,5 +518,7 @@
         private Guna.UI2.WinForms.Guna2Button btnCategory;
         private Guna.UI2.WinForms.Guna2Button btnSubCategory;
         private Guna.UI2.WinForms.Guna2Button btnSuppliers;
+        private Guna.UI2.WinForms.Guna2Button btnPurchaseOrders;
+        private Guna.UI2.WinForms.Guna2Button btnReports;
     }
 }

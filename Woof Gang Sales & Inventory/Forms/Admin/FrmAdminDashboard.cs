@@ -28,6 +28,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
         private FrmSubCategoryView subCategoryView;
         private FrmSupplierView supplierView;
         private FrmPOS posView;
+        private FrmPurchaseOrderView purchaseOrderView;
         public static FrmAdminDashboard GetInstance(User? user = null)
         {
             if (formAdmin == null || formAdmin.IsDisposed)
@@ -251,7 +252,18 @@ namespace Woof_Gang_Sales___Inventory.Admin
                 posView = new FrmPOS();
             }
 
-            AddControls(posView);   
+            AddControls(posView);
+            posView.LoadProductsToPanel();
+        }
+
+        private void btnPurchaseOrders_Click(object sender, EventArgs e)
+        {
+            if (purchaseOrderView == null || purchaseOrderView.IsDisposed)
+            {
+                purchaseOrderView = new FrmPurchaseOrderView();
+            }
+
+            AddControls(purchaseOrderView);
         }
     }
 }

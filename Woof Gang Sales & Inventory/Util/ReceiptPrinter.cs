@@ -1,175 +1,193 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Drawing;
-//using System.Drawing.Printing;
-//using System.Linq;
-//using System.Windows.Forms;
-//using Woof_Gang_Sales___Inventory.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Linq;
+using System.Windows.Forms;
+using Woof_Gang_Sales___Inventory.Models;
 
-//namespace Woof_Gang_Sales___Inventory.Util
-//{
-//    /// <summary>
-//    /// This class uses the built-in .NET printing libraries
-//    /// to generate and preview a receipt.
-//    /// </summary>
-//    public class ReceiptPrinter
-//    {
-//        // --- Data to print ---
-//        private Sale _sale;
-//        private List<CartItem> _cartItems;
-//        private string _cashierName;
-//        private decimal _amountTendered;
-//        private decimal _changeDue;
+namespace Woof_Gang_Sales___Inventory.Util
+{
+    public static class ReceiptPrinter
+    {
+        // This will hold "drawing actions"
+        private static Queue<Action<Graphics, float, float>> printActions;
+        private static Font fontBold, fontNormal, fontLarge;
+        private static float currentY;
+        private static float printableWidth;
 
-//        // --- Drawing Tools ---
-//        private Font fontBold = new Font("Courier New", 10, FontStyle.Bold);
-//        private Font fontNormal = new Font("Courier New", 9, FontStyle.Regular);
-//        private Font fontSmall = new Font("Courier New", 8, FontStyle.Regular);
-//        private SolidBrush brush = new SolidBrush(Color.Black);
-//        private float yPos = 0; // Tracks our vertical position on the page
-//        private float leftMargin = 10;
-//        private float rightMargin = 260; // Approx width for an 80mm receipt
+        // ✅ NEW: This bool will track our "two-page" trick
+        private static bool isSecondPage;
 
-//        /// <summary>
-//        /// Constructor: Receives all data needed for the receipt.
-//        /// </summary>
-//        public ReceiptPrinter(Sale sale, List<CartItem> cartItems, string cashierName, decimal amountTendered, decimal changeDue)
-//        {
-//            _sale = sale;
-//            _cartItems = cartItems;
-//            _cashierName = cashierName;
-//            _amountTendered = amountTendered;
-//            _changeDue = changeDue;
-//        }
+        public static void Print(Sale sale, List<CartItem> cartItems, string cashierName, decimal amountTendered, decimal changeDue, string printerName)
+        {
+            try
+            {
+                // --- 1. SETUP FONTS AND QUEUE ---
+                fontBold = new Font("Helvetica", 7f, FontStyle.Bold);
+                fontNormal = new Font("Helvetica", 7f, FontStyle.Regular);
+                fontLarge = new Font("Helvetica", 9f, FontStyle.Regular);
 
-//        /// <summary>
-//        /// This is the main method that opens the Print Preview.
-//        /// </summary>
-//        public void Print()
-//        {
-//            // 1. Create the document to be printed
-//            PrintDocument pd = new PrintDocument();
+                printActions = new Queue<Action<Graphics, float, float>>();
 
-//            // Set the paper size (80mm is a common receipt width)
-//            // 80mm = ~3.15 inches. 3.15 * 100 = 315
-//            // Length is arbitrary, 11 inches (1100) is fine for preview.
-//            pd.DefaultPageSettings.PaperSize = new PaperSize("Receipt", 315, 1100);
+                // --- 2. BUILD THE DRAWING ACTIONS (mimicking your PDF) ---
 
-//            // 2. Add an event handler for the "PrintPage" event
-//            // This is where all our drawing logic happens
-//            pd.PrintPage += new PrintPageEventHandler(pd_PrintPage);
+                // Helper to add a centered line
+                Action<string, Font> AddCenteredLine = (text, font) =>
+                {
+                    printActions.Enqueue((g, x, y) => {
+                        float textWidth = g.MeasureString(text, font).Width;
+                        // ✅ FIX 1 (CENTERING): Center based on the *full* printableWidth
+                        float centeredX = (printableWidth - textWidth) / 2;
+                        if (centeredX < 0) centeredX = 0;
+                        g.DrawString(text, font, Brushes.Black, centeredX, y);
+                    });
+                };
 
-//            // 3. Create a Print Preview Dialog
-//            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
-//            previewDialog.Document = pd;
+                // Helper to add a left-aligned line (with word wrap)
+                Action<string, Font> AddLeftLine = (text, font) =>
+                {
+                    printActions.Enqueue((g, x, y) => {
+                        RectangleF rect = new RectangleF(x, y, printableWidth, font.GetHeight(g) * 2);
+                        g.DrawString(text, font, Brushes.Black, rect);
+                    });
+                };
 
-//            // Set preview settings
-//            previewDialog.Width = 600;
-//            previewDialog.Height = 800;
-//            previewDialog.StartPosition = FormStartPosition.CenterScreen;
-//            previewDialog.ShowIcon = false;
+                // Helper to add a spacer
+                Action AddSpacer = () => {
+                    printActions.Enqueue((g, x, y) => { /* Just advances Y */ });
+                };
 
-//            // 4. Show the dialog
-//            previewDialog.ShowDialog();
-//        }
+                // Helper to add a dashed line
+                Action AddDashedLine = () => {
+                    printActions.Enqueue((g, x, y) => {
+                        // This is your dash string, I will not change it.
+                        string dashes = "-----------------------------------------------------------------";
+                        float textWidth = g.MeasureString(dashes, fontNormal).Width;
+                        float centeredX = (printableWidth - textWidth) / 2;
+                        if (centeredX < 0) centeredX = 0;
+                        g.DrawString(dashes, fontNormal, Brushes.Black, centeredX, y);
+                    });
+                };
 
-//        /// <summary>
-//        /// This event is fired when the Print() method is called.
-//        /// It does all the actual drawing onto the 'e.Graphics' surface.
-//        /// </summary>
-//        private void pd_PrintPage(object sender, PrintPageEventArgs e)
-//        {
-//            Graphics g = e.Graphics;
-//            yPos = 10; // Reset Y position for each page
+                // Helper for left-right (e.g., "Total: ... P100.00")
+                Action<string, string, Font> AddLeftRightLine = (left, right, font) =>
+                {
+                    printActions.Enqueue((g, x, y) => {
+                        g.DrawString(left, font, Brushes.Black, x, y);
+                        float rightWidth = g.MeasureString(right, font).Width;
+                        // ✅ FIX 1 (ALIGNMENT): Align to the *full* printableWidth
+                        float rightX = printableWidth - rightWidth;
+                        g.DrawString(right, font, Brushes.Black, rightX, y);
+                    });
+                };
 
-//            StringFormat formatCenter = new StringFormat { Alignment = StringAlignment.Center };
-//            StringFormat formatRight = new StringFormat { Alignment = StringAlignment.Far };
-//            string line = "------------------------------------------";
+                // --- 3. REBUILD YOUR PDF LAYOUT ---
+                // (This part of your code is perfect)
 
-//            // --- 1. Store Header ---
-//            DrawText("WooofGang Pet Store", fontBold, formatCenter);
-//            DrawText("#40 Yakal Street, Neopolitan VI", fontSmall, formatCenter);
-//            DrawText("Sitio Seville, Fairview, Quezon City", fontSmall, formatCenter);
-//            DrawText($"Date: {_sale.SaleDate.ToShortDateString()} {_sale.SaleTime.ToString(@"hh\:mm\:ss tt")}", fontSmall, formatCenter);
-//            yPos += 10; // Add extra space
+                // --- Header ---
+                AddCenteredLine("WooofGang Pet Store", fontBold);
+                AddCenteredLine("#40 Yakal Street, Neopolitan VI", fontNormal);
+                AddCenteredLine("Sitio Seville, Fairview, Quezon City", fontNormal);
+                DateTime dt = sale.SaleDate.Date + sale.SaleTime;
+                AddCenteredLine(dt.ToString("M/d/yyyy hh:mm tt"), fontNormal);
+                AddSpacer();
 
-//            // --- 2. Sale Info ---
-//            DrawText($"Receipt No.: {_sale.SaleID.ToString("D6")}");
-//            DrawText($"Cashier: {_cashierName}");
-//            DrawText(line);
+                // --- Sale Info ---
+                AddLeftLine($"Sales Invoice No.: {sale.SaleID.ToString("D6")}", fontNormal);
+                AddLeftLine($"Cashier: {cashierName}", fontNormal);
+                AddDashedLine();
 
-//            // --- 3. Items Header ---
-//            DrawText("Qty  Item", fontBold);
-//            DrawText("Price", fontBold, new StringFormat { Alignment = StringAlignment.Far }); // Aligned right
-//            yPos += 5;
+                // --- Items (The 2-Line Fix) ---
+                foreach (var item in cartItems)
+                {
+                    AddLeftLine(item.ProductName, fontNormal);
+                    string details = $"  ({item.Quantity} @ {item.UnitPrice.ToString("N2")})";
+                    AddLeftRightLine(details, item.Subtotal.ToString("N2"), fontNormal);
+                }
+                AddDashedLine();
 
-//            // --- 4. Items List ---
-//            foreach (var item in _cartItems)
-//            {
-//                // Draw Qty and Name
-//                DrawText($"{item.Quantity}   {item.ProductName}", fontNormal);
+                // --- Totals ---
+                decimal subtotal = cartItems.Sum(i => i.Subtotal);
+                decimal discount = subtotal - sale.TotalAmount;
+                AddLeftRightLine("Subtotal:", subtotal.ToString("N2"), fontNormal);
+                AddLeftRightLine("Discount:", discount.ToString("N2"), fontNormal);
+                AddLeftRightLine("TOTAL:", $"P{sale.TotalAmount.ToString("N2")}", fontBold);
+                AddSpacer();
+                AddLeftRightLine("Payment Method:", sale.PaymentMethod, fontNormal);
+                AddLeftRightLine("Cash:", $"P{amountTendered.ToString("N2")}", fontNormal);
+                AddLeftRightLine("Change:", $"P{changeDue.ToString("N2")}", fontNormal);
+                AddSpacer();
 
-//                // Draw Subtotal (aligned right)
-//                DrawText(item.Subtotal.ToString("N2"), fontNormal, formatRight);
+                // --- Footer ---
+                AddCenteredLine("Thank you for shopping!", fontLarge);
+                AddDashedLine();
+                AddCenteredLine("VAT Reg TIN: 000-000-000-000", fontNormal);
+                AddCenteredLine("DTI Permit No: 12345678", fontNormal);
+                AddSpacer();
+                AddSpacer();
+                AddCenteredLine("Follow us on Facebook!", fontBold);
+                AddCenteredLine("fb.com/wooofgang.pets", fontNormal);
 
-//                // Draw UnitPrice (on the line below, indented)
-//                string unitPriceLine = $"    (@ {item.UnitPrice.ToString("N2")} ea)";
-//                DrawText(unitPriceLine, fontSmall);
-//                yPos += 5; // Add space between items
-//            }
-//            DrawText(line);
+                // ✅ FIX 2 (CUT-OFF): Removed all 15 spacers from here.
+                // We will use the "two-page" trick instead.
 
-//            // --- 5. Totals ---
-//            decimal subtotal = _cartItems.Sum(item => item.Subtotal);
-//            decimal discountAmount = subtotal - _sale.TotalAmount;
+                // --- 4. SEND TO PRINTER ---
+                PrintDocument pd = new PrintDocument();
+                pd.PrinterSettings.PrinterName = printerName;
 
-//            DrawTextPair("SubTotal:", subtotal.ToString("N2"));
-//            DrawTextPair("Discount:", discountAmount.ToString("N2"));
-//            DrawTextPair("Grand Total:", _sale.TotalAmount.ToString("N2"), fontBold);
-//            yPos += 10;
+                // This is your 48mm "roll" setting, which is correct
+                PaperSize customPaperSize = new PaperSize("48mmRoll", 189, 12900);
+                pd.DefaultPageSettings.PaperSize = customPaperSize;
 
-//            // --- 6. Payment Details ---
-//            DrawTextPair("Payment Type:", _sale.PaymentMethod);
-//            DrawTextPair("Tendered:", _amountTendered.ToString("N2"));
-//            DrawTextPair("Change:", _changeDue.ToString("N2"), fontBold);
-//            yPos += 15;
+                // ✅ FIX 1 (CENTERING): Set all margins to 0.
+                pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
 
-//            // --- 7. Footer ---
-//            DrawText("Thank you for shopping!", fontNormal, formatCenter);
-//            DrawText("- Please Come Again -", fontSmall, formatCenter);
+                pd.PrintPage += new PrintPageEventHandler(Pd_PrintPage);
 
-//            // Tell the printer this is the last page
-//            e.HasMorePages = false;
-//        }
+                // ✅ FIX 2 (CUT-OFF): Reset our "two-page" tracker
+                isSecondPage = false;
 
-//        // Helper method to draw a line of text and advance the Y position
-//        private void DrawText(string text, Font font, StringFormat format = null)
-//        {
-//            if (format == null) format = new StringFormat { Alignment = StringAlignment.Near };
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not print the receipt. Check printer.\n" + ex.Message, "Print Error");
+            }
+        }
 
-//            // Define the drawing area for this line
-//            RectangleF rect = new RectangleF(leftMargin, yPos, rightMargin - leftMargin, font.Height);
+        // This event handler is called by the PrintDocument
+        private static void Pd_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
 
-//            g.DrawString(text, font, brush, rect, format);
+            // ✅ FIX 2 (CUT-OFF): Check if this is the "flush" page
+            if (isSecondPage)
+            {
+                e.HasMorePages = false;
+                return; // Stop. Do not print anything on the second page.
+            }
 
-//            // Move Y position down for the next line
-//            yPos += font.Height;
-//        }
+            // ✅ FIX 1 (CENTERING): Use the *full* page width
+            printableWidth = e.PageBounds.Width;
+            float leftMargin = e.PageBounds.Left; // Should be 0
+            currentY = e.PageBounds.Top; // Should be 0
 
-//        // Helper method to draw a "Name: Value" pair
-//        private void DrawTextPair(string leftText, string rightText, Font font = null)
-//        {
-//            if (font == null) font = fontNormal;
+            // Draw each "action" from our queue
+            while (printActions.Count > 0)
+            {
+                Action<Graphics, float, float> action = printActions.Dequeue();
+                action(g, leftMargin, currentY);
 
-//            // Draw left part
-//            RectangleF rectLeft = new RectangleF(leftMargin, yPos, (rightMargin - leftMargin) / 2, font.Height);
-//            g.DrawString(leftText, font, brush, rectLeft, new StringFormat { Alignment = StringAlignment.Near });
+                // Advance Y position
+                currentY += fontNormal.GetHeight(g) + 1; // +1 for line spacing
+            }
 
-//            // Draw right part
-//            RectangleF rectRight = new RectangleF(leftMargin, yPos, rightMargin - leftMargin, font.Height);
-//            g.DrawString(rightText, font, brush, rectRight, new StringFormat { Alignment = StringAlignment.Far });
-
-//            yPos += font.Height;
-//        }
-//    }
-//}
+            // ✅ FIX 2 (CUT-OFF): The queue is empty.
+            // Tell the printer "we have one more (blank) page".
+            // This forces it to "flush" this page before cutting.
+            e.HasMorePages = true;
+            isSecondPage = true;
+        }
+    }
+}

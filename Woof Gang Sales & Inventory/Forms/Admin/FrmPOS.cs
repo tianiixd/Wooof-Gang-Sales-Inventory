@@ -162,7 +162,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             LoadProductsToPanel();
         }
 
-        private void LoadProductsToPanel()
+        public void LoadProductsToPanel()
         {
             if (cmbCategoryFilter.SelectedValue == null || cmbSubCategoryFilter.SelectedValue == null) return;
 
@@ -268,7 +268,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         {
             // ✅ --- ADD THIS LINE ---
             dgvCart.AllowUserToAddRows = false; // Remove the blank "new row"
-
             dgvCart.AutoGenerateColumns = false;
             dgvCart.Columns.Clear();
 

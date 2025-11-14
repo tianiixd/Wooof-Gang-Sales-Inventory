@@ -41,6 +41,8 @@
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.pnlRight = new Guna.UI2.WinForms.Guna2Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtUserName = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -177,6 +179,8 @@
             // pnlRight
             // 
             this.pnlRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(247)))), ((int)(((byte)(229)))));
+            this.pnlRight.Controls.Add(this.label14);
+            this.pnlRight.Controls.Add(this.label13);
             this.pnlRight.Controls.Add(this.txtPassword);
             this.pnlRight.Controls.Add(this.txtUserName);
             this.pnlRight.Controls.Add(this.guna2VSeparator1);
@@ -188,6 +192,26 @@
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Size = new System.Drawing.Size(428, 418);
             this.pnlRight.TabIndex = 12;
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.DimGray;
+            this.label14.Location = new System.Drawing.Point(76, 308);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(312, 22);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "(Min 8 chars. At least one letter and one number)";
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.DimGray;
+            this.label13.Location = new System.Drawing.Point(76, 200);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(312, 22);
+            this.label13.TabIndex = 34;
+            this.label13.Text = "(Min 4 chars. Letters, numbers, _ , - allowed)";
             // 
             // txtPassword
             // 
@@ -359,5 +383,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
     }
 }

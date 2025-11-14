@@ -234,6 +234,7 @@
     <Compile Include="Data\Database\DBConnection.cs" />
     <Compile Include="Data\DiscountRepository.cs" />
     <Compile Include="Data\ProductRepository.cs" />
+    <Compile Include="Data\PurchaseOrderRepository.cs" />
     <Compile Include="Data\SalesRepository.cs" />
     <Compile Include="Data\StockTransactionRepository.cs" />
     <Compile Include="Data\SubCategoryRepository.cs" />
@@ -305,6 +306,12 @@
     <Compile Include="Forms\Admin\FrmProductView.Designer.cs">
       <DependentUpon>FrmProductView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\FrmPurchaseOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmPurchaseOrderView.Designer.cs">
+      <DependentUpon>FrmPurchaseOrderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Admin\FrmSubCategoryView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,6 +352,9 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\PurchaseOrder.cs" />
+    <Compile Include="Models\PurchaseOrderDetail.cs" />
+    <Compile Include="Models\PurchaseOrderDetailView.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\SalesDetail.cs" />
     <Compile Include="Models\StockTransaction.cs" />
@@ -411,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\FrmProductView.resx">
       <DependentUpon>FrmProductView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\FrmPurchaseOrderView.resx">
+      <DependentUpon>FrmPurchaseOrderView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\FrmSubCategoryView.resx">
       <DependentUpon>FrmSubCategoryView.cs</DependentUpon>

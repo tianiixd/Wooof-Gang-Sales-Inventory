@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Admin; // For FrmAdminDashboard
 using Woof_Gang_Sales___Inventory.Data;
@@ -191,13 +192,38 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 // ✅ --- THIS IS THE FIX ---
                 // Calculate change and pass all 5 arguments to the PDF generator
                 decimal changeDue = (paymentMethod == "Cash") ? (finalTenderedAmount - _totalAmount) : 0;
-                PdfGenerator.CreateReceipt(newSale, _shoppingCart, cashierName, finalTenderedAmount, changeDue);
 
-                this.DialogResult = DialogResult.OK; // Tell FrmPOS it worked
-                this.Close();
+                string generatedPdfPath = PdfGenerator.CreateReceipt(newSale, _shoppingCart, cashierName, finalTenderedAmount, changeDue);
+                if (generatedPdfPath != null)
+                {
+                    // 3. Ask the user to print
+                    DialogResult result = DialogHelper.ShowConfirmDialog("Print Receipt", "Sale complete! Print a receipt?", "info");
+
+                    // "Sale complete! Print a receipt?",
+                    //"Print Receipt",
+                    if (result == DialogResult.Yes)
+                    {
+                        try
+                        {
+                           
+                            string printerName = "ReceiptPrint";
+
+
+                            ReceiptPrinter.Print(newSale, _shoppingCart, cashierName, finalTenderedAmount, changeDue, printerName);
+                        }
+                        catch (Exception ex)
+                        {
+                            DialogHelper.ShowCustomDialog("Print Error", "Could not print the receipt. Check printer.\n" + ex.Message, "error");
+                        }
+                    }
+
+
+                    this.DialogResult = DialogResult.OK; // Tell FrmPOS it worked
+                    this.Close();
+                }
+                // If it fails (newSaleID == 0), the salesRepo's DialogHelper
+                // already showed the error, so we just stay on this form.
             }
-            // If it fails (newSaleID == 0), the salesRepo's DialogHelper
-            // already showed the error, so we just stay on this form.
         }
     }
 }
