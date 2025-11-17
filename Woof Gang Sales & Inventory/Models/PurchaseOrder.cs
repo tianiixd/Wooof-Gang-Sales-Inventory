@@ -17,6 +17,7 @@ namespace Woof_Gang_Sales___Inventory.Models
         public int? OrderedBy { get; set; }
 
         public DateTime PODate { get; set; }
+        public DateTime? ReceivedDate { get; set; }
         public string Status { get; set; }
 
         // ✅ --- FIX: Changed to 'decimal?' to allow nulls ---

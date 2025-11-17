@@ -19,23 +19,22 @@ namespace Woof_Gang_Sales___Inventory.Data
 
         /// <summary>
         /// Gets all Purchase Orders for the main (master) grid.
-        /// Includes searching and filtering by status.
         /// </summary>
         public List<PurchaseOrder> GetPurchaseOrders(string search, string status)
         {
             var poList = new List<PurchaseOrder>();
 
-            // This query calculates the total cost from the SUM of the details
             string query = @"
                 SELECT 
                     po.POID, po.SupplierID, po.OrderedBy, po.PODate, 
                     po.Status, po.Remarks, po.IsActive,
+                    po.ReceivedDate, -- ✅ --- FIX: Added ReceivedDate ---
                     s.SupplierName,
                     ISNULL(SUM(pod.Subtotal), 0) AS CalculatedTotalCost
                 FROM PurchaseOrders po
                 JOIN Suppliers s ON po.SupplierID = s.SupplierID
                 LEFT JOIN PurchaseOrderDetails pod ON po.POID = pod.POID
-                WHERE 1=1"; // Start with a true statement to easily append filters
+                WHERE 1=1";
 
             // --- Apply Filters ---
             if (!string.IsNullOrWhiteSpace(search))
@@ -53,9 +52,7 @@ namespace Woof_Gang_Sales___Inventory.Data
             // --- Apply Status Filter ---
             switch (status)
             {
-                case "All Active":
-                    query += " AND po.IsActive = 1";
-                    break;
+      
                 case "Pending":
                     query += " AND po.IsActive = 1 AND po.Status = 'Pending'";
                     break;
@@ -65,7 +62,10 @@ namespace Woof_Gang_Sales___Inventory.Data
                 case "Cancelled":
                     query += " AND po.IsActive = 1 AND po.Status = 'Cancelled'";
                     break;
-                case "Archived":
+                case "All Active":
+                    query += " AND po.IsActive = 1";
+                    break;
+                case "All Archived":
                     query += " AND po.IsActive = 0";
                     break;
                 case "Show All":
@@ -73,13 +73,13 @@ namespace Woof_Gang_Sales___Inventory.Data
                     break;
             }
 
-            // Add GROUP BY for the SUM() to work.
+            // ✅ --- FIX: Added ReceivedDate to GROUP BY ---
             query += @"
                 GROUP BY 
                     po.POID, po.SupplierID, po.OrderedBy, po.PODate, 
-                    po.Status, po.Remarks, po.IsActive, s.SupplierName";
+                    po.Status, po.Remarks, po.IsActive, s.SupplierName, po.ReceivedDate";
 
-            query += " ORDER BY po.PODate DESC"; // Show newest orders first
+            query += " ORDER BY po.PODate DESC";
 
             try
             {
@@ -120,7 +120,6 @@ namespace Woof_Gang_Sales___Inventory.Data
 
         /// <summary>
         /// Gets the line items (products) for a single selected Purchase Order.
-        /// This fills the bottom (detail) grid.
         /// </summary>
         public List<PurchaseOrderDetailView> GetPurchaseOrderDetails(int poID)
         {
@@ -164,7 +163,6 @@ namespace Woof_Gang_Sales___Inventory.Data
         /// <summary>
         /// Creates a new Purchase Order and its detail lines in a single transaction.
         /// </summary>
-        /// <returns>The new POID, or 0 on failure.</returns>
         public int CreatePurchaseOrder(PurchaseOrder po, List<PurchaseOrderDetail> details)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
@@ -176,9 +174,9 @@ namespace Woof_Gang_Sales___Inventory.Data
                     {
                         // Step 1: Insert the main PurchaseOrder record
                         string poQuery = @"
-                            INSERT INTO PurchaseOrders (SupplierID, OrderedBy, PODate, Status, Remarks, IsActive, CreatedAt)
+                            INSERT INTO PurchaseOrders (SupplierID, OrderedBy, PODate, Status, Remarks, IsActive)
                             OUTPUT INSERTED.POID
-                            VALUES (@SupplierID, @OrderedBy, @PODate, @Status, @Remarks, 1, GETDATE())";
+                            VALUES (@SupplierID, @OrderedBy, @PODate, @Status, @Remarks, 1)";
 
                         int newPOID;
                         using (SqlCommand poCmd = new SqlCommand(poQuery, conn, transaction))
@@ -304,7 +302,6 @@ namespace Woof_Gang_Sales___Inventory.Data
 
         /// <summary>
         /// This method calculates the sum of details and updates the main PO's TotalCost.
-        /// This fixes the "TotalCost is 0.00" bug.
         /// </summary>
         private void UpdateTotalCost(int poID, SqlConnection conn, SqlTransaction transaction)
         {
@@ -323,7 +320,6 @@ namespace Woof_Gang_Sales___Inventory.Data
         /// <summary>
         /// Gets all data needed to populate the "Edit" form.
         /// </summary>
-        /// <returns>A tuple containing the master PO and a list of its details.</returns>
         public (PurchaseOrder, List<PurchaseOrderDetailView>) GetPurchaseOrderForEdit(int poID)
         {
             PurchaseOrder po = null;
@@ -338,6 +334,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                     SELECT 
                         po.POID, po.SupplierID, po.OrderedBy, po.PODate, 
                         po.Status, po.Remarks, po.IsActive,
+                        po.ReceivedDate, -- ✅ --- FIX: Added ReceivedDate ---
                         s.SupplierName,
                         ISNULL(SUM(pod.Subtotal), 0) AS CalculatedTotalCost
                     FROM PurchaseOrders po
@@ -346,7 +343,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                     WHERE po.POID = @POID
                     GROUP BY 
                         po.POID, po.SupplierID, po.OrderedBy, po.PODate, 
-                        po.Status, po.Remarks, po.IsActive, s.SupplierName";
+                        po.Status, po.Remarks, po.IsActive, s.SupplierName, po.ReceivedDate"; // ✅ --- FIX: Added ReceivedDate ---
 
                 using (SqlCommand poCmd = new SqlCommand(poQuery, conn))
                 {
@@ -442,7 +439,7 @@ namespace Woof_Gang_Sales___Inventory.Data
             // This will be a large transaction that:
             // 1. Opens a connection and begins a transaction
             // 2. Calls _productRepo.ReceiveStock() for each item IN THE TRANSACTION
-            // 3. Updates this PO's Status to "Received"
+            // 3. Updates this PO's Status to "Received" AND sets ReceivedDate
             // 4. Commits or Rolls back
         }
         */
@@ -458,6 +455,10 @@ namespace Woof_Gang_Sales___Inventory.Data
                 SupplierID = Convert.ToInt32(reader["SupplierID"]),
                 OrderedBy = reader["OrderedBy"] as int?,
                 PODate = Convert.ToDateTime(reader["PODate"]),
+
+                // ✅ --- FIX: Read the new column ---
+                ReceivedDate = reader["ReceivedDate"] as DateTime?,
+
                 Status = reader["Status"].ToString() ?? "N/A",
                 TotalCost = reader["CalculatedTotalCost"] as decimal?,
                 Remarks = reader["Remarks"] != DBNull.Value ? reader["Remarks"].ToString() : null,

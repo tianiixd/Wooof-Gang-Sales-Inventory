@@ -387,27 +387,29 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             DataGridViewStyler.ApplyStyle(dgvProduct, "SKU");
 
             // --- HIDE UNNECESSARY COLUMNS ---
-            if (dgvProduct.Columns.Contains("ReorderLevel"))
-                dgvProduct.Columns["ReorderLevel"].Visible = false;
 
-            // ✅ --- BUG FIX 5: Fixed typo dgVProduct -> dgvProduct ---
-            if (dgvProduct.Columns.Contains("Brand"))
-                dgvProduct.Columns["Brand"].Visible = false;
-            if (dgvProduct.Columns.Contains("CategoryName"))
-                dgvProduct.Columns["CategoryName"].Visible = false;
-            if (dgvProduct.Columns.Contains("SubCategoryName"))
-                dgvProduct.Columns["SubCategoryName"].Visible = false;
-            if (dgvProduct.Columns.Contains("SupplierName"))
-                dgvProduct.Columns["SupplierName"].Visible = false;
-            if (dgvProduct.Columns.Contains("Weight"))
-                dgvProduct.Columns["Weight"].Visible = false;
-            if (dgvProduct.Columns.Contains("Unit"))
-                dgvProduct.Columns["Unit"].Visible = false;
+            dgvProduct.Columns["ReorderLevel"].Visible = false;
+            dgvProduct.Columns["Brand"].Visible = false;
+            dgvProduct.Columns["CategoryName"].Visible = false;
+            dgvProduct.Columns["SubCategoryName"].Visible = false;
+            dgvProduct.Columns["SupplierName"].Visible = true;
+            dgvProduct.Columns["Weight"].Visible = false;
+            dgvProduct.Columns["Unit"].Visible = false;
             if (dgvProduct.Columns.Contains("ExpirationDate"))
             {
                 dgvProduct.Columns["ExpirationDate"].HeaderText = "Expiration Date";
                 dgvProduct.Columns["ExpirationDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+
+            if (selectedStatus == "Active Products" || selectedStatus == "Archived Products")
+            {
+                dgvProduct.Columns["Status"].Visible = false;
+            }
+            else
+            {
+                dgvProduct.Columns["Status"].Visible = true;
+            }
+            
         }
     }
 }

@@ -14,16 +14,16 @@ using Woof_Gang_Sales___Inventory.Util;
 
 namespace Woof_Gang_Sales___Inventory.Forms.Admin
 {
-    public partial class FrmPurchaseOrderView : Sample
+    public partial class FrmPurchaseOrderView : Form
     {
         private readonly PurchaseOrderRepository _poRepo;
 
         private string[] statusFilter = {
-            "All Active", // Default
-            "Pending",
+            "Pending", // Default
             "Received",
             "Cancelled",
-            "Archived",
+            "All Active",
+            "All Archived",
             "Show All"
         };
 
@@ -33,11 +33,13 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             _poRepo = new PurchaseOrderRepository();
 
             // ✅ --- This now follows your FrmCategoryView pattern ---
-            // 1. Load initial data (will use default "All Active")
+            // 1. Load initial data for both grids
             ReadPurchaseOrders();
+            ReadOrderDetails(0); // Call with 0 to load empty headers
 
             // 2. Wire up CellFormatting (just like FrmCategoryView)
             dgvPurchaseOrders.CellFormatting += dgvPurchaseOrders_CellFormatting;
+            dgvOrderDetails.CellFormatting += dgvOrderDetails_CellFormatting;
 
             // 3. Wire up other events
             dgvPurchaseOrders.SelectionChanged += dgvPurchaseOrders_SelectionChanged;
@@ -45,11 +47,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             cmbStatusFilter.SelectedIndexChanged += FilterChanged;
 
             // 4. Wire up your button click events in the VS Designer
-            // btnAdd.Click += btnAdd_Click;
-            // btnEdit.Click += btnEdit_Click;
-            // btnDelete.Click += btnDelete_Click;
-            // btnReceiveStock.Click += btnReceiveStock_Click;
-            // btnCancelOrder.Click += btnCancelOrder_Click;
+            // (btnAdd, btnEdit, btnDelete, btnReceiveStock, btnCancelOrder)
         }
 
         private void FrmPurchaseOrderView_Load(object sender, EventArgs e)
@@ -62,11 +60,15 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         {
             cmbStatusFilter.Items.Clear();
             cmbStatusFilter.Items.AddRange(statusFilter);
-            cmbStatusFilter.SelectedIndex = 0; // "All Active"
+            cmbStatusFilter.SelectedIndex = 0; 
             txtSearch.PlaceholderText = "Search by PO ID or Supplier Name...";
         }
 
-        // ✅ --- NEW: CellFormatting event (like FrmCategoryView) ---
+        // ❌ --- The SetupGrids() method is GONE (it's now inside the Read... methods) ---
+
+
+        #region DataGrid Formatting
+
         private void dgvPurchaseOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // Format Status Column
@@ -94,17 +96,35 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 }
             }
 
-            // Format TotalCost Column
-            if (dgvPurchaseOrders.Columns[e.ColumnIndex].Name == "TotalCost")
+            if (dgvPurchaseOrders.Columns[e.ColumnIndex].Name == "ReceivedDate")
+            {
+                if (e.Value == null || e.Value == DBNull.Value)
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
+
+
+        }
+
+        private void dgvOrderDetails_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Format Cost Columns
+            if (dgvOrderDetails.Columns[e.ColumnIndex].Name == "UnitCost" ||
+                dgvOrderDetails.Columns[e.ColumnIndex].Name == "Subtotal")
             {
                 if (e.Value != null && e.Value is decimal cost)
                 {
-                    e.Value = cost.ToString("C"); // "C" for Currency
+                    e.Value = cost.ToString("N2"); // "N2" for 2 decimal places
                     e.FormattingApplied = true;
                 }
             }
         }
 
+        #endregion
+
+        #region Data Loading
 
         private void ReadPurchaseOrders()
         {
@@ -120,45 +140,85 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             dt.Columns.Add("POID");
             dt.Columns.Add("SupplierName");
             dt.Columns.Add("PODate", typeof(DateTime));
+            dt.Columns.Add("ReceivedDate", typeof(DateTime));
             dt.Columns.Add("TotalCost", typeof(decimal));
             dt.Columns.Add("Status");
+            dt.Columns.Add("Remarks");
             dt.Columns.Add("IsActive", typeof(bool));
 
             foreach (var po in poList)
             {
-                // ✅ --- PATTERN MATCH: Create DataRow ---
-                var row = dt.NewRow();
-                row["POID"] = po.POID;
-                row["SupplierName"] = po.SupplierName;
-                row["PODate"] = po.PODate;
-                row["TotalCost"] = po.TotalCost ?? 0m;
-                row["Status"] = po.Status;
-                row["IsActive"] = po.IsActive;
-                dt.Rows.Add(row);
+                dt.Rows.Add(
+                    po.POID,
+                    po.SupplierName,
+                    po.PODate,
+                    po.ReceivedDate.HasValue ? (object)po.ReceivedDate.Value : DBNull.Value,
+                    po.TotalCost ?? 0m,
+                    po.Status,
+                    po.Remarks,
+                    po.IsActive
+                );
             }
 
-            // ✅ --- PATTERN MATCH: Set DataSource ---
             dgvPurchaseOrders.DataSource = dt;
 
             // ✅ --- PATTERN MATCH: Apply Styling After ---
             DataGridViewStyler.ApplyStyle(dgvPurchaseOrders, "POID");
 
-            // Set column visibility and formatting
             dgvPurchaseOrders.Columns["POID"].HeaderText = "PO ID";
             dgvPurchaseOrders.Columns["SupplierName"].HeaderText = "Supplier";
-            dgvPurchaseOrders.Columns["SupplierName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvPurchaseOrders.Columns["SupplierName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Fill is good here
             dgvPurchaseOrders.Columns["PODate"].HeaderText = "Order Date";
             dgvPurchaseOrders.Columns["PODate"].DefaultCellStyle.Format = "yyyy-MM-dd";
+            dgvPurchaseOrders.Columns["ReceivedDate"].HeaderText = "Received On";
+            dgvPurchaseOrders.Columns["ReceivedDate"].DefaultCellStyle.Format = "yyyy-MM-dd";
             dgvPurchaseOrders.Columns["TotalCost"].HeaderText = "Total Cost";
+            dgvPurchaseOrders.Columns["TotalCost"].DefaultCellStyle.Format = "C"; // Format as Currency
+            dgvPurchaseOrders.Columns["Remarks"].Visible = false;
             dgvPurchaseOrders.Columns["IsActive"].Visible = false;
         }
 
+        // ✅ --- NEW METHOD: As you suggested ---
+        private void ReadOrderDetails(int poID)
+        {
+            DataTable dtDetails = new DataTable();
+            dtDetails.Columns.Add("ProductName");
+            dtDetails.Columns.Add("Quantity");
+            dtDetails.Columns.Add("UnitCost", typeof(decimal));
+            dtDetails.Columns.Add("Subtotal", typeof(decimal));
+
+            if (poID > 0)
+            {
+                // Only fetch details if we have a real POID
+                var detailsList = _poRepo.GetPurchaseOrderDetails(poID);
+                foreach (var item in detailsList)
+                {
+                    dtDetails.Rows.Add(item.ProductName, item.Quantity, item.UnitCost, item.Subtotal);
+                }
+            }
+            // If poID is 0, this creates an EMPTY table with just headers (which is what you wanted)
+
+            dgvOrderDetails.DataSource = dtDetails;
+
+            // Apply styling
+            DataGridViewStyler.ApplyStyle(dgvOrderDetails, "ProductName");
+            dgvOrderDetails.Columns["ProductName"].HeaderText = "Product";
+            dgvOrderDetails.Columns["ProductName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvOrderDetails.Columns["Quantity"].HeaderText = "Qty";
+            dgvOrderDetails.Columns["UnitCost"].HeaderText = "Unit Cost";
+            dgvOrderDetails.Columns["Subtotal"].HeaderText = "Subtotal";
+        }
+
+
         private void dgvPurchaseOrders_SelectionChanged(object sender, EventArgs e)
         {
+            // ✅ --- This method is now much simpler! ---
+
             if (dgvPurchaseOrders.SelectedRows.Count == 0)
             {
-                dgvOrderDetails.DataSource = null;
+                ReadOrderDetails(0); // Load empty grid
                 lblDetails.Text = "Select an order to see details";
+                txtRemarksView.Text = "";
                 return;
             }
 
@@ -168,35 +228,13 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             int selectedPOID = Convert.ToInt32(drv["POID"]);
             lblDetails.Text = $"Details for Order #{selectedPOID}";
 
-            var detailsList = _poRepo.GetPurchaseOrderDetails(selectedPOID);
+            txtRemarksView.Text = drv["Remarks"].ToString();
 
-            // ✅ --- PATTERN MATCH: Create DataTable for Detail Grid ---
-            DataTable dtDetails = new DataTable();
-            dtDetails.Columns.Add("ProductName");
-            dtDetails.Columns.Add("Quantity");
-            dtDetails.Columns.Add("UnitCost", typeof(decimal));
-            dtDetails.Columns.Add("Subtotal", typeof(decimal));
-
-            foreach (var item in detailsList)
-            {
-                // ✅ --- PATTERN MATCH: Create DataRow ---
-                dtDetails.Rows.Add(item.ProductName, item.Quantity, item.UnitCost, item.Subtotal);
-            }
-
-            // ✅ --- PATTERN MATCH: Set DataSource ---
-            dgvOrderDetails.DataSource = dtDetails;
-
-            // ✅ --- PATTERN MATCH: Apply Styling After ---
-            DataGridViewStyler.ApplyStyle(dgvOrderDetails, "ProductName");
-
-            dgvOrderDetails.Columns["ProductName"].HeaderText = "Product";
-            dgvOrderDetails.Columns["ProductName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvOrderDetails.Columns["Quantity"].HeaderText = "Qty";
-            dgvOrderDetails.Columns["UnitCost"].HeaderText = "Unit Cost";
-            dgvOrderDetails.Columns["UnitCost"].DefaultCellStyle.Format = "N2";
-            dgvOrderDetails.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
+            // Just call our new helper method
+            ReadOrderDetails(selectedPOID);
         }
 
+        #endregion
 
         // --- Helper method to get data from the selected row ---
         private (int poID, string status, bool isActive) GetSelectedOrderInfo()
@@ -225,27 +263,28 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private void FilterChanged(object sender, EventArgs e)
         {
             ReadPurchaseOrders();
+            ReadOrderDetails(0); // Clear details when filter changes
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             ReadPurchaseOrders();
+            ReadOrderDetails(0); // Clear details when search changes
         }
 
-        // ... (Your 5 button-click methods are all correct) ...
-        // ... (btnAdd_Click, btnEdit_Click, btnDelete_Click, ...) ...
-        // ... (btnReceiveStock_Click, btnCancelOrder_Click) ...
+        // --- Button Click Methods ---
+        // (These are all correct from the previous version)
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // We will create this form in the next step
-            // FrmCreateEditPurchaseOrder form = new FrmCreateEditPurchaseOrder();
-            // form.IsEditMode = false;
-            // if (form.ShowDialog() == DialogResult.OK)
-            // {
-            //     ReadPurchaseOrders();
-            // }
-            MessageBox.Show("This will open FrmCreateEditPurchaseOrder (IsEditMode = false)");
+            
+            FrmCreateEditPurchaseOrder form = new FrmCreateEditPurchaseOrder();
+            form.IsEditMode = false;
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                ReadPurchaseOrders();
+            }
+            
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

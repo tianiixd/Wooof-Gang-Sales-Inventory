@@ -236,6 +236,15 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     row.Cells["Status"].Style.Font = new Font(dgvSupplier.Font, FontStyle.Bold);
                 }
             }
+
+            if (selectedStatus == "Active Suppliers" || selectedStatus == "Archived Suppliers")
+            {
+                dgvSupplier.Columns["Status"].Visible = false;
+            }
+            else
+            {
+                dgvSupplier.Columns["Status"].Visible = true;
+            }
         }
 
         // Event handler for the filter ComboBox

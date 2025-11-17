@@ -227,6 +227,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             dt.Columns.Add("Role");
             dt.Columns.Add("Status");
 
+
             foreach (var user in users)
             {
                 var row = dt.NewRow();
@@ -242,6 +243,16 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             dgvUser.DataSource = dt;
             DataGridViewStyler.ApplyStyle(dgvUser, "UserID");
+
+            if (selectedStatus == "Active Users" || selectedStatus == "Archived Users")
+            {
+                dgvUser.Columns["Status"].Visible = false;
+            }
+            else
+            {
+                dgvUser.Columns["Status"].Visible = true;
+            }
+
 
         }
 

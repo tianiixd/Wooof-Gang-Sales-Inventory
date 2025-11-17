@@ -8,12 +8,8 @@ namespace Woof_Gang_Sales___Inventory.Util
 {
     public static class DialogHelper
     {
-        /// <summary>
-        /// Shows a custom modern dialog with your own icons (Success, Error, Info, Warning)
-        /// </summary>
         public static void ShowCustomDialog(string title, string message, string type)
         {
-            // 🎨 Colors for each type
             Color headerColor;
             Image iconImage;
             SystemSound sound = SystemSounds.Asterisk;
@@ -46,31 +42,21 @@ namespace Woof_Gang_Sales___Inventory.Util
                     break;
             }
 
-            // 🔊 Play corresponding sound
             sound.Play();
 
-            // 🧩 Create the dialog form
             Form dialog = new Form()
             {
-
                 Width = 420,
-                Height = 220,
                 StartPosition = FormStartPosition.CenterParent,
                 FormBorderStyle = FormBorderStyle.None,
                 BackColor = Color.White,
                 ShowInTaskbar = false,
                 TopMost = true,
-                Padding = new Padding(0, 0, 0, 10)
+                Padding = new Padding(1) // Add a small padding for the border effect
             };
 
-            // 🟦 Rounded corners (aesthetic)
-            var shadow = new Guna2ShadowForm
-            {
-                TargetForm = dialog,
-                ShadowColor = Color.Black
-            };
+            var shadow = new Guna2ShadowForm { TargetForm = dialog, ShadowColor = Color.Black };
 
-            // 🔹 Header bar
             Panel header = new Panel()
             {
                 Dock = DockStyle.Top,
@@ -86,49 +72,71 @@ namespace Woof_Gang_Sales___Inventory.Util
                 Dock = DockStyle.Fill,
                 TextAlign = ContentAlignment.MiddleCenter
             };
-
             header.Controls.Add(lblTitle);
 
-            // 🖼️ Icon
-            PictureBox iconBox = new PictureBox()
+            Panel bottomPanel = new Panel()
             {
-                Image = iconImage,
-                SizeMode = PictureBoxSizeMode.Zoom,
-                Size = new Size(64, 64),
-                Location = new Point(35, 80)
+                Dock = DockStyle.Bottom,
+                Height = 65, // 15px padding + 35px button + 15px padding
+                BackColor = Color.White,
+                Padding = new Padding(0, 15, 0, 15) // Center the button vertically
             };
 
-            // 📝 Message text
-            Label lblMessage = new Label()
-            {
-                Text = message,
-                Font = new Font("Inter", 10F),
-                ForeColor = Color.Black,
-                Location = new Point(110, 85),
-                Size = new Size(280, 60),
-                AutoSize = false
-            };
-
-            // 🟢 OK Button
             Guna2Button okButton = new Guna2Button()
             {
                 Text = "OK",
                 FillColor = headerColor,
                 Size = new Size(100, 35),
-                Location = new Point(dialog.Width / 2 - 50, 160),
                 BorderRadius = 6,
                 Font = new Font("Inter", 10F, FontStyle.Bold),
                 ForeColor = Color.White,
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+
+                // ✅ --- FIX 1: Center button based on the dialog's width ---
+                Location = new Point((dialog.Width - 100) / 2, 15)
+            };
+            okButton.Click += (s, e) => dialog.Close();
+            bottomPanel.Controls.Add(okButton);
+
+            Panel mainPanel = new Panel()
+            {
+                Dock = DockStyle.Fill, // It will fill the space between header and footer
+                BackColor = Color.White,
+                Padding = new Padding(20, 20, 20, 10) // Add padding
             };
 
-            okButton.Click += (s, e) => dialog.Close();
+            PictureBox iconBox = new PictureBox()
+            {
+                Image = iconImage,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Size = new Size(64, 64),
+                Dock = DockStyle.Left, // Dock icon to the left
+                Padding = new Padding(10, 0, 10, 0)
+            };
 
-            // 🧩 Add controls
-            dialog.Controls.Add(header);
-            dialog.Controls.Add(iconBox);
-            dialog.Controls.Add(lblMessage);
-            dialog.Controls.Add(okButton);
+            Label lblMessage = new Label()
+            {
+                Text = message,
+                Font = new Font("Inter", 10F),
+                ForeColor = Color.Black,
+                Dock = DockStyle.Fill, // Let the label fill the remaining space
+
+                // ✅ --- FIX 2: Center the message text ---
+                TextAlign = ContentAlignment.MiddleCenter,
+
+                Padding = new Padding(10, 0, 0, 0)
+            };
+
+            mainPanel.Controls.Add(lblMessage); // Add label first (so it can fill)
+            mainPanel.Controls.Add(iconBox);   // Add icon second
+
+            dialog.Controls.Add(mainPanel);   // This is in the middle
+            dialog.Controls.Add(bottomPanel); // This is at the bottom
+            dialog.Controls.Add(header);      // This is at the top
+
+            dialog.MinimumSize = new Size(420, 220);
+            dialog.AutoSize = true;
+            dialog.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
             dialog.ShowDialog();
         }
@@ -145,6 +153,7 @@ namespace Woof_Gang_Sales___Inventory.Util
 
         public static void ShowWarning(string message)
             => ShowCustomDialog("Warning", message, "warning");
+
 
         public static DialogResult ShowConfirmDialog(string title, string message, string type)
         {
@@ -180,12 +189,12 @@ namespace Woof_Gang_Sales___Inventory.Util
             Form dialog = new Form()
             {
                 Width = 420,
-                Height = 220,
                 StartPosition = FormStartPosition.CenterParent,
                 FormBorderStyle = FormBorderStyle.None,
                 BackColor = Color.White,
                 ShowInTaskbar = false,
-                TopMost = true
+                TopMost = true,
+                Padding = new Padding(1)
             };
 
             new Guna2ShadowForm { TargetForm = dialog, ShadowColor = Color.Black };
@@ -205,25 +214,14 @@ namespace Woof_Gang_Sales___Inventory.Util
                 Dock = DockStyle.Fill,
                 TextAlign = ContentAlignment.MiddleCenter
             };
-
             header.Controls.Add(lblTitle);
 
-            PictureBox iconBox = new PictureBox()
+            Panel bottomPanel = new Panel()
             {
-                Image = iconImage,
-                SizeMode = PictureBoxSizeMode.Zoom,
-                Size = new Size(64, 64),
-                Location = new Point(35, 80)
-            };
-
-            Label lblMessage = new Label()
-            {
-                Text = message,
-                Font = new Font("Inter", 10F),
-                ForeColor = Color.Black,
-                Location = new Point(110, 85),
-                Size = new Size(280, 60),
-                AutoSize = false
+                Dock = DockStyle.Bottom,
+                Height = 65,
+                BackColor = Color.White,
+                Padding = new Padding(0, 15, 0, 15)
             };
 
             // 🔘 Yes button
@@ -232,7 +230,6 @@ namespace Woof_Gang_Sales___Inventory.Util
                 Text = "Yes",
                 FillColor = headerColor,
                 Size = new Size(100, 35),
-                Location = new Point(110, 160),
                 BorderRadius = 6,
                 Font = new Font("Inter", 10F, FontStyle.Bold),
                 ForeColor = Color.White,
@@ -245,28 +242,70 @@ namespace Woof_Gang_Sales___Inventory.Util
                 Text = "No",
                 FillColor = Color.LightGray,
                 Size = new Size(100, 35),
-                Location = new Point(220, 160),
                 BorderRadius = 6,
                 Font = new Font("Inter", 10F, FontStyle.Bold),
                 ForeColor = Color.Black,
                 Cursor = Cursors.Hand
             };
 
+            // ✅ --- FIX 3: Center buttons based on the dialog's width ---
+            int totalButtonWidth = btnYes.Width + btnNo.Width + 10; // 10px spacing
+            int startX = (dialog.Width - totalButtonWidth) / 2;
+
+            btnYes.Location = new Point(startX, 15);
+            btnNo.Location = new Point(btnYes.Right + 10, 15);
+            // --- END OF FIX ---
+
+            bottomPanel.Controls.Add(btnYes);
+            bottomPanel.Controls.Add(btnNo);
+
+            Panel mainPanel = new Panel()
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.White,
+                Padding = new Padding(20, 20, 20, 10)
+            };
+
+            PictureBox iconBox = new PictureBox()
+            {
+                Image = iconImage,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Size = new Size(64, 64),
+                Dock = DockStyle.Left,
+                Padding = new Padding(10, 0, 10, 0)
+            };
+
+            Label lblMessage = new Label()
+            {
+                Text = message,
+                Font = new Font("Inter", 10F),
+                ForeColor = Color.Black,
+                Dock = DockStyle.Fill,
+
+                // ✅ --- FIX 2: Center the message text ---
+                TextAlign = ContentAlignment.MiddleCenter,
+
+                Padding = new Padding(10, 0, 0, 0)
+            };
+
+            mainPanel.Controls.Add(lblMessage);
+            mainPanel.Controls.Add(iconBox);
+
+
             DialogResult result = DialogResult.No;
             btnYes.Click += (s, e) => { result = DialogResult.Yes; dialog.Close(); };
             btnNo.Click += (s, e) => { result = DialogResult.No; dialog.Close(); };
 
+            dialog.Controls.Add(mainPanel);
+            dialog.Controls.Add(bottomPanel);
             dialog.Controls.Add(header);
-            dialog.Controls.Add(iconBox);
-            dialog.Controls.Add(lblMessage);
-            dialog.Controls.Add(btnYes);
-            dialog.Controls.Add(btnNo);
+
+            dialog.MinimumSize = new Size(420, 220);
+            dialog.AutoSize = true;
+            dialog.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
             dialog.ShowDialog();
             return result;
         }
-
-
-
     }
 }
