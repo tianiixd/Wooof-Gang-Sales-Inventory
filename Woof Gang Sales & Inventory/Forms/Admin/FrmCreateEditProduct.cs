@@ -274,7 +274,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             this.lblTitle.Text = "Edit Product";
             this.lblID.Text = product.ProductID.ToString();
             this.btnSave.Text = "Save";
-            this.btnSave.Image = Properties.Resources.edit2;
+            this.btnSave.Image = Properties.Resources.edit3;
+            this.btnSave.ImageOffset = new Point(-6, 0);
 
             // Set text fields
             txtProductName.Text = product.ProductName;

@@ -182,6 +182,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
             }
 
             AddControls(currentUserView);
+            currentUserView.ReadUsers();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
@@ -213,6 +214,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
             }
 
             AddControls(productView);
+            productView.ReadProducts();
         }
 
         private void btnCategory_Click(object sender, EventArgs e)
@@ -223,6 +225,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
             }
 
             AddControls(categoryView);
+            categoryView.ReadCategory();
         }
 
         private void btnSubCategory_Click(object sender, EventArgs e)
@@ -233,6 +236,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
             }
 
             AddControls(subCategoryView);
+            subCategoryView.ReadSubCategories();
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
@@ -243,6 +247,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
             }
 
             AddControls(supplierView);
+            supplierView.ReadSupplier();
         }
 
         private void btnSales_Click(object sender, EventArgs e)

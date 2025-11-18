@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProductView));
             this.dgvProduct = new System.Windows.Forms.DataGridView();
@@ -35,13 +36,14 @@
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.cmbFilterStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cmbFilterCategory = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
-            this.btnEdit = new Guna.UI2.WinForms.Guna2Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.lblTime = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
@@ -55,6 +57,7 @@
             this.dgvProduct.AllowUserToResizeRows = false;
             this.dgvProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProduct.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -64,15 +67,15 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProduct.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvProduct.Location = new System.Drawing.Point(0, 154);
+            this.dgvProduct.Location = new System.Drawing.Point(39, 342);
+            this.dgvProduct.Margin = new System.Windows.Forms.Padding(30);
             this.dgvProduct.MultiSelect = false;
             this.dgvProduct.Name = "dgvProduct";
             this.dgvProduct.ReadOnly = true;
             this.dgvProduct.RowHeadersVisible = false;
             this.dgvProduct.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProduct.Size = new System.Drawing.Size(1674, 877);
+            this.dgvProduct.Size = new System.Drawing.Size(1596, 650);
             this.dgvProduct.TabIndex = 3;
             // 
             // guna2Panel1
@@ -91,8 +94,6 @@
             this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
             this.guna2Panel2.Controls.Add(this.cmbFilterStatus);
             this.guna2Panel2.Controls.Add(this.cmbFilterCategory);
-            this.guna2Panel2.Controls.Add(this.btnDelete);
-            this.guna2Panel2.Controls.Add(this.btnEdit);
             this.guna2Panel2.Controls.Add(this.label1);
             this.guna2Panel2.Controls.Add(this.btnAdd);
             this.guna2Panel2.Controls.Add(this.txtSearch);
@@ -119,8 +120,8 @@
             this.cmbFilterStatus.ItemHeight = 41;
             this.cmbFilterStatus.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilterStatus.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbFilterStatus.Location = new System.Drawing.Point(768, 91);
-            this.cmbFilterStatus.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.cmbFilterStatus.Location = new System.Drawing.Point(486, 91);
+            this.cmbFilterStatus.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbFilterStatus.Name = "cmbFilterStatus";
             this.cmbFilterStatus.Size = new System.Drawing.Size(200, 47);
             this.cmbFilterStatus.TabIndex = 6;
@@ -143,64 +144,18 @@
             this.cmbFilterCategory.ItemHeight = 41;
             this.cmbFilterCategory.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilterCategory.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbFilterCategory.Location = new System.Drawing.Point(991, 91);
-            this.cmbFilterCategory.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.cmbFilterCategory.Location = new System.Drawing.Point(706, 91);
+            this.cmbFilterCategory.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbFilterCategory.Name = "cmbFilterCategory";
             this.cmbFilterCategory.Size = new System.Drawing.Size(200, 47);
             this.cmbFilterCategory.TabIndex = 5;
             this.cmbFilterCategory.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Animated = true;
-            this.btnDelete.BorderRadius = 15;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDelete.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(87)))), ((int)(((byte)(87)))));
-            this.btnDelete.Font = new System.Drawing.Font("Inter", 12F);
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(107)))), ((int)(((byte)(107)))));
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.ImageOffset = new System.Drawing.Point(1, 0);
-            this.btnDelete.Location = new System.Drawing.Point(459, 82);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(165, 56);
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "Archive Product";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Animated = true;
-            this.btnEdit.BorderRadius = 15;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnEdit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnEdit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnEdit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnEdit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
-            this.btnEdit.Font = new System.Drawing.Font("Inter", 12F);
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(204)))), ((int)(((byte)(242)))));
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.ImageOffset = new System.Drawing.Point(-2, 0);
-            this.btnEdit.Location = new System.Drawing.Point(271, 82);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(165, 56);
-            this.btnEdit.TabIndex = 3;
-            this.btnEdit.Text = "Edit Product";
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Inter", 13F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.label1.Location = new System.Drawing.Point(1235, 56);
+            this.label1.Location = new System.Drawing.Point(38, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 22);
             this.label1.TabIndex = 1;
@@ -220,7 +175,7 @@
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(204)))), ((int)(((byte)(242)))));
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(83, 82);
+            this.btnAdd.Location = new System.Drawing.Point(1480, 82);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(165, 56);
@@ -247,7 +202,7 @@
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
             this.txtSearch.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtSearch.Location = new System.Drawing.Point(1215, 82);
+            this.txtSearch.Location = new System.Drawing.Point(26, 82);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = " Search by name, brand, category...";
@@ -279,11 +234,38 @@
             this.lblTitle.Text = "Product List";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // guna2Elipse1
+            // 
+            this.guna2Elipse1.BorderRadius = 20;
+            this.guna2Elipse1.TargetControl = this.dgvProduct;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(1446, 179);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(189, 37);
+            this.lblTime.TabIndex = 5;
+            this.lblTime.Text = "9:38 PM";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblDate
+            // 
+            this.lblDate.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(1240, 216);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(395, 37);
+            this.lblDate.TabIndex = 6;
+            this.lblDate.Text = "Tuesday, November 18, 2025";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FrmProductView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1674, 1031);
+            this.Controls.Add(this.lblDate);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.dgvProduct);
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
@@ -305,11 +287,12 @@
         public Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         public Guna.UI2.WinForms.Guna2ComboBox cmbFilterStatus;
         public Guna.UI2.WinForms.Guna2ComboBox cmbFilterCategory;
-        public Guna.UI2.WinForms.Guna2Button btnDelete;
-        public Guna.UI2.WinForms.Guna2Button btnEdit;
         private System.Windows.Forms.Label label1;
         public Guna.UI2.WinForms.Guna2Button btnAdd;
         public Guna.UI2.WinForms.Guna2TextBox txtSearch;
         public System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblDate;
     }
 }

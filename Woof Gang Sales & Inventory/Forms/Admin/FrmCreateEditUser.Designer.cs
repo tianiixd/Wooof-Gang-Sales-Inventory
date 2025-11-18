@@ -437,13 +437,14 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(59)))), ((int)(((byte)(120)))));
             this.btnSave.Image = global::Woof_Gang_Sales___Inventory.Properties.Resources.add_user;
-            this.btnSave.ImageOffset = new System.Drawing.Point(-4, 0);
-            this.btnSave.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnSave.ImageOffset = new System.Drawing.Point(-5, 0);
+            this.btnSave.ImageSize = new System.Drawing.Size(35, 35);
             this.btnSave.Location = new System.Drawing.Point(650, 792);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 51);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Create";
+            this.btnSave.TextOffset = new System.Drawing.Point(-2, 0);
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label9

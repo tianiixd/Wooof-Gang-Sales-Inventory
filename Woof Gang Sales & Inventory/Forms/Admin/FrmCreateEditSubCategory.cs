@@ -121,7 +121,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             this.lblID.Text = subCategory.SubCategoryID.ToString();
             this.txtSubCategoryName.Text = subCategory.SubCategoryName ?? "";
             this.btnSave.Text = "Save";
-            this.btnSave.Image = Properties.Resources.edit2;
+            this.btnSave.Image = Properties.Resources.edit3;
             // --- THIS IS THE FIX ---
             // DO NOT load the ComboBox here.
             // DO NOT set the SelectedValue here.

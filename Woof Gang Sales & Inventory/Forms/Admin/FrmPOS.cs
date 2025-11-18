@@ -21,6 +21,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private readonly SubCategoryRepository subCategoryRepo = new SubCategoryRepository();
         private readonly DiscountRepository discountRepo = new DiscountRepository();
 
+        TimeClockHelper time = new TimeClockHelper();
+
         // This form no longer needs the SalesRepository. FrmPayment handles it.
         // private readonly SalesRepository salesRepo = new SalesRepository();
 
@@ -61,6 +63,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
         private void FrmPOS_Load(object sender, EventArgs e)
         {
+            time.StartClock(lblTime, lblDate);
+
             LoadCategoryFilter();
             LoadAllSubCategories();
             LoadDiscountFilter();

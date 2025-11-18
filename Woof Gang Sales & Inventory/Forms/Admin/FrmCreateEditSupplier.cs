@@ -115,7 +115,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             this.txtAddress.Text = supplier.Address ?? "";
 
             this.btnSave.Text = "Save";
-            this.btnSave.Image = Properties.Resources.edit2;
+            this.btnSave.Image = Properties.Resources.edit3;
             // Assumes you have an 'edit' icon in your Properties.Resources
             // this.btnSave.Image = Properties.Resources.edit2; 
 

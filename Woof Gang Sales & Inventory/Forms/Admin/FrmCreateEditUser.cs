@@ -213,7 +213,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             this.txtConfirmPassword.PlaceholderText = "Confirm new password (if changing)";
 
             this.btnSave.Text = "Save";
-            this.btnSave.Image = Properties.Resources.edit2;
+            this.btnSave.Image = Properties.Resources.edit3;
+            this.btnSave.TextOffset = new Point(-3, 0);
 
             // ✅ Load image without file lock
             if (!string.IsNullOrEmpty(user.ProfileImagePath) && File.Exists(user.ProfileImagePath))

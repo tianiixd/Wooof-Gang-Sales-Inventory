@@ -395,6 +395,7 @@
     <Compile Include="Util\PdfGenerator.cs" />
     <Compile Include="Util\ReceiptPrinter.cs" />
     <Compile Include="Util\SessionManager.cs" />
+    <Compile Include="Util\TimeClockHelper.cs" />
     <EmbeddedResource Include="Forms\Admin\FrmAdminDashboard.resx">
       <DependentUpon>FrmAdminDashboard.cs</DependentUpon>
     </EmbeddedResource>

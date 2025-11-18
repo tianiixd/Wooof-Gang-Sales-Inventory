@@ -32,8 +32,6 @@
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.cmbFilterStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cmbFilterRole = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
-            this.btnEdit = new Guna.UI2.WinForms.Guna2Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
@@ -46,8 +44,6 @@
             this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
             this.guna2Panel1.Controls.Add(this.cmbFilterStatus);
             this.guna2Panel1.Controls.Add(this.cmbFilterRole);
-            this.guna2Panel1.Controls.Add(this.btnDelete);
-            this.guna2Panel1.Controls.Add(this.btnEdit);
             this.guna2Panel1.Controls.Add(this.label1);
             this.guna2Panel1.Controls.Add(this.btnAdd);
             this.guna2Panel1.Controls.Add(this.txtSearch);
@@ -75,7 +71,8 @@
             this.cmbFilterStatus.ItemHeight = 41;
             this.cmbFilterStatus.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilterStatus.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbFilterStatus.Location = new System.Drawing.Point(833, 91);
+            this.cmbFilterStatus.Location = new System.Drawing.Point(486, 91);
+            this.cmbFilterStatus.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbFilterStatus.Name = "cmbFilterStatus";
             this.cmbFilterStatus.Size = new System.Drawing.Size(168, 47);
             this.cmbFilterStatus.TabIndex = 6;
@@ -99,63 +96,18 @@
             this.cmbFilterRole.ItemHeight = 41;
             this.cmbFilterRole.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilterRole.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbFilterRole.Location = new System.Drawing.Point(1031, 91);
+            this.cmbFilterRole.Location = new System.Drawing.Point(674, 91);
+            this.cmbFilterRole.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbFilterRole.Name = "cmbFilterRole";
             this.cmbFilterRole.Size = new System.Drawing.Size(169, 47);
             this.cmbFilterRole.TabIndex = 5;
             this.cmbFilterRole.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Animated = true;
-            this.btnDelete.BorderRadius = 15;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDelete.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(87)))), ((int)(((byte)(87)))));
-            this.btnDelete.Font = new System.Drawing.Font("Inter", 12F);
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(107)))), ((int)(((byte)(107)))));
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.ImageOffset = new System.Drawing.Point(1, 0);
-            this.btnDelete.Location = new System.Drawing.Point(419, 82);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(142, 56);
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "Archive User";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Animated = true;
-            this.btnEdit.BorderRadius = 15;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnEdit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnEdit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnEdit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnEdit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
-            this.btnEdit.Font = new System.Drawing.Font("Inter", 12F);
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(204)))), ((int)(((byte)(242)))));
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.ImageOffset = new System.Drawing.Point(-3, 0);
-            this.btnEdit.Location = new System.Drawing.Point(254, 82);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(142, 56);
-            this.btnEdit.TabIndex = 3;
-            this.btnEdit.Text = "Edit User";
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Inter", 13F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.label1.Location = new System.Drawing.Point(1235, 56);
+            this.label1.Location = new System.Drawing.Point(38, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 22);
             this.label1.TabIndex = 1;
@@ -176,7 +128,7 @@
             this.btnAdd.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(204)))), ((int)(((byte)(242)))));
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageOffset = new System.Drawing.Point(-2, 0);
-            this.btnAdd.Location = new System.Drawing.Point(89, 82);
+            this.btnAdd.Location = new System.Drawing.Point(1492, 82);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(142, 56);
@@ -202,8 +154,8 @@
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
             this.txtSearch.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtSearch.Location = new System.Drawing.Point(1220, 82);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Location = new System.Drawing.Point(26, 82);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = " Search by name, username, role...";
             this.txtSearch.SelectedText = "";
@@ -243,8 +195,6 @@
         public Guna.UI2.WinForms.Guna2Button btnAdd;
         public System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label label1;
-        public Guna.UI2.WinForms.Guna2Button btnDelete;
-        public Guna.UI2.WinForms.Guna2Button btnEdit;
         public Guna.UI2.WinForms.Guna2ComboBox cmbFilterRole;
         public Guna.UI2.WinForms.Guna2ComboBox cmbFilterStatus;
     }

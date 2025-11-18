@@ -89,7 +89,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             this.txtCategoryName.Text = category.CategoryName ?? "";
 
             this.btnSave.Text = "Save";
-            this.btnSave.Image = Properties.Resources.edit2;
+            this.btnSave.Image = Properties.Resources.edit3;
 
             toggleCategoryStatus.Checked = category.IsActive;
             this.lbStatus.Text = category.IsActive ? "Activated" : "Deactivated";

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlCart = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -48,6 +48,8 @@
             this.cmbSubCategoryFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cmbCategoryFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtSearchProduct = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.pnlCart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -73,14 +75,14 @@
             this.dgvCart.AllowUserToResizeRows = false;
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.dgvCart.Location = new System.Drawing.Point(3, 91);
             this.dgvCart.MultiSelect = false;
@@ -264,6 +266,8 @@
             // 
             // pnlFilters
             // 
+            this.pnlFilters.Controls.Add(this.lblDate);
+            this.pnlFilters.Controls.Add(this.lblTime);
             this.pnlFilters.Controls.Add(this.guna2Separator1);
             this.pnlFilters.Controls.Add(this.cmbSubCategoryFilter);
             this.pnlFilters.Controls.Add(this.cmbCategoryFilter);
@@ -298,8 +302,8 @@
             this.cmbSubCategoryFilter.ItemHeight = 41;
             this.cmbSubCategoryFilter.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubCategoryFilter.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbSubCategoryFilter.Location = new System.Drawing.Point(716, 78);
-            this.cmbSubCategoryFilter.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.cmbSubCategoryFilter.Location = new System.Drawing.Point(720, 78);
+            this.cmbSubCategoryFilter.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbSubCategoryFilter.Name = "cmbSubCategoryFilter";
             this.cmbSubCategoryFilter.Size = new System.Drawing.Size(230, 47);
             this.cmbSubCategoryFilter.TabIndex = 8;
@@ -322,8 +326,8 @@
             this.cmbCategoryFilter.ItemHeight = 41;
             this.cmbCategoryFilter.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategoryFilter.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbCategoryFilter.Location = new System.Drawing.Point(463, 78);
-            this.cmbCategoryFilter.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.cmbCategoryFilter.Location = new System.Drawing.Point(470, 78);
+            this.cmbCategoryFilter.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbCategoryFilter.Name = "cmbCategoryFilter";
             this.cmbCategoryFilter.Size = new System.Drawing.Size(230, 47);
             this.cmbCategoryFilter.TabIndex = 7;
@@ -358,6 +362,26 @@
             this.txtSearchProduct.TabIndex = 2;
             this.txtSearchProduct.TextOffset = new System.Drawing.Point(10, 0);
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.Filter_Changed);
+            // 
+            // lblDate
+            // 
+            this.lblDate.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(923, 38);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(395, 37);
+            this.lblDate.TabIndex = 11;
+            this.lblDate.Text = "Tuesday, November 18, 2025";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(1129, 4);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(189, 37);
+            this.lblTime.TabIndex = 10;
+            this.lblTime.Text = "9:38 PM";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FrmPOS
             // 
@@ -401,5 +425,7 @@
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblTime;
     }
 }
