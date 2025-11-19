@@ -33,6 +33,7 @@
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.picImage = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.lblBrand = new System.Windows.Forms.Label();
             this.pnlCard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
@@ -43,6 +44,7 @@
             this.pnlCard.BorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.pnlCard.BorderRadius = 8;
             this.pnlCard.BorderThickness = 2;
+            this.pnlCard.Controls.Add(this.lblBrand);
             this.pnlCard.Controls.Add(this.lblStock);
             this.pnlCard.Controls.Add(this.lblPrice);
             this.pnlCard.Controls.Add(this.lblTitle);
@@ -61,7 +63,7 @@
             // 
             this.lblStock.Font = new System.Drawing.Font("Inter", 16F, System.Drawing.FontStyle.Bold);
             this.lblStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
-            this.lblStock.Location = new System.Drawing.Point(2, 168);
+            this.lblStock.Location = new System.Drawing.Point(2, 174);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(194, 21);
             this.lblStock.TabIndex = 3;
@@ -71,7 +73,7 @@
             // 
             this.lblPrice.Font = new System.Drawing.Font("Inter", 16F, System.Drawing.FontStyle.Bold);
             this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(177)))), ((int)(((byte)(66)))));
-            this.lblPrice.Location = new System.Drawing.Point(2, 146);
+            this.lblPrice.Location = new System.Drawing.Point(2, 153);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(194, 21);
             this.lblPrice.TabIndex = 1;
@@ -81,7 +83,7 @@
             // 
             this.lblTitle.Font = new System.Drawing.Font("Inter", 13F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
-            this.lblTitle.Location = new System.Drawing.Point(2, 125);
+            this.lblTitle.Location = new System.Drawing.Point(2, 135);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(194, 20);
             this.lblTitle.TabIndex = 2;
@@ -96,6 +98,16 @@
             this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picImage.TabIndex = 0;
             this.picImage.TabStop = false;
+            // 
+            // lblBrand
+            // 
+            this.lblBrand.Font = new System.Drawing.Font("Inter", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
+            this.lblBrand.Location = new System.Drawing.Point(2, 116);
+            this.lblBrand.Name = "lblBrand";
+            this.lblBrand.Size = new System.Drawing.Size(194, 20);
+            this.lblBrand.TabIndex = 4;
+            this.lblBrand.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProductCard
             // 
@@ -118,5 +130,6 @@
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblStock;
+        private System.Windows.Forms.Label lblBrand;
     }
 }

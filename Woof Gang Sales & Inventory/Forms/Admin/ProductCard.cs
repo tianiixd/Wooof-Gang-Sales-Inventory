@@ -65,6 +65,12 @@ namespace Woof_Gang_Sales___Inventory.Forms.Controls
             set { lblTitle.Text = value; }
         }
 
+        public string ProductBrand
+        {
+            get { return lblBrand.Text; }
+            set { lblBrand.Text = value; }
+        }
+
         public Image ProductImage
         {
             get { return picImage.Image; }

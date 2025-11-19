@@ -101,7 +101,7 @@ namespace Woof_Gang_Sales___Inventory.Util
                 // --- Items (The 2-Line Fix) ---
                 foreach (var item in cartItems)
                 {
-                    AddLeftLine(item.ProductName, fontNormal);
+                    AddLeftLine(item.ProductBrand + " " + item.ProductName, fontNormal);
                     string details = $"  ({item.Quantity} @ {item.UnitPrice.ToString("N2")})";
                     AddLeftRightLine(details, item.Subtotal.ToString("N2"), fontNormal);
                 }

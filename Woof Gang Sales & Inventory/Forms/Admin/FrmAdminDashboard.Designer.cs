@@ -55,7 +55,7 @@
             // 
             // guna2Panel3
             // 
-            this.guna2Panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.guna2Panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.guna2Panel3.BorderRadius = 5;
             this.guna2Panel3.Controls.Add(this.btnReports);
             this.guna2Panel3.Controls.Add(this.btnPurchaseOrders);
@@ -70,10 +70,9 @@
             this.guna2Panel3.Controls.Add(this.btnHome);
             this.guna2Panel3.Controls.Add(this.lblUser);
             this.guna2Panel3.Controls.Add(this.picProfileImage);
-            this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.guna2Panel3.Location = new System.Drawing.Point(0, 49);
+            this.guna2Panel3.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(246, 1031);
+            this.guna2Panel3.Size = new System.Drawing.Size(246, 1080);
             this.guna2Panel3.TabIndex = 5;
             // 
             // btnReports
@@ -87,7 +86,7 @@
             this.btnReports.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnReports.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnReports.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnReports.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnReports.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnReports.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
             this.btnReports.Font = new System.Drawing.Font("Inter", 15F);
             this.btnReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -97,7 +96,7 @@
             this.btnReports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnReports.ImageOffset = new System.Drawing.Point(3, 0);
             this.btnReports.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnReports.Location = new System.Drawing.Point(0, 621);
+            this.btnReports.Location = new System.Drawing.Point(0, 669);
             this.btnReports.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(246, 45);
@@ -116,7 +115,7 @@
             this.btnPurchaseOrders.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnPurchaseOrders.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnPurchaseOrders.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPurchaseOrders.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnPurchaseOrders.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnPurchaseOrders.FocusedColor = System.Drawing.Color.Red;
             this.btnPurchaseOrders.Font = new System.Drawing.Font("Inter", 15F);
             this.btnPurchaseOrders.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -126,7 +125,7 @@
             this.btnPurchaseOrders.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnPurchaseOrders.ImageOffset = new System.Drawing.Point(2, 0);
             this.btnPurchaseOrders.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnPurchaseOrders.Location = new System.Drawing.Point(0, 448);
+            this.btnPurchaseOrders.Location = new System.Drawing.Point(0, 496);
             this.btnPurchaseOrders.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnPurchaseOrders.Name = "btnPurchaseOrders";
             this.btnPurchaseOrders.Size = new System.Drawing.Size(246, 45);
@@ -146,7 +145,7 @@
             this.btnSuppliers.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnSuppliers.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnSuppliers.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSuppliers.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnSuppliers.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnSuppliers.FocusedColor = System.Drawing.Color.Red;
             this.btnSuppliers.Font = new System.Drawing.Font("Inter", 15F);
             this.btnSuppliers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -156,7 +155,7 @@
             this.btnSuppliers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSuppliers.ImageOffset = new System.Drawing.Point(2, 0);
             this.btnSuppliers.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnSuppliers.Location = new System.Drawing.Point(0, 390);
+            this.btnSuppliers.Location = new System.Drawing.Point(0, 438);
             this.btnSuppliers.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnSuppliers.Name = "btnSuppliers";
             this.btnSuppliers.Size = new System.Drawing.Size(246, 45);
@@ -176,7 +175,7 @@
             this.btnSubCategory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnSubCategory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnSubCategory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSubCategory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnSubCategory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnSubCategory.FocusedColor = System.Drawing.Color.Red;
             this.btnSubCategory.Font = new System.Drawing.Font("Inter", 15F);
             this.btnSubCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -186,7 +185,7 @@
             this.btnSubCategory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSubCategory.ImageOffset = new System.Drawing.Point(2, 0);
             this.btnSubCategory.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnSubCategory.Location = new System.Drawing.Point(0, 329);
+            this.btnSubCategory.Location = new System.Drawing.Point(0, 377);
             this.btnSubCategory.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnSubCategory.Name = "btnSubCategory";
             this.btnSubCategory.Size = new System.Drawing.Size(246, 45);
@@ -206,7 +205,7 @@
             this.btnCategory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnCategory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnCategory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCategory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnCategory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnCategory.FocusedColor = System.Drawing.Color.Red;
             this.btnCategory.Font = new System.Drawing.Font("Inter", 15F);
             this.btnCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -216,7 +215,7 @@
             this.btnCategory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCategory.ImageOffset = new System.Drawing.Point(6, 0);
             this.btnCategory.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnCategory.Location = new System.Drawing.Point(0, 271);
+            this.btnCategory.Location = new System.Drawing.Point(0, 319);
             this.btnCategory.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnCategory.Name = "btnCategory";
             this.btnCategory.Size = new System.Drawing.Size(246, 45);
@@ -231,7 +230,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRole.Font = new System.Drawing.Font("Inter", 12F);
             this.lblRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
-            this.lblRole.Location = new System.Drawing.Point(0, 183);
+            this.lblRole.Location = new System.Drawing.Point(0, 238);
+            this.lblRole.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(246, 20);
             this.lblRole.TabIndex = 8;
@@ -248,7 +248,7 @@
             this.btnLogOut.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnLogOut.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLogOut.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLogOut.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnLogOut.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnLogOut.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
             this.btnLogOut.Font = new System.Drawing.Font("Inter", 15F);
             this.btnLogOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -258,7 +258,7 @@
             this.btnLogOut.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnLogOut.ImageOffset = new System.Drawing.Point(8, 0);
             this.btnLogOut.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnLogOut.Location = new System.Drawing.Point(0, 737);
+            this.btnLogOut.Location = new System.Drawing.Point(0, 785);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(246, 45);
@@ -277,7 +277,7 @@
             this.btnUsers.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnUsers.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnUsers.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnUsers.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnUsers.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnUsers.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
             this.btnUsers.Font = new System.Drawing.Font("Inter", 15F);
             this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -287,7 +287,7 @@
             this.btnUsers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnUsers.ImageOffset = new System.Drawing.Point(6, 0);
             this.btnUsers.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnUsers.Location = new System.Drawing.Point(0, 679);
+            this.btnUsers.Location = new System.Drawing.Point(0, 727);
             this.btnUsers.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(246, 45);
@@ -307,7 +307,7 @@
             this.btnSales.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnSales.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnSales.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSales.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnSales.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnSales.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
             this.btnSales.Font = new System.Drawing.Font("Inter", 15F);
             this.btnSales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -317,7 +317,7 @@
             this.btnSales.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSales.ImageOffset = new System.Drawing.Point(3, 0);
             this.btnSales.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSales.Location = new System.Drawing.Point(0, 563);
+            this.btnSales.Location = new System.Drawing.Point(0, 611);
             this.btnSales.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnSales.Name = "btnSales";
             this.btnSales.Size = new System.Drawing.Size(246, 45);
@@ -337,7 +337,7 @@
             this.btnProducts.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnProducts.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnProducts.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnProducts.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnProducts.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnProducts.FocusedColor = System.Drawing.Color.Red;
             this.btnProducts.Font = new System.Drawing.Font("Inter", 15F);
             this.btnProducts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -347,7 +347,7 @@
             this.btnProducts.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnProducts.ImageOffset = new System.Drawing.Point(2, 0);
             this.btnProducts.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnProducts.Location = new System.Drawing.Point(0, 505);
+            this.btnProducts.Location = new System.Drawing.Point(0, 553);
             this.btnProducts.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnProducts.Name = "btnProducts";
             this.btnProducts.Size = new System.Drawing.Size(246, 45);
@@ -368,7 +368,7 @@
             this.btnHome.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnHome.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnHome.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnHome.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
+            this.btnHome.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.btnHome.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
             this.btnHome.Font = new System.Drawing.Font("Inter", 15F);
             this.btnHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
@@ -378,7 +378,7 @@
             this.btnHome.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnHome.ImageOffset = new System.Drawing.Point(5, 0);
             this.btnHome.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnHome.Location = new System.Drawing.Point(0, 213);
+            this.btnHome.Location = new System.Drawing.Point(0, 261);
             this.btnHome.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(246, 45);
@@ -393,8 +393,8 @@
             this.lblUser.BackColor = System.Drawing.Color.Transparent;
             this.lblUser.Font = new System.Drawing.Font("Inter", 13F);
             this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
-            this.lblUser.Location = new System.Drawing.Point(0, 156);
-            this.lblUser.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
+            this.lblUser.Location = new System.Drawing.Point(-3, 209);
+            this.lblUser.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(246, 26);
             this.lblUser.TabIndex = 1;
@@ -403,11 +403,11 @@
             // picProfileImage
             // 
             this.picProfileImage.ImageRotate = 0F;
-            this.picProfileImage.Location = new System.Drawing.Point(64, 21);
+            this.picProfileImage.Location = new System.Drawing.Point(46, 49);
             this.picProfileImage.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.picProfileImage.Name = "picProfileImage";
             this.picProfileImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.picProfileImage.Size = new System.Drawing.Size(120, 120);
+            this.picProfileImage.Size = new System.Drawing.Size(150, 150);
             this.picProfileImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picProfileImage.TabIndex = 0;
             this.picProfileImage.TabStop = false;
@@ -418,10 +418,9 @@
             this.guna2Panel1.Controls.Add(this.btnMaximize);
             this.guna2Panel1.Controls.Add(this.guna2ControlBox1);
             this.guna2Panel1.Controls.Add(this.btnExit);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel1.Location = new System.Drawing.Point(246, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1920, 49);
+            this.guna2Panel1.Size = new System.Drawing.Size(1674, 49);
             this.guna2Panel1.TabIndex = 3;
             // 
             // btnMaximize
@@ -434,7 +433,7 @@
             this.btnMaximize.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(90)))), ((int)(((byte)(150)))));
             this.btnMaximize.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(105)))), ((int)(((byte)(165)))));
             this.btnMaximize.IconColor = System.Drawing.Color.White;
-            this.btnMaximize.Location = new System.Drawing.Point(1815, 10);
+            this.btnMaximize.Location = new System.Drawing.Point(1569, 10);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(45, 29);
             this.btnMaximize.TabIndex = 1;
@@ -449,7 +448,7 @@
             this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(90)))), ((int)(((byte)(150)))));
             this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(105)))), ((int)(((byte)(165)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(1764, 10);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(1518, 10);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.Size = new System.Drawing.Size(45, 29);
             this.guna2ControlBox1.TabIndex = 0;
@@ -464,7 +463,7 @@
             this.btnExit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnExit.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(91)))), ((int)(((byte)(91)))));
             this.btnExit.IconColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(1866, 10);
+            this.btnExit.Location = new System.Drawing.Point(1620, 10);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(45, 29);
             this.btnExit.TabIndex = 2;

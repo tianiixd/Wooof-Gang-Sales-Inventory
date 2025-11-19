@@ -112,7 +112,7 @@ namespace Woof_Gang_Sales___Inventory.Util
                     foreach (var item in cartItems)
                     {
                         table.AddCell(new Cell().Add(new Paragraph(item.Quantity.ToString())).SetFont(fontNormal).SetFontSize(stdSize).SetBorder(Border.NO_BORDER));
-                        table.AddCell(new Cell().Add(new Paragraph(item.ProductName)).SetFont(fontNormal).SetFontSize(stdSize).SetBorder(Border.NO_BORDER));
+                        table.AddCell(new Cell().Add(new Paragraph(item.ProductBrand + " "  + item.ProductName)).SetFont(fontNormal).SetFontSize(stdSize).SetBorder(Border.NO_BORDER));
                         table.AddCell(new Cell().Add(new Paragraph(item.UnitPrice.ToString("N2"))).SetFont(fontNormal).SetFontSize(stdSize).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT));
                         table.AddCell(new Cell().Add(new Paragraph(item.Subtotal.ToString("N2"))).SetFont(fontNormal).SetFontSize(stdSize).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT));
                     }

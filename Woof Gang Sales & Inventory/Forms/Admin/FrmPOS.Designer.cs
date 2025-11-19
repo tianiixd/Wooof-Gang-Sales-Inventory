@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlCart = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -44,12 +44,12 @@
             this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.flpProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlFilters = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.cmbSubCategoryFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cmbCategoryFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtSearchProduct = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.lblTime = new System.Windows.Forms.Label();
             this.pnlCart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -75,14 +75,14 @@
             this.dgvCart.AllowUserToResizeRows = false;
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.dgvCart.Location = new System.Drawing.Point(3, 91);
             this.dgvCart.MultiSelect = false;
@@ -278,6 +278,24 @@
             this.pnlFilters.Size = new System.Drawing.Size(1321, 135);
             this.pnlFilters.TabIndex = 0;
             // 
+            // lblDate
+            // 
+            this.lblDate.Font = new System.Drawing.Font("Inter", 15F);
+            this.lblDate.Location = new System.Drawing.Point(846, 38);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(472, 37);
+            this.lblDate.TabIndex = 11;
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(1129, 4);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(189, 37);
+            this.lblTime.TabIndex = 10;
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // guna2Separator1
             // 
             this.guna2Separator1.FillColor = System.Drawing.Color.Black;
@@ -362,26 +380,6 @@
             this.txtSearchProduct.TabIndex = 2;
             this.txtSearchProduct.TextOffset = new System.Drawing.Point(10, 0);
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.Filter_Changed);
-            // 
-            // lblDate
-            // 
-            this.lblDate.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(923, 38);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(395, 37);
-            this.lblDate.TabIndex = 11;
-            this.lblDate.Text = "Tuesday, November 18, 2025";
-            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTime
-            // 
-            this.lblTime.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(1129, 4);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(189, 37);
-            this.lblTime.TabIndex = 10;
-            this.lblTime.Text = "9:38 PM";
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FrmPOS
             // 

@@ -3,15 +3,22 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Web.UI;
+using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Database;
+using Woof_Gang_Sales___Inventory.Forms.Controls;
 using Woof_Gang_Sales___Inventory.Helpers;
 using Woof_Gang_Sales___Inventory.Models;
 using Woof_Gang_Sales___Inventory.Util;
 
 namespace Woof_Gang_Sales___Inventory.Data
 {
+    
     public class ProductRepository
     {
+        private Label lblTotalProduct;
+        private Label lblTotalStock;
         // Base query with all JOINs needed for display and searching
         private const string BASE_SELECT_QUERY = @"
             SELECT 
@@ -137,6 +144,81 @@ namespace Woof_Gang_Sales___Inventory.Data
             }
             return null;
         }
+
+        public void StatsCard(Label lblTotalProduct, Label lblTotalStock, Label lblLowStock, Label lblOutOfStock, Label lblNearExpiry)
+        {
+            try
+            {
+                using (SqlConnection conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    // 1. TOTAL PRODUCTS (Catalog Size)
+                    // Just counts how many distinct products you sell
+                    string queryProducts = "SELECT COUNT(*) FROM Products WHERE IsActive = 1";
+                    using (SqlCommand cmd = new SqlCommand(queryProducts, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblTotalProduct.Text = count.ToString("N0");
+                    }
+
+                    // 2. TOTAL STOCK (Inventory Volume)
+                    // Sum of all quantities (physical items in the store)
+                    string queryStock = "SELECT ISNULL(SUM(Quantity), 0) FROM Products WHERE IsActive = 1";
+                    using (SqlCommand cmd = new SqlCommand(queryStock, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblTotalStock.Text = count.ToString("N0");
+                    }
+
+                    // 3. LOW STOCK (Warning)
+                    // Items that need reordering soon (Quantity <= ReorderLevel)
+                    string queryLow = @"SELECT COUNT(*) FROM Products 
+                                WHERE IsActive = 1 
+                                AND Quantity <= ReorderLevel 
+                                AND Quantity > 0";
+                    using (SqlCommand cmd = new SqlCommand(queryLow, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblLowStock.Text = count.ToString("N0");
+                        // Turn Orange if there are low stock items
+                        lblLowStock.ForeColor = count > 0 ? Color.Orange : Color.Black;
+                    }
+
+                    // 4. OUT OF STOCK (Critical Loss)
+                    // Items you have 0 of (Lost Sales)
+                    string queryOut = "SELECT COUNT(*) FROM Products WHERE IsActive = 1 AND Quantity = 0";
+                    using (SqlCommand cmd = new SqlCommand(queryOut, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblOutOfStock.Text = count.ToString("N0");
+                        // Turn Red if there are out of stock items
+                        lblOutOfStock.ForeColor = count > 0 ? Color.Red : Color.Black;
+                    }
+
+                    // 5. NEAR EXPIRY (Urgent Action)
+                    // Items expiring within the next 30 days
+                    string queryExpiry = @"SELECT COUNT(*) FROM Products 
+                                   WHERE IsActive = 1 
+                                   AND ExpirationDate IS NOT NULL 
+                                   AND ExpirationDate <= DATEADD(day, 30, GETDATE())
+                                   AND Quantity > 0"; // Only count if we actually have them
+
+                    using (SqlCommand cmd = new SqlCommand(queryExpiry, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblNearExpiry.Text = count.ToString("N0");
+                        // Turn Purple/DarkYellow if items are about to expire
+                        lblNearExpiry.ForeColor = count > 0 ? Color.FromArgb(192, 0, 192) : Color.Black;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogHelper.ShowCustomDialog("Stats Error", ex.Message, "error");
+            }
+        }
+
 
         /// <summary>
         /// Creates a new product after checking for duplicates.

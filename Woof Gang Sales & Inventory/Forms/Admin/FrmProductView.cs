@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Data;
+using Woof_Gang_Sales___Inventory.Database;
 using Woof_Gang_Sales___Inventory.Helpers;
 using Woof_Gang_Sales___Inventory.Models; // ✅ Added Models
 using Woof_Gang_Sales___Inventory.Util;   // ✅ Added Util
@@ -34,8 +36,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
         // ✅ --- CONSTANTS FOR LAYOUT ---
         // We define these here so Paint, Click, and MouseMove all align perfectly.
-        private int btnWidth = 40;
-        private int btnHeight = 35;
+        private int btnWidth = 50;
+        private int btnHeight = 40;
         private int btnSpacing = 10;
         private int iconSize = 20;
 
@@ -179,7 +181,9 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             // ✅ --- BUG FIX 2: Call ReadProducts() here. ---
             // This runs AFTER the ComboBoxes are loaded and ready.
             ReadProducts();
+            productRepo.StatsCard(lblTotalProducts, lblTotalStocks, lblLowStocks, lblOutofStock, lblNearExpiry);
         }
+
 
         private void LoadCategoryFilter()
         {
@@ -290,7 +294,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     FrmCreateEditProduct form = new FrmCreateEditProduct();
                     form.IsEditMode = true;
                     form.EditProduct(product);
-                    if (form.ShowDialog() == DialogResult.OK) ReadProducts();
+                    if (form.ShowDialog() == DialogResult.OK) ReadProducts(); 
+                    productRepo.StatsCard(lblTotalProducts, lblTotalStocks, lblLowStocks, lblOutofStock, lblNearExpiry);
                 }
                 // Check Delete Click (Red Area)
                 else if (e.X >= startX + btnWidth + btnSpacing && e.X <= startX + (btnWidth * 2) + btnSpacing)
@@ -300,6 +305,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
                     bool success = productRepo.DeleteProduct(productID);
                     if (success) ReadProducts();
+                    productRepo.StatsCard(lblTotalProducts, lblTotalStocks, lblLowStocks, lblOutofStock, lblNearExpiry);
                 }
             }
         }
@@ -390,67 +396,10 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                ReadProducts(); // Refresh the grid
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (dgvProduct.SelectedRows.Count == 0)
-            {
-                DialogHelper.ShowCustomDialog("No Selection", "Please select a product first.", "warning");
-                return;
-            }
-
-            var value = this.dgvProduct.SelectedRows[0].Cells["ProductID"].Value.ToString();
-
-            if (string.IsNullOrEmpty(value)) return;
-
-            if (!int.TryParse(value, out int productID))
-            {
-                DialogHelper.ShowCustomDialog("Invalid Selection", "The selected product ID is invalid.", "error");
-                return;
-            }
-
-            var product = productRepo.GetProductById(productID);
-
-            if (product == null)
-            {
-                DialogHelper.ShowCustomDialog("Not Found", "The selected product no longer exists.", "error");
+                //Refresh All
                 ReadProducts();
-                return;
+                productRepo.StatsCard(lblTotalProducts, lblTotalStocks, lblLowStocks, lblOutofStock, lblNearExpiry);
             }
-
-            FrmCreateEditProduct form = new FrmCreateEditProduct();
-            form.IsEditMode = true;
-            form.EditProduct(product);
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                ReadProducts(); // Refresh the grid
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (dgvProduct.SelectedRows.Count == 0)
-            {
-                DialogHelper.ShowCustomDialog("No Selection", "Please select a product first.", "warning");
-                return;
-            }
-
-            var value = this.dgvProduct.SelectedRows[0].Cells["ProductID"].Value.ToString();
-            if (string.IsNullOrEmpty(value)) return;
-
-            int productID = int.Parse(value);
-
-            DialogResult result = DialogHelper.ShowConfirmDialog("Archive Product", "Are you sure you want to archive this product?", "warning");
-
-            if (result == DialogResult.No) return;
-
-            bool success = productRepo.DeleteProduct(productID);
-            if (success)
-                ReadProducts();
         }
 
         // --- Search and Data Loading ---

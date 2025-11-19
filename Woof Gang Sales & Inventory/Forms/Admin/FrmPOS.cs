@@ -56,9 +56,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 dgvCart.Cursor = Cursors.Default;
             };
 
-            // Make sure your buttons are named btnClearAll and btnPay
-            // btnClearAll.Click += btnClearAll_Click; 
-            // btnPay.Click += btnPay_Click;
         }
 
         private void FrmPOS_Load(object sender, EventArgs e)
@@ -197,6 +194,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             {
                 ProductCard card = new ProductCard();
                 card.ProductID = p.ProductID;
+                card.ProductBrand = p.Brand;
                 card.ProductTitle = p.ProductName;
                 card.ProductImage = LoadImageWithoutLock(p.ImagePath);
                 card.UnitPrice = p.SellingPrice;
@@ -222,7 +220,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             // Only add to cart if the card says it's sellable
             if (clickedCard.IsSellable)
             {
-                AddToCart(clickedCard.ProductID, clickedCard.ProductTitle, clickedCard.UnitPrice);
+                AddToCart(clickedCard.ProductID, clickedCard.ProductBrand, clickedCard.ProductTitle, clickedCard.UnitPrice);
             }
             else
             {
@@ -231,7 +229,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             }
         }
 
-        private void AddToCart(int productID, string name, decimal price)
+        private void AddToCart(int productID, string brand, string name, decimal price)
         {
             int currentStock = productRepo.GetStock(productID);
 
@@ -258,6 +256,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 shoppingCart.Add(new CartItem
                 {
                     ProductID = productID,
+                    ProductBrand = brand,
                     ProductName = name,
                     UnitPrice = price,
                     Quantity = 1

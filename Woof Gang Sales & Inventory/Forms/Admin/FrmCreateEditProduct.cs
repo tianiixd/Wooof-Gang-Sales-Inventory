@@ -74,7 +74,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
                 chkHasExpiration.Checked = false;
                 dtpExpirationDate.Enabled = false;
-                dtpExpirationDate.MinDate = DateTime.Today.AddDays(1);
+                dtpExpirationDate.MinDate = DateTime.Today.AddMonths(6);
             }
             else
             {
@@ -104,7 +104,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 else
                 {
                     chkHasExpiration.Checked = false;
-                    dtpExpirationDate.Value = DateTime.Today.AddDays(1); // Default
+                    dtpExpirationDate.Value = DateTime.Today.AddMonths(6); // Default
 
                 }
                 // Manually trigger the event to set visibility
