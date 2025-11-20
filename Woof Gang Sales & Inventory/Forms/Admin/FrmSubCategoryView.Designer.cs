@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSubCategoryView));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.cmbFilterStatus = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.lblTime = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvSubCategory = new System.Windows.Forms.DataGridView();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.lblTime = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubCategory)).BeginInit();
@@ -47,7 +47,7 @@
             // 
             // guna2Panel2
             // 
-            this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
+            this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.guna2Panel2.Controls.Add(this.cmbFilterStatus);
             this.guna2Panel2.Controls.Add(this.lblTime);
             this.guna2Panel2.Controls.Add(this.label1);
@@ -84,6 +84,16 @@
             this.cmbFilterStatus.TextOffset = new System.Drawing.Point(3, 0);
             this.cmbFilterStatus.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
+            // lblTime
+            // 
+            this.lblTime.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
+            this.lblTime.Location = new System.Drawing.Point(1454, 11);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(189, 37);
+            this.lblTime.TabIndex = 6;
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Inter", 13F);
@@ -109,7 +119,7 @@
             this.btnAdd.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(204)))), ((int)(((byte)(242)))));
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageOffset = new System.Drawing.Point(2, 0);
-            this.btnAdd.Location = new System.Drawing.Point(1460, 82);
+            this.btnAdd.Location = new System.Drawing.Point(1469, 95);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(185, 56);
@@ -166,14 +176,14 @@
             this.dgvSubCategory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSubCategory.BackgroundColor = System.Drawing.Color.White;
             this.dgvSubCategory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Inter", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSubCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Inter", 11.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSubCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSubCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSubCategory.Location = new System.Drawing.Point(29, 302);
             this.dgvSubCategory.Margin = new System.Windows.Forms.Padding(20);
@@ -191,23 +201,14 @@
             this.guna2Elipse1.BorderRadius = 20;
             this.guna2Elipse1.TargetControl = this.dgvSubCategory;
             // 
-            // lblTime
-            // 
-            this.lblTime.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(1454, 4);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(189, 37);
-            this.lblTime.TabIndex = 6;
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lblDate
             // 
-            this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
+            this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.lblDate.Font = new System.Drawing.Font("Inter", 15F);
             this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.lblDate.Location = new System.Drawing.Point(1200, 39);
+            this.lblDate.Location = new System.Drawing.Point(1200, 43);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(395, 37);
+            this.lblDate.Size = new System.Drawing.Size(445, 39);
             this.lblDate.TabIndex = 7;
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 

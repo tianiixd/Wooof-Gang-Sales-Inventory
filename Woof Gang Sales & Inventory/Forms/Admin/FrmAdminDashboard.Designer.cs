@@ -430,7 +430,7 @@
             this.btnMaximize.BorderRadius = 3;
             this.btnMaximize.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox;
             this.btnMaximize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMaximize.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(90)))), ((int)(((byte)(150)))));
+            this.btnMaximize.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(168)))), ((int)(((byte)(203)))));
             this.btnMaximize.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(105)))), ((int)(((byte)(165)))));
             this.btnMaximize.IconColor = System.Drawing.Color.White;
             this.btnMaximize.Location = new System.Drawing.Point(1569, 10);
@@ -445,7 +445,7 @@
             this.guna2ControlBox1.BorderRadius = 3;
             this.guna2ControlBox1.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox;
             this.guna2ControlBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(90)))), ((int)(((byte)(150)))));
+            this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(168)))), ((int)(((byte)(203)))));
             this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(105)))), ((int)(((byte)(165)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
             this.guna2ControlBox1.Location = new System.Drawing.Point(1518, 10);

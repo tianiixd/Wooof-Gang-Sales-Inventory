@@ -36,8 +36,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
         // ✅ --- CONSTANTS FOR LAYOUT ---
         // We define these here so Paint, Click, and MouseMove all align perfectly.
-        private int btnWidth = 50;
-        private int btnHeight = 40;
+        private int btnWidth = 45;
+        private int btnHeight = 35;
         private int btnSpacing = 10;
         private int iconSize = 20;
 
@@ -79,7 +79,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 }
 
                 // --- Format the price column ---
-                if (dgvProduct.Columns[e.ColumnIndex].Name == "SellingPrice")
+                if (dgvProduct.Columns[e.ColumnIndex].Name == "Selling Price")
                 {
                     if (e.Value != null)
                     {
@@ -93,7 +93,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 }
 
                 // --- Format StockLevel Column ---
-                if (dgvProduct.Columns[e.ColumnIndex].Name == "StockLevel")
+                if (dgvProduct.Columns[e.ColumnIndex].Name == "Stock Level")
                 {
                     string value = e.Value?.ToString() ?? "";
                     e.CellStyle.Font = new Font("Segoe UI", 10F);
@@ -117,7 +117,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
                 // ✅ --- ADD THIS NEW BLOCK ---
                 // --- Format ExpirationDate Column ---
-                if (dgvProduct.Columns[e.ColumnIndex].Name == "ExpirationDate")
+                if (dgvProduct.Columns[e.ColumnIndex].Name == "Expiration Date")
                 {
                     // If the value is null or empty, show "N/A"
                     if (e.Value == null || e.Value == DBNull.Value)
@@ -479,20 +479,20 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             DataTable dt = new DataTable();
             dt.Columns.Add("ProductID");
             dt.Columns.Add("SKU");
-            dt.Columns.Add("ProductName");
+            dt.Columns.Add("Product Name");
             dt.Columns.Add("Brand");
 
             // ✅ --- BUG FIX 4: Removed the stray word "Services" ---
-            dt.Columns.Add("CategoryName");
-            dt.Columns.Add("SubCategoryName");
-            dt.Columns.Add("SupplierName");
+            dt.Columns.Add("Category Name");
+            dt.Columns.Add("SubCategory Name");
+            dt.Columns.Add("Supplier Name");
             dt.Columns.Add("Weight");
             dt.Columns.Add("Unit");
-            dt.Columns.Add("SellingPrice", typeof(decimal));
+            dt.Columns.Add("Selling Price", typeof(decimal));
             dt.Columns.Add("Quantity");
-            dt.Columns.Add("ReorderLevel");
-            dt.Columns.Add("StockLevel");
-            dt.Columns.Add("ExpirationDate", typeof(DateTime));
+            dt.Columns.Add("Reorder Level");
+            dt.Columns.Add("Stock Level");
+            dt.Columns.Add("Expiration Date", typeof(DateTime));
             dt.Columns.Add("Status");
 
             foreach (var p in products)
@@ -500,25 +500,25 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 var row = dt.NewRow();
                 row["ProductID"] = p.ProductID;
                 row["SKU"] = p.SKU ?? "";
-                row["ProductName"] = p.ProductName;
+                row["Product Name"] = $"{p.Brand} {p.ProductName}";
                 row["Brand"] = p.Brand;
-                row["CategoryName"] = p.CategoryName;
-                row["SubCategoryName"] = p.SubCategoryName;
-                row["SupplierName"] = p.SupplierName;
+                row["Category Name"] = p.CategoryName;
+                row["SubCategory Name"] = p.SubCategoryName;
+                row["Supplier Name"] = p.SupplierName;
                 row["Weight"] = p.Weight.HasValue ? p.Weight.Value.ToString() : null;
                 row["Unit"] = p.Unit;
-                row["SellingPrice"] = p.SellingPrice;
+                row["Selling Price"] = p.SellingPrice;
                 row["Quantity"] = p.Quantity;
-                row["ReorderLevel"] = p.ReorderLevel.HasValue ? p.ReorderLevel.Value.ToString() : null;
+                row["Reorder Level"] = p.ReorderLevel.HasValue ? p.ReorderLevel.Value.ToString() : null;
                 row["Status"] = p.IsActive ? "Active" : "Archived";
 
                 if (p.ExpirationDate.HasValue)
                 {
-                    row["ExpirationDate"] = p.ExpirationDate.Value;
+                    row["Expiration Date"] = p.ExpirationDate.Value;
                 }
                 else
                 {
-                    row["ExpirationDate"] = DBNull.Value; // Use DBNull for null dates
+                    row["Expiration Date"] = DBNull.Value; // Use DBNull for null dates
                 }
 
                 int quantity = p.Quantity;
@@ -526,15 +526,15 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
                 if (quantity == 0)
                 {
-                    row["StockLevel"] = "Out of Stock";
+                    row["Stock Level"] = "Out of Stock";
                 }
                 else if (reorder > 0 && quantity <= reorder)
                 {
-                    row["StockLevel"] = "Critical";
+                    row["Stock Level"] = "Critical";
                 }
                 else
                 {
-                    row["StockLevel"] = "Sufficient";
+                    row["Stock Level"] = "Sufficient";
                 }
 
                 dt.Rows.Add(row);
@@ -556,17 +556,17 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             // --- HIDE UNNECESSARY COLUMNS ---
 
-            dgvProduct.Columns["ReorderLevel"].Visible = false;
+            dgvProduct.Columns["Reorder Level"].Visible = false;
             dgvProduct.Columns["Brand"].Visible = false;
-            dgvProduct.Columns["CategoryName"].Visible = false;
-            dgvProduct.Columns["SubCategoryName"].Visible = false;
-            dgvProduct.Columns["SupplierName"].Visible = true;
+            dgvProduct.Columns["Category Name"].Visible = false;
+            dgvProduct.Columns["SubCategory Name"].Visible = false;
+            dgvProduct.Columns["Supplier Name"].Visible = true;
             dgvProduct.Columns["Weight"].Visible = false;
             dgvProduct.Columns["Unit"].Visible = false;
-            if (dgvProduct.Columns.Contains("ExpirationDate"))
+            if (dgvProduct.Columns.Contains("Expiration Date"))
             {
-                dgvProduct.Columns["ExpirationDate"].HeaderText = "Expiration Date";
-                dgvProduct.Columns["ExpirationDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgvProduct.Columns["Expiration Date"].HeaderText = "Expiration Date";
+                dgvProduct.Columns["Expiration Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
 
             if (selectedStatus == "Active Products" || selectedStatus == "Archived Products")
@@ -578,6 +578,11 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 dgvProduct.Columns["Status"].Visible = true;
             }
             
+        }
+
+        private void lblTotalProducts_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
