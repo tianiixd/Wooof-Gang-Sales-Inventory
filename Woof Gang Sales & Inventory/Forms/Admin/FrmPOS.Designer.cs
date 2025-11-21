@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlCart = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
@@ -40,9 +41,6 @@
             this.pnlCartTop = new Guna.UI2.WinForms.Guna2Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClearAll = new Guna.UI2.WinForms.Guna2Button();
-            this.pnlCenter = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
-            this.flpProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlFilters = new Guna.UI2.WinForms.Guna2Panel();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
@@ -50,12 +48,16 @@
             this.cmbSubCategoryFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cmbCategoryFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtSearchProduct = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.flpProducts = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlCenter = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.pnlCart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.guna2Panel1.SuspendLayout();
             this.pnlCartTop.SuspendLayout();
-            this.pnlCenter.SuspendLayout();
             this.pnlFilters.SuspendLayout();
+            this.pnlCenter.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCart
@@ -64,9 +66,9 @@
             this.pnlCart.Controls.Add(this.guna2Panel1);
             this.pnlCart.Controls.Add(this.pnlCartTop);
             this.pnlCart.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlCart.Location = new System.Drawing.Point(1324, 0);
+            this.pnlCart.Location = new System.Drawing.Point(1206, 0);
             this.pnlCart.Name = "pnlCart";
-            this.pnlCart.Size = new System.Drawing.Size(350, 1031);
+            this.pnlCart.Size = new System.Drawing.Size(468, 1031);
             this.pnlCart.TabIndex = 0;
             // 
             // dgvCart
@@ -74,6 +76,7 @@
             this.dgvCart.AllowUserToResizeColumns = false;
             this.dgvCart.AllowUserToResizeRows = false;
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
+            this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
@@ -87,7 +90,7 @@
             this.dgvCart.Location = new System.Drawing.Point(3, 91);
             this.dgvCart.MultiSelect = false;
             this.dgvCart.Name = "dgvCart";
-            this.dgvCart.Size = new System.Drawing.Size(342, 711);
+            this.dgvCart.Size = new System.Drawing.Size(462, 711);
             this.dgvCart.TabIndex = 2;
             // 
             // guna2Panel1
@@ -97,10 +100,9 @@
             this.guna2Panel1.Controls.Add(this.lblPrice);
             this.guna2Panel1.Controls.Add(this.btnPay);
             this.guna2Panel1.Controls.Add(this.lblTotal);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 803);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(350, 228);
+            this.guna2Panel1.Size = new System.Drawing.Size(468, 228);
             this.guna2Panel1.TabIndex = 5;
             // 
             // label2
@@ -109,7 +111,7 @@
             this.label2.Font = new System.Drawing.Font("Inter", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label2.Location = new System.Drawing.Point(7, 67);
+            this.label2.Location = new System.Drawing.Point(23, 65);
             this.label2.Margin = new System.Windows.Forms.Padding(5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 28);
@@ -133,7 +135,7 @@
             this.cmbDiscount.ItemHeight = 41;
             this.cmbDiscount.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDiscount.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbDiscount.Location = new System.Drawing.Point(11, 100);
+            this.cmbDiscount.Location = new System.Drawing.Point(28, 101);
             this.cmbDiscount.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cmbDiscount.Name = "cmbDiscount";
             this.cmbDiscount.Size = new System.Drawing.Size(230, 47);
@@ -147,7 +149,7 @@
             this.lblPrice.Font = new System.Drawing.Font("Inter", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
             this.lblPrice.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblPrice.Location = new System.Drawing.Point(164, 7);
+            this.lblPrice.Location = new System.Drawing.Point(135, 7);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(5);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(44, 48);
@@ -173,7 +175,7 @@
             this.btnPay.Name = "btnPay";
             this.btnPay.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(30)))));
             this.btnPay.PressedDepth = 40;
-            this.btnPay.Size = new System.Drawing.Size(340, 65);
+            this.btnPay.Size = new System.Drawing.Size(458, 65);
             this.btnPay.TabIndex = 3;
             this.btnPay.Text = "Pay";
             this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
@@ -181,13 +183,13 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Inter", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Font = new System.Drawing.Font("Inter", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
             this.lblTotal.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblTotal.Location = new System.Drawing.Point(7, 22);
+            this.lblTotal.Location = new System.Drawing.Point(21, 16);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(5);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(59, 28);
+            this.lblTotal.Size = new System.Drawing.Size(83, 39);
             this.lblTotal.TabIndex = 4;
             this.lblTotal.Text = "Total";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -199,18 +201,18 @@
             this.pnlCartTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlCartTop.Location = new System.Drawing.Point(0, 0);
             this.pnlCartTop.Name = "pnlCartTop";
-            this.pnlCartTop.Size = new System.Drawing.Size(350, 88);
+            this.pnlCartTop.Size = new System.Drawing.Size(468, 88);
             this.pnlCartTop.TabIndex = 6;
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Inter", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Inter", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label1.Location = new System.Drawing.Point(7, 33);
+            this.label1.Location = new System.Drawing.Point(21, 33);
             this.label1.Margin = new System.Windows.Forms.Padding(5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(203, 42);
+            this.label1.Size = new System.Drawing.Size(247, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "Sales Summary";
             // 
@@ -229,7 +231,7 @@
             this.btnClearAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(85)))), ((int)(((byte)(118)))));
             this.btnClearAll.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(85)))), ((int)(((byte)(118)))));
             this.btnClearAll.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.btnClearAll.Location = new System.Drawing.Point(258, 33);
+            this.btnClearAll.Location = new System.Drawing.Point(367, 33);
             this.btnClearAll.Margin = new System.Windows.Forms.Padding(5);
             this.btnClearAll.Name = "btnClearAll";
             this.btnClearAll.ShadowDecoration.BorderRadius = 8;
@@ -237,32 +239,6 @@
             this.btnClearAll.TabIndex = 1;
             this.btnClearAll.Text = "Clear All";
             this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
-            // 
-            // pnlCenter
-            // 
-            this.pnlCenter.Controls.Add(this.guna2VSeparator1);
-            this.pnlCenter.Controls.Add(this.flpProducts);
-            this.pnlCenter.Controls.Add(this.pnlFilters);
-            this.pnlCenter.Location = new System.Drawing.Point(0, 0);
-            this.pnlCenter.Name = "pnlCenter";
-            this.pnlCenter.Size = new System.Drawing.Size(1321, 1031);
-            this.pnlCenter.TabIndex = 1;
-            // 
-            // guna2VSeparator1
-            // 
-            this.guna2VSeparator1.FillColor = System.Drawing.Color.Black;
-            this.guna2VSeparator1.Location = new System.Drawing.Point(1313, 0);
-            this.guna2VSeparator1.Name = "guna2VSeparator1";
-            this.guna2VSeparator1.Size = new System.Drawing.Size(15, 1064);
-            this.guna2VSeparator1.TabIndex = 0;
-            // 
-            // flpProducts
-            // 
-            this.flpProducts.AutoScroll = true;
-            this.flpProducts.Location = new System.Drawing.Point(2, 136);
-            this.flpProducts.Name = "flpProducts";
-            this.flpProducts.Size = new System.Drawing.Size(1316, 892);
-            this.flpProducts.TabIndex = 1;
             // 
             // pnlFilters
             // 
@@ -275,24 +251,24 @@
             this.pnlFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlFilters.Location = new System.Drawing.Point(0, 0);
             this.pnlFilters.Name = "pnlFilters";
-            this.pnlFilters.Size = new System.Drawing.Size(1321, 135);
+            this.pnlFilters.Size = new System.Drawing.Size(1200, 135);
             this.pnlFilters.TabIndex = 0;
             // 
             // lblDate
             // 
             this.lblDate.Font = new System.Drawing.Font("Inter", 15F);
-            this.lblDate.Location = new System.Drawing.Point(846, 38);
+            this.lblDate.Location = new System.Drawing.Point(745, 36);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(472, 37);
+            this.lblDate.Size = new System.Drawing.Size(445, 39);
             this.lblDate.TabIndex = 11;
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTime
             // 
             this.lblTime.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(1129, 4);
+            this.lblTime.Location = new System.Drawing.Point(1001, 1);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(189, 37);
+            this.lblTime.Size = new System.Drawing.Size(191, 39);
             this.lblTime.TabIndex = 10;
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -301,7 +277,7 @@
             this.guna2Separator1.FillColor = System.Drawing.Color.Black;
             this.guna2Separator1.Location = new System.Drawing.Point(0, 125);
             this.guna2Separator1.Name = "guna2Separator1";
-            this.guna2Separator1.Size = new System.Drawing.Size(1318, 10);
+            this.guna2Separator1.Size = new System.Drawing.Size(1211, 10);
             this.guna2Separator1.TabIndex = 9;
             // 
             // cmbSubCategoryFilter
@@ -320,7 +296,7 @@
             this.cmbSubCategoryFilter.ItemHeight = 41;
             this.cmbSubCategoryFilter.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubCategoryFilter.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbSubCategoryFilter.Location = new System.Drawing.Point(720, 78);
+            this.cmbSubCategoryFilter.Location = new System.Drawing.Point(647, 78);
             this.cmbSubCategoryFilter.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbSubCategoryFilter.Name = "cmbSubCategoryFilter";
             this.cmbSubCategoryFilter.Size = new System.Drawing.Size(230, 47);
@@ -344,7 +320,7 @@
             this.cmbCategoryFilter.ItemHeight = 41;
             this.cmbCategoryFilter.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategoryFilter.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbCategoryFilter.Location = new System.Drawing.Point(470, 78);
+            this.cmbCategoryFilter.Location = new System.Drawing.Point(397, 78);
             this.cmbCategoryFilter.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbCategoryFilter.Name = "cmbCategoryFilter";
             this.cmbCategoryFilter.Size = new System.Drawing.Size(230, 47);
@@ -371,7 +347,7 @@
             this.txtSearchProduct.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearchProduct.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
             this.txtSearchProduct.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtSearchProduct.Location = new System.Drawing.Point(10, 69);
+            this.txtSearchProduct.Location = new System.Drawing.Point(-53, 69);
             this.txtSearchProduct.Margin = new System.Windows.Forms.Padding(10);
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.PlaceholderText = "Search by SKU, Product Name...";
@@ -381,11 +357,43 @@
             this.txtSearchProduct.TextOffset = new System.Drawing.Point(10, 0);
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.Filter_Changed);
             // 
+            // guna2VSeparator1
+            // 
+            this.guna2VSeparator1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2VSeparator1.FillColor = System.Drawing.Color.Black;
+            this.guna2VSeparator1.Location = new System.Drawing.Point(1196, 3);
+            this.guna2VSeparator1.Name = "guna2VSeparator1";
+            this.guna2VSeparator1.Size = new System.Drawing.Size(15, 1028);
+            this.guna2VSeparator1.TabIndex = 0;
+            // 
+            // flpProducts
+            // 
+            this.flpProducts.AutoScroll = true;
+            this.flpProducts.Location = new System.Drawing.Point(2, 136);
+            this.flpProducts.Name = "flpProducts";
+            this.flpProducts.Size = new System.Drawing.Size(1195, 892);
+            this.flpProducts.TabIndex = 1;
+            // 
+            // pnlCenter
+            // 
+            this.pnlCenter.Controls.Add(this.flpProducts);
+            this.pnlCenter.Controls.Add(this.pnlFilters);
+            this.pnlCenter.Location = new System.Drawing.Point(0, 0);
+            this.pnlCenter.Name = "pnlCenter";
+            this.pnlCenter.Size = new System.Drawing.Size(1200, 1031);
+            this.pnlCenter.TabIndex = 1;
+            // 
+            // guna2Elipse1
+            // 
+            this.guna2Elipse1.BorderRadius = 20;
+            this.guna2Elipse1.TargetControl = this.dgvCart;
+            // 
             // FrmPOS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1674, 1031);
+            this.Controls.Add(this.guna2VSeparator1);
             this.Controls.Add(this.pnlCenter);
             this.Controls.Add(this.pnlCart);
             this.Name = "FrmPOS";
@@ -396,8 +404,8 @@
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
             this.pnlCartTop.ResumeLayout(false);
-            this.pnlCenter.ResumeLayout(false);
             this.pnlFilters.ResumeLayout(false);
+            this.pnlCenter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -413,17 +421,18 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private System.Windows.Forms.Label lblPrice;
         private Guna.UI2.WinForms.Guna2Panel pnlCartTop;
-        private Guna.UI2.WinForms.Guna2Panel pnlCenter;
-        private Guna.UI2.WinForms.Guna2Panel pnlFilters;
-        public Guna.UI2.WinForms.Guna2TextBox txtSearchProduct;
-        public Guna.UI2.WinForms.Guna2ComboBox cmbCategoryFilter;
-        private System.Windows.Forms.FlowLayoutPanel flpProducts;
-        public Guna.UI2.WinForms.Guna2ComboBox cmbSubCategoryFilter;
-        public Guna.UI2.WinForms.Guna2ComboBox cmbDiscount;
         private System.Windows.Forms.Label label2;
-        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
-        private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        public Guna.UI2.WinForms.Guna2ComboBox cmbDiscount;
+        private Guna.UI2.WinForms.Guna2Panel pnlFilters;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblTime;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        public Guna.UI2.WinForms.Guna2ComboBox cmbSubCategoryFilter;
+        public Guna.UI2.WinForms.Guna2ComboBox cmbCategoryFilter;
+        public Guna.UI2.WinForms.Guna2TextBox txtSearchProduct;
+        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
+        private System.Windows.Forms.FlowLayoutPanel flpProducts;
+        private Guna.UI2.WinForms.Guna2Panel pnlCenter;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
     }
 }

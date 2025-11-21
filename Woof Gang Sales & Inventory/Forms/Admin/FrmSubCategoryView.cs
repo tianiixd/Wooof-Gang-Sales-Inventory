@@ -75,6 +75,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private void FrmSubCategoryView_Load(object sender, EventArgs e)
         {
             time.StartClock(lblTime, lblDate);
+            
             foreach (var status in subCategoryStatus)
                 cmbFilterStatus.Items.Add(status);
 
@@ -93,6 +94,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             actionCol.Width = 150; // Fixed width
 
             dgvSubCategory.Columns.Add(actionCol);
+            subCategoryRepo.StatsCard(lblTotalSubcategory, lblEmpty, lblTop);
         }
 
         // ✅ --- PAINTING ---
@@ -175,6 +177,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     form.IsEditMode = true;
                     form.EditSubCategory(subCategory);
                     if (form.ShowDialog() == DialogResult.OK) ReadSubCategories();
+                    subCategoryRepo.StatsCard(lblTotalSubcategory, lblEmpty, lblTop);
                 }
                 // Check Delete Click (Red Area)
                 else if (e.X >= startX + btnWidth + btnSpacing && e.X <= startX + (btnWidth * 2) + btnSpacing)
@@ -184,6 +187,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
                     bool success = subCategoryRepo.DeleteSubCategory(subCategoryID);
                     if (success) ReadSubCategories();
+                    subCategoryRepo.StatsCard(lblTotalSubcategory, lblEmpty, lblTop);
                 }
             }
         }
@@ -274,6 +278,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             if (form.ShowDialog() == DialogResult.OK)
                 ReadSubCategories();
+                subCategoryRepo.StatsCard(lblTotalSubcategory, lblEmpty, lblTop);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

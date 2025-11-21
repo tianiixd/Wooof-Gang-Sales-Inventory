@@ -17,6 +17,8 @@ namespace Woof_Gang_Sales___Inventory.Models
         public int? SupplierID { get; set; }
         public int? SubCategoryID { get; set; }
         public decimal SellingPrice { get; set; }
+
+        public decimal CostPrice { get; set; }
         public int Quantity { get; set; }
         public int? ReorderLevel { get; set; }
         public DateTime? LastSoldDate { get; set; }

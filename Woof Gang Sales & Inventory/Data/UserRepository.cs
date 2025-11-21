@@ -4,10 +4,12 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Database;
 using Woof_Gang_Sales___Inventory.Models;
 using Woof_Gang_Sales___Inventory.Util;
@@ -221,6 +223,61 @@ namespace Woof_Gang_Sales___Inventory.Data
             }
 
             return null;
+        }
+
+        public void StatsCard(Label lblTotal, Label lblAdmins, Label lblStoreClerks, Label lblInactive)
+        {
+            try
+            {
+                using (SqlConnection conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string queryUsers = @"SELECT COUNT(*) FROM Users WHERE IsActive = 1";
+
+                    using (SqlCommand cmd = new SqlCommand(queryUsers,conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblTotal.Text = count.ToString("N0");
+                    }
+
+                    string queryAdmin = @"SELECT COUNT(*) FROM Users WHERE IsActive = 1 AND Role = 'Admin'";
+                    using (SqlCommand cmd = new SqlCommand(queryAdmin, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblAdmins.Text = count.ToString("N0");
+                        lblAdmins.ForeColor = Color.Purple;
+                    }
+
+                    string queryStoreClerk = @"SELECT COUNT(*) FROM Users WHERE IsActive = 1 AND Role = 'StoreClerk'";
+                    using (SqlCommand cmd = new SqlCommand(queryStoreClerk, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblStoreClerks.Text = count.ToString("N0");
+                        lblStoreClerks.ForeColor = Color.Teal;
+                    }
+
+                    string queryInactive = @"SELECT COUNT(*) FROM Users WHERE IsActive = 0";
+                    using (SqlCommand cmd = new SqlCommand(queryInactive, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblInactive.Text = count.ToString("N0");
+                        // Logic: Turn RED if there are inactive accounts (Prompting cleanup)
+                        if (count > 0)
+                        {
+                            lblInactive.ForeColor = Color.Red;
+                        }
+                        else
+                        {
+                            lblInactive.ForeColor = Color.FromArgb(19, 19, 26);
+                        }
+                    }
+
+                }
+            }catch (Exception ex)
+            {
+                DialogHelper.ShowCustomDialog("Stats Error", ex.Message, "error");
+            }
         }
 
 

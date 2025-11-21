@@ -125,14 +125,20 @@ namespace Woof_Gang_Sales___Inventory.Data
         {
             var detailList = new List<PurchaseOrderDetailView>();
             string query = @"
-                SELECT 
-                    pod.PODetailID, pod.ProductID, pod.Quantity, 
-                    pod.UnitCost, pod.Subtotal,
-                    p.ProductName
-                FROM PurchaseOrderDetails pod
-                JOIN Products p ON pod.ProductID = p.ProductID
-                WHERE pod.POID = @POID
-                ORDER BY p.ProductName";
+            SELECT 
+            pod.PODetailID, pod.ProductID, pod.Quantity, 
+            pod.UnitCost, pod.Subtotal,
+            
+            -- ✅ FIX: Concatenate Brand and Name here in SQL
+            CASE 
+                WHEN p.Brand IS NULL OR p.Brand = '' THEN p.ProductName 
+                ELSE p.Brand + ' ' + p.ProductName 
+            END AS ProductName
+
+            FROM PurchaseOrderDetails pod
+            JOIN Products p ON pod.ProductID = p.ProductID
+            WHERE pod.POID = @POID
+            ORDER BY p.ProductName";
 
             try
             {

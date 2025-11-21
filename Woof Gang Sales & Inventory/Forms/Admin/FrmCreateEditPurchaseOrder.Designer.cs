@@ -33,21 +33,26 @@
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dgvAvailableProducts = new System.Windows.Forms.DataGridView();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTitleTotal = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dgvOrderItems = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.cmbSupplier = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtProductName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtRemarks = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dtpExpirationDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dgvAvailableProducts = new System.Windows.Forms.DataGridView();
-            this.dgvOrderItems = new System.Windows.Forms.DataGridView();
-            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.dtpOrderDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
+            this.txtCostPrice = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.guna2Elipse3 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -64,41 +69,138 @@
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1184, 120);
+            this.guna2Panel1.Size = new System.Drawing.Size(1250, 120);
             this.guna2Panel1.TabIndex = 1;
             // 
             // lblTitle
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
-            this.lblTitle.Font = new System.Drawing.Font("Inter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Location = new System.Drawing.Point(12, 30);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1184, 105);
+            this.lblTitle.Size = new System.Drawing.Size(339, 48);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Create Purchase Order";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(0, 316);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 386);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.label3);
-            this.splitContainer1.Panel1.Controls.Add(this.txtSearch);
             this.splitContainer1.Panel1.Controls.Add(this.dgvAvailableProducts);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.lblTotal);
+            this.splitContainer1.Panel2.Controls.Add(this.lblTitleTotal);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.dgvOrderItems);
-            this.splitContainer1.Size = new System.Drawing.Size(1184, 545);
-            this.splitContainer1.SplitterDistance = 592;
+            this.splitContainer1.Size = new System.Drawing.Size(1250, 545);
+            this.splitContainer1.SplitterDistance = 625;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // dgvAvailableProducts
+            // 
+            this.dgvAvailableProducts.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAvailableProducts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvAvailableProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAvailableProducts.Location = new System.Drawing.Point(10, 38);
+            this.dgvAvailableProducts.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.dgvAvailableProducts.Name = "dgvAvailableProducts";
+            this.dgvAvailableProducts.Size = new System.Drawing.Size(605, 450);
+            this.dgvAvailableProducts.TabIndex = 0;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Font = new System.Drawing.Font("Inter", 18F);
+            this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTotal.Location = new System.Drawing.Point(85, 500);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(269, 35);
+            this.lblTotal.TabIndex = 6;
+            // 
+            // lblTitleTotal
+            // 
+            this.lblTitleTotal.AutoSize = true;
+            this.lblTitleTotal.Font = new System.Drawing.Font("Inter", 18F);
+            this.lblTitleTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotal.Location = new System.Drawing.Point(12, 500);
+            this.lblTitleTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTitleTotal.Name = "lblTitleTotal";
+            this.lblTitleTotal.Size = new System.Drawing.Size(69, 35);
+            this.lblTitleTotal.TabIndex = 5;
+            this.lblTitleTotal.Text = "Total";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Inter", 18F);
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(12, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(224, 35);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Items in this Order";
+            // 
+            // dgvOrderItems
+            // 
+            this.dgvOrderItems.BackgroundColor = System.Drawing.Color.White;
+            this.dgvOrderItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrderItems.Location = new System.Drawing.Point(6, 38);
+            this.dgvOrderItems.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.dgvOrderItems.Name = "dgvOrderItems";
+            this.dgvOrderItems.Size = new System.Drawing.Size(602, 450);
+            this.dgvOrderItems.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Inter", 13F);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(74, 298);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 26);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Search";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Animated = true;
+            this.txtSearch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.txtSearch.BorderRadius = 12;
+            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSearch.DefaultText = "";
+            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.Font = new System.Drawing.Font("Nunito", 12F);
+            this.txtSearch.ForeColor = System.Drawing.Color.Black;
+            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
+            this.txtSearch.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.txtSearch.Location = new System.Drawing.Point(66, 326);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 6, 2);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PlaceholderText = "Search by Product Name...";
+            this.txtSearch.SelectedText = "";
+            this.txtSearch.Size = new System.Drawing.Size(373, 55);
+            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // cmbSupplier
             // 
@@ -146,35 +248,35 @@
             this.label1.Text = "Order Date";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtProductName
+            // txtRemarks
             // 
-            this.txtProductName.Animated = true;
-            this.txtProductName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.txtProductName.BorderRadius = 10;
-            this.txtProductName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtProductName.DefaultText = "";
-            this.txtProductName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtProductName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtProductName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtProductName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtProductName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtProductName.Font = new System.Drawing.Font("Nunito", 12F);
-            this.txtProductName.ForeColor = System.Drawing.Color.Black;
-            this.txtProductName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtProductName.Location = new System.Drawing.Point(515, 156);
-            this.txtProductName.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
-            this.txtProductName.Multiline = true;
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.PlaceholderText = "Enter Product Name";
-            this.txtProductName.SelectedText = "";
-            this.txtProductName.Size = new System.Drawing.Size(628, 147);
-            this.txtProductName.TabIndex = 57;
+            this.txtRemarks.Animated = true;
+            this.txtRemarks.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.txtRemarks.BorderRadius = 10;
+            this.txtRemarks.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRemarks.DefaultText = "";
+            this.txtRemarks.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtRemarks.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtRemarks.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtRemarks.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtRemarks.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtRemarks.Font = new System.Drawing.Font("Nunito", 12F);
+            this.txtRemarks.ForeColor = System.Drawing.Color.Black;
+            this.txtRemarks.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtRemarks.Location = new System.Drawing.Point(533, 261);
+            this.txtRemarks.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.txtRemarks.Multiline = true;
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.PlaceholderText = "Enter Reason or Remarks";
+            this.txtRemarks.SelectedText = "";
+            this.txtRemarks.Size = new System.Drawing.Size(650, 120);
+            this.txtRemarks.TabIndex = 57;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Inter", 13F);
-            this.label2.Location = new System.Drawing.Point(522, 128);
+            this.label2.Location = new System.Drawing.Point(539, 233);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 26);
@@ -182,78 +284,29 @@
             this.label2.Text = "Remarks";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dtpExpirationDate
+            // dtpOrderDate
             // 
-            this.dtpExpirationDate.Animated = true;
-            this.dtpExpirationDate.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.dtpExpirationDate.BorderRadius = 10;
-            this.dtpExpirationDate.BorderThickness = 1;
-            this.dtpExpirationDate.Checked = true;
-            this.dtpExpirationDate.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.dtpExpirationDate.CheckedState.FillColor = System.Drawing.Color.White;
-            this.dtpExpirationDate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dtpExpirationDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.dtpExpirationDate.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpExpirationDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
-            this.dtpExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpExpirationDate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.dtpExpirationDate.Location = new System.Drawing.Point(66, 249);
-            this.dtpExpirationDate.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
-            this.dtpExpirationDate.MaxDate = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
-            this.dtpExpirationDate.MinDate = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
-            this.dtpExpirationDate.Name = "dtpExpirationDate";
-            this.dtpExpirationDate.Size = new System.Drawing.Size(320, 41);
-            this.dtpExpirationDate.TabIndex = 59;
-            this.dtpExpirationDate.Value = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
-            // 
-            // dgvAvailableProducts
-            // 
-            this.dgvAvailableProducts.BackgroundColor = System.Drawing.Color.White;
-            this.dgvAvailableProducts.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvAvailableProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAvailableProducts.Location = new System.Drawing.Point(10, 83);
-            this.dgvAvailableProducts.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.dgvAvailableProducts.Name = "dgvAvailableProducts";
-            this.dgvAvailableProducts.Size = new System.Drawing.Size(572, 450);
-            this.dgvAvailableProducts.TabIndex = 0;
-            // 
-            // dgvOrderItems
-            // 
-            this.dgvOrderItems.BackgroundColor = System.Drawing.Color.White;
-            this.dgvOrderItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrderItems.Location = new System.Drawing.Point(10, 83);
-            this.dgvOrderItems.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.dgvOrderItems.Name = "dgvOrderItems";
-            this.dgvOrderItems.Size = new System.Drawing.Size(568, 450);
-            this.dgvOrderItems.TabIndex = 1;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Animated = true;
-            this.txtSearch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.txtSearch.BorderRadius = 20;
-            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearch.DefaultText = "";
-            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.Font = new System.Drawing.Font("Nunito", 14F);
-            this.txtSearch.ForeColor = System.Drawing.Color.Black;
-            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
-            this.txtSearch.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtSearch.Location = new System.Drawing.Point(12, 33);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 7, 2);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PlaceholderText = "Search by Product Name...";
-            this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(456, 45);
-            this.txtSearch.TabIndex = 2;
-            this.txtSearch.TextOffset = new System.Drawing.Point(10, 0);
+            this.dtpOrderDate.Animated = true;
+            this.dtpOrderDate.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.dtpOrderDate.BorderRadius = 10;
+            this.dtpOrderDate.BorderThickness = 1;
+            this.dtpOrderDate.Checked = true;
+            this.dtpOrderDate.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.dtpOrderDate.CheckedState.FillColor = System.Drawing.Color.White;
+            this.dtpOrderDate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dtpOrderDate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
+            this.dtpOrderDate.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpOrderDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
+            this.dtpOrderDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpOrderDate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.dtpOrderDate.Location = new System.Drawing.Point(66, 249);
+            this.dtpOrderDate.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.dtpOrderDate.MaxDate = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
+            this.dtpOrderDate.MinDate = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
+            this.dtpOrderDate.Name = "dtpOrderDate";
+            this.dtpOrderDate.Size = new System.Drawing.Size(320, 41);
+            this.dtpOrderDate.TabIndex = 59;
+            this.dtpOrderDate.Value = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
             // 
             // guna2Elipse1
             // 
@@ -264,30 +317,6 @@
             // 
             this.guna2Elipse2.BorderRadius = 20;
             this.guna2Elipse2.TargetControl = this.dgvOrderItems;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Inter", 13F);
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(24, 5);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 26);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Search";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Inter", 18F);
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(18, 44);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(224, 35);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Items in this Order";
             // 
             // btnSave
             // 
@@ -305,7 +334,8 @@
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnSave.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnSave.Location = new System.Drawing.Point(811, 884);
+            this.btnSave.Location = new System.Drawing.Point(811, 939);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 51);
             this.btnSave.TabIndex = 60;
@@ -327,38 +357,84 @@
             this.btnCancel.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.btnCancel.Image = global::Woof_Gang_Sales___Inventory.Properties.Resources.close1;
             this.btnCancel.ImageOffset = new System.Drawing.Point(-5, 0);
-            this.btnCancel.Location = new System.Drawing.Point(992, 884);
+            this.btnCancel.Location = new System.Drawing.Point(990, 939);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(139, 51);
             this.btnCancel.TabIndex = 61;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // txtCostPrice
+            // 
+            this.txtCostPrice.Animated = true;
+            this.txtCostPrice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.txtCostPrice.BorderRadius = 10;
+            this.txtCostPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCostPrice.DefaultText = "";
+            this.txtCostPrice.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtCostPrice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtCostPrice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCostPrice.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCostPrice.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCostPrice.Font = new System.Drawing.Font("Nunito", 12F);
+            this.txtCostPrice.ForeColor = System.Drawing.Color.Black;
+            this.txtCostPrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCostPrice.Location = new System.Drawing.Point(533, 167);
+            this.txtCostPrice.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.txtCostPrice.Name = "txtCostPrice";
+            this.txtCostPrice.PlaceholderText = "Enter Cost Price";
+            this.txtCostPrice.SelectedText = "";
+            this.txtCostPrice.Size = new System.Drawing.Size(320, 41);
+            this.txtCostPrice.TabIndex = 63;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Inter", 13F);
+            this.label6.Location = new System.Drawing.Point(539, 139);
+            this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 26);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "Cost Price";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2Elipse3
+            // 
+            this.guna2Elipse3.BorderRadius = 20;
+            this.guna2Elipse3.TargetControl = this;
+            // 
             // FrmCreateEditPurchaseOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(1184, 950);
+            this.ClientSize = new System.Drawing.Size(1250, 1000);
+            this.Controls.Add(this.txtCostPrice);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.dtpExpirationDate);
+            this.Controls.Add(this.dtpOrderDate);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtProductName);
+            this.Controls.Add(this.txtRemarks);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cmbSupplier);
-            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.guna2Panel1);
+            this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCreateEditPurchaseOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCreateEditPurchaseOrder";
+            this.Load += new System.EventHandler(this.FrmCreateEditPurchaseOrder_Load);
             this.guna2Panel1.ResumeLayout(false);
+            this.guna2Panel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -378,9 +454,9 @@
         private Guna.UI2.WinForms.Guna2ComboBox cmbSupplier;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2TextBox txtProductName;
+        private Guna.UI2.WinForms.Guna2TextBox txtRemarks;
         private System.Windows.Forms.Label label2;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpExpirationDate;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpOrderDate;
         private System.Windows.Forms.DataGridView dgvAvailableProducts;
         private System.Windows.Forms.DataGridView dgvOrderItems;
         public Guna.UI2.WinForms.Guna2TextBox txtSearch;
@@ -390,5 +466,10 @@
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2Button btnCancel;
+        private System.Windows.Forms.Label lblTitleTotal;
+        private System.Windows.Forms.Label lblTotal;
+        private Guna.UI2.WinForms.Guna2TextBox txtCostPrice;
+        private System.Windows.Forms.Label label6;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse3;
     }
 }

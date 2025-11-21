@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Admin; // For FrmAdminDashboard
 using Woof_Gang_Sales___Inventory.Data;
@@ -79,6 +80,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 txtAmountTendered.Enabled = true;
                 txtPaymentRef.Visible = true;
                 txtPaymentRef.Enabled = false;
+                lblChange.Enabled = true;
+                lblTitleChange.Enabled = true;
             }
             else
             {
@@ -90,6 +93,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 txtPaymentRef.Enabled = true;
                 txtPaymentRef.PlaceholderText = $"{method} Reference #";
                 txtPaymentRef.Focus();
+                lblChange.Visible = false;
+                lblTitleChange.Visible = false;
             }
         }
 
@@ -131,27 +136,55 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             }
 
             string paymentMethod = cmbPaymentMethod.SelectedItem.ToString();
+            string refNumber = txtPaymentRef.Text.Trim();
 
             // 1. Validation
             // We already stored the tendered amount in the _tenderedAmount variable
-            if (_tenderedAmount < _totalAmount)
-            {
+            
+            
                 // Only enforce this if payment method is Cash
-                if (paymentMethod == "Cash")
+            if (paymentMethod == "Cash")
+            {
+                if (_tenderedAmount < _totalAmount)
                 {
                     DialogHelper.ShowCustomDialog("Insufficient Funds", "Amount tendered is less than the total due.", "warning");
                     return;
                 }
             }
-            if (paymentMethod != "Cash" && string.IsNullOrWhiteSpace(txtPaymentRef.Text))
+            else
             {
-                DialogHelper.ShowCustomDialog("Missing Information", "Please enter a payment reference number.", "warning");
-                return;
+                if (string.IsNullOrWhiteSpace(refNumber))
+                {
+                    DialogHelper.ShowCustomDialog("Missing Reference", $"Please enter the {paymentMethod} Reference Number.", "warning");
+                    return;
+                }
+
+                // ✅ REGEX VALIDATION FOR GCASH
+                if (paymentMethod == "GCash")
+                {
+                    // GCash usually has 13 digits (e.g., 9000000000001)
+                    if (!Regex.IsMatch(refNumber, @"^\d{13}$"))
+                    {
+                        DialogHelper.ShowCustomDialog("Invalid GCash Ref", "GCash Reference Number must be exactly 13 digits.", "warning");
+                        return;
+                    }
+                }
+                // ✅ REGEX VALIDATION FOR MAYA
+                else if (paymentMethod == "Maya")
+                {
+                    // Maya usually has 12 digits
+                    if (!Regex.IsMatch(refNumber, @"^\d{12}$"))
+                    {
+                        DialogHelper.ShowCustomDialog("Invalid Maya Ref", "Maya Reference Number must be exactly 12 digits.", "warning");
+                        return;
+                    }
+                }
             }
+
 
             // ✅ --- FIX: For digital payments, tendered amount is always the total amount ---
             decimal finalTenderedAmount = (paymentMethod == "Cash") ? _tenderedAmount : _totalAmount;
-
+            string finalRefNumber = (paymentMethod == "Cash") ? null : refNumber;
 
             // --- Build the Sale Object ---
             Sale newSale = new Sale
@@ -163,7 +196,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 CustomerName = null, // We can add a textbox for this later if needed
                 TotalAmount = _totalAmount,
                 PaymentMethod = paymentMethod,
-                PaymentRef = string.IsNullOrWhiteSpace(txtPaymentRef.Text) ? null : txtPaymentRef.Text,
+                PaymentRef = finalRefNumber,
                 Details = new List<SalesDetail>() // We will build this from the cart
             };
 

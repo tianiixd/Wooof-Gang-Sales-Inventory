@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Web.UI;
 using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Database;
 using Woof_Gang_Sales___Inventory.Forms.Controls;
@@ -17,13 +16,11 @@ namespace Woof_Gang_Sales___Inventory.Data
     
     public class ProductRepository
     {
-        private Label lblTotalProduct;
-        private Label lblTotalStock;
         // Base query with all JOINs needed for display and searching
         private const string BASE_SELECT_QUERY = @"
             SELECT 
                 p.ProductID, p.SKU, p.Brand, p.ProductName, p.Weight, p.Unit,
-                p.SupplierID, p.SubCategoryID, p.SellingPrice, p.Quantity,
+                p.SupplierID, p.SubCategoryID, p.SellingPrice, p.CostPrice, p.Quantity,
                 p.ReorderLevel, p.LastSoldDate, p.TotalSold, p.ImagePath,
                 p.ExpirationDate,
                 p.IsActive, p.CreatedAt, p.UpdatedAt,
@@ -258,10 +255,10 @@ namespace Woof_Gang_Sales___Inventory.Data
                     string insertQuery = @"
                         INSERT INTO Products (
                             SKU, Brand, ProductName, Weight, Unit, SupplierID, SubCategoryID,
-                            SellingPrice, Quantity, ReorderLevel, ImagePath, ExpirationDate,IsActive, CreatedAt
+                            SellingPrice, CostPrice, Quantity, ReorderLevel, ImagePath, ExpirationDate,IsActive, CreatedAt
                         ) VALUES (
                             @SKU, @Brand, @ProductName, @Weight, @Unit, @SupplierID, @SubCategoryID,
-                            @SellingPrice, @Quantity, @ReorderLevel, @ImagePath, @ExpirationDate ,@IsActive, GETDATE()
+                            @SellingPrice, @CostPrice, @Quantity, @ReorderLevel, @ImagePath, @ExpirationDate ,@IsActive, GETDATE()
                         )";
 
                     using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
@@ -337,6 +334,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                             SupplierID = @SupplierID,
                             SubCategoryID = @SubCategoryID,
                             SellingPrice = @SellingPrice,
+                            CostPrice = @CostPrice,
                             Quantity = @Quantity,
                             ReorderLevel = @ReorderLevel,
                             ImagePath = @ImagePath,
@@ -473,6 +471,37 @@ namespace Woof_Gang_Sales___Inventory.Data
             }
         }
 
+        public List<Product> GetLowStockProducts()
+        {
+            var lowStockProducts = new List<Product>();
+            try
+            {
+                using (SqlConnection conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    // Use BASE_SELECT_QUERY for consistency, but add the low stock filter
+                    string query = BASE_SELECT_QUERY + @" 
+                        WHERE p.IsActive = 1 
+                        AND p.Quantity <= p.ReorderLevel
+                        ORDER BY p.SupplierID, p.ProductName"; // Group by supplier to make ordering easier
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lowStockProducts.Add(MapToProduct(reader));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogHelper.ShowCustomDialog("Error", $"Failed to get low stock products: {ex.Message}", "error");
+            }
+            return lowStockProducts;
+        }
 
 
         // --- Soft Delete / Restore ---
@@ -570,6 +599,7 @@ namespace Woof_Gang_Sales___Inventory.Data
             cmd.Parameters.AddWithValue("@SupplierID", (object?)product.SupplierID ?? DBNull.Value);
             cmd.Parameters.AddWithValue("@SubCategoryID", (object?)product.SubCategoryID ?? DBNull.Value);
             cmd.Parameters.AddWithValue("@SellingPrice", product.SellingPrice);
+            cmd.Parameters.AddWithValue("@CostPrice", product.CostPrice);
             cmd.Parameters.AddWithValue("@Quantity", product.Quantity);
             cmd.Parameters.AddWithValue("@ReorderLevel", (object?)product.ReorderLevel ?? DBNull.Value);
             cmd.Parameters.AddWithValue("@ImagePath", (object?)product.ImagePath ?? DBNull.Value);
@@ -599,6 +629,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                 SupplierID = reader["SupplierID"] != DBNull.Value ? Convert.ToInt32(reader["SupplierID"]) : (int?)null,
                 SubCategoryID = reader["SubCategoryID"] != DBNull.Value ? Convert.ToInt32(reader["SubCategoryID"]) : (int?)null,
                 SellingPrice = Convert.ToDecimal(reader["SellingPrice"]),
+                CostPrice = reader["CostPrice"] != DBNull.Value ? Convert.ToDecimal(reader["CostPrice"]) : 0m,
                 Quantity = Convert.ToInt32(reader["Quantity"]),
                 ReorderLevel = reader["ReorderLevel"] != DBNull.Value ? Convert.ToInt32(reader["ReorderLevel"]) : (int?)null,
                 ExpirationDate = reader["ExpirationDate"] as DateTime?,

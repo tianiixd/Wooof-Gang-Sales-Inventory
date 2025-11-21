@@ -2,6 +2,8 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Database;
 using Woof_Gang_Sales___Inventory.Helpers;
 using Woof_Gang_Sales___Inventory.Models;
@@ -119,7 +121,83 @@ namespace Woof_Gang_Sales___Inventory.Data
             return categories;
         }
 
-        
+
+        public void StatsCard(Label lblTotalCategories, Label lblEmptyCategories, Label lblTopCategory)
+        {
+            try
+            {
+                using (SqlConnection conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+
+                   
+                    string queryTotal = "SELECT COUNT(*) FROM Categories WHERE IsActive = 1";
+                    using (SqlCommand cmd = new SqlCommand(queryTotal, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblTotalCategories.Text = count.ToString("N0");
+                    }
+
+                   
+                    string queryEmpty = @"
+                SELECT COUNT(*) 
+                FROM Categories c
+                WHERE c.IsActive = 1
+                AND NOT EXISTS (
+                    SELECT 1 FROM SubCategories sc 
+                    WHERE sc.CategoryID = c.CategoryID 
+                    AND sc.IsActive = 1
+                )";
+                    using (SqlCommand cmd = new SqlCommand(queryEmpty, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblEmptyCategories.Text = count.ToString("N0");
+
+                        
+                        if (count > 0)
+                        {
+                            lblEmptyCategories.ForeColor = Color.Red;
+                        }
+                        else
+                        {
+                            lblEmptyCategories.ForeColor = Color.Black;
+                        }
+                    }
+
+                    
+                    string queryTop = @"
+                SELECT TOP 1 c.CategoryName 
+                FROM Categories c
+                JOIN SubCategories sc ON c.CategoryID = sc.CategoryID
+                JOIN Products p ON sc.SubCategoryID = p.SubCategoryID
+                WHERE c.IsActive = 1 AND sc.IsActive = 1 AND p.IsActive = 1
+                GROUP BY c.CategoryName
+                ORDER BY COUNT(p.ProductID) DESC";
+
+                    using (SqlCommand cmd = new SqlCommand(queryTop, conn))
+                    {
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            lblTopCategory.Text = result.ToString();
+                            lblTopCategory.ForeColor = Color.Green;
+                        }
+                        else
+                        {
+                            lblTopCategory.Text = "None";
+                            lblTopCategory.ForeColor = Color.Black;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogHelper.ShowCustomDialog("Stats Error", ex.Message, "error");
+            }
+        }
+
+
 
         // ✅ Create new category
         public bool CreateCategory(Category category)

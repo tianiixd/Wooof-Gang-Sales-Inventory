@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Web.SessionState;
 using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Data;
 using Woof_Gang_Sales___Inventory.Forms.Controls;
+using Woof_Gang_Sales___Inventory.Helpers;
 using Woof_Gang_Sales___Inventory.Models;
 using Woof_Gang_Sales___Inventory.Util;
 
@@ -30,6 +32,14 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private List<SubCategory> allSubCategories = new List<SubCategory>();
         private List<Discount> allDiscounts = new List<Discount>();
 
+        private int btnHeight = 28;
+        // We don't need btnWidth for the Remove button, we hardcode it to 30 like in the PO form
+
+        // Hover State Variables
+        private int hoveredRowIndex = -1;
+        private bool isHoveringButton = false;
+
+
         public FrmPOS()
         {
             InitializeComponent();
@@ -40,8 +50,15 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             txtSearchProduct.TextChanged += Filter_Changed;
             cmbDiscount.SelectedIndexChanged += (s, ev) => RefreshCartGrid();
 
+            dgvCart.CellFormatting += dgvCart_CellFormatting;
             dgvCart.CellValueChanged += dgvCart_CellValueChanged;
-            dgvCart.CellContentClick += dgvCart_CellContentClick;
+            dgvCart.CellPainting += dgvCart_CellPainting;
+            dgvCart.CellMouseMove += dgvCart_CellMouseMove;
+            dgvCart.CellMouseLeave += dgvCart_CellMouseLeave;
+
+            // Note: We changed ContentClick to MouseClick for better hit-testing
+            dgvCart.CellMouseClick += dgvCart_CellMouseClick;
+            dgvCart.CellValueChanged += dgvCart_CellValueChanged;
 
             dgvCart.CellMouseEnter += (s, e) =>
             {
@@ -58,6 +75,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
         }
 
+
         private void FrmPOS_Load(object sender, EventArgs e)
         {
             time.StartClock(lblTime, lblDate);
@@ -73,6 +91,191 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             LoadProductsToPanel();
 
             SetupCartGrid();
+        }
+
+        private void SetupCartGrid()
+        {
+            // ✅ --- ADD THIS LINE ---
+            dgvCart.AllowUserToAddRows = false; // Remove the blank "new row"
+            dgvCart.AutoGenerateColumns = false;
+            dgvCart.Columns.Clear();
+
+            dgvCart.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "ProductName",
+                HeaderText = "Item",
+                DataPropertyName = "ProductName",
+                ReadOnly = true,
+                Width = 200
+            });
+
+            dgvCart.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Quantity",
+                HeaderText = "Qty",
+                DataPropertyName = "Quantity",
+                ReadOnly = false, // <-- This allows editing
+                Width = 80
+            });
+
+            dgvCart.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Subtotal",
+                HeaderText = "Cost",
+                DataPropertyName = "Subtotal",
+                ReadOnly = true,
+                Width = 100,
+                DefaultCellStyle = { Format = "N2" }
+            });
+
+            dgvCart.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "Remove",
+                HeaderText = "Action",
+                Text = "", // The text on the button
+                UseColumnTextForButtonValue = false, // This makes the "X" appear
+                Width = 80,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                Resizable = DataGridViewTriState.False,
+            });
+
+            DataGridViewStyler.ApplyStyle(dgvCart);
+        }
+
+        private void dgvCart_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // 1. Check the Column NAME (which is "ProductName"), not the HeaderText "Item"
+            if (dgvCart.Columns[e.ColumnIndex].Name == "ProductName" && e.RowIndex >= 0)
+            {
+                // 2. Cast to CartItem (NOT Product) because shoppingCart is List<CartItem>
+                var item = dgvCart.Rows[e.RowIndex].DataBoundItem as CartItem;
+
+                if (item != null)
+                {
+                    // 3. Use the properties from CartItem
+                    string brand = item.ProductBrand ?? "";
+                    string name = item.ProductName ?? "";
+
+                    // Combine them
+                    e.Value = string.IsNullOrWhiteSpace(brand) ? name : $"{brand} {name}";
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
+        private void DrawRoundedButton(Graphics g, Rectangle rect, Color color, string text)
+        {
+            using (GraphicsPath path = GetRoundedPath(rect, 4)) // 4 is the corner radius
+            using (SolidBrush brush = new SolidBrush(color))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.FillPath(brush, path);
+            }
+            TextRenderer.DrawText(g, text, this.Font, rect, Color.White, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+        }
+
+        private GraphicsPath GetRoundedPath(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            float curveSize = radius * 2F;
+            path.StartFigure();
+            path.AddArc(rect.X, rect.Y, curveSize, curveSize, 180, 90);
+            path.AddArc(rect.Right - curveSize, rect.Y, curveSize, curveSize, 270, 90);
+            path.AddArc(rect.Right - curveSize, rect.Bottom - curveSize, curveSize, curveSize, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - curveSize, curveSize, curveSize, 90, 90);
+            path.CloseFigure();
+            return path;
+        }
+
+        // 1. PAINTING (Draws the Red Button)
+        private void dgvCart_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (dgvCart.Columns[e.ColumnIndex].Name == "Remove")
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
+
+                // Dimensions (Same as PO Form)
+                int smallWidth = 30;
+                int startX = e.CellBounds.X + (e.CellBounds.Width - smallWidth) / 2;
+                int startY = e.CellBounds.Y + (e.CellBounds.Height - btnHeight) / 2;
+                Rectangle btnRect = new Rectangle(startX, startY, smallWidth, btnHeight);
+
+                // Hover Logic (Dark Red vs Light Red)
+                Color btnColor = (e.RowIndex == hoveredRowIndex && isHoveringButton)
+                    ? Color.FromArgb(255, 100, 100) // Lighter Red (Hover)
+                    : Color.FromArgb(220, 53, 69);  // Standard Red
+
+                DrawRoundedButton(e.Graphics, btnRect, btnColor, "X");
+                e.Handled = true;
+            }
+        }
+
+        // 2. MOUSE MOVE (Detects Hover)
+        private void dgvCart_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (dgvCart.Columns[e.ColumnIndex].Name == "Remove")
+            {
+                int w = dgvCart.Columns[e.ColumnIndex].Width;
+                int h = dgvCart.Rows[e.RowIndex].Height;
+                int startX = (w - 30) / 2;
+                int startY = (h - btnHeight) / 2;
+
+                // Check if mouse is exactly over the button rectangle
+                bool isOver = (e.X >= startX && e.X <= startX + 30) &&
+                              (e.Y >= startY && e.Y <= startY + btnHeight);
+
+                dgvCart.Cursor = isOver ? Cursors.Hand : Cursors.Default;
+
+                // Only repaint if the state changed (Optimization)
+                if (hoveredRowIndex != e.RowIndex || isHoveringButton != isOver)
+                {
+                    hoveredRowIndex = e.RowIndex;
+                    isHoveringButton = isOver;
+                    dgvCart.InvalidateCell(e.ColumnIndex, e.RowIndex);
+                }
+            }
+            else
+            {
+                dgvCart.Cursor = Cursors.Default;
+            }
+        }
+
+        // 3. MOUSE LEAVE (Resets Hover)
+        private void dgvCart_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvCart.Cursor = Cursors.Default;
+            hoveredRowIndex = -1;
+            isHoveringButton = false;
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                dgvCart.InvalidateCell(e.ColumnIndex, e.RowIndex);
+        }
+
+        // 4. MOUSE CLICK (Performs the Delete)
+        private void dgvCart_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dgvCart.Columns[e.ColumnIndex].Name == "Remove")
+            {
+                // Hit Test: Did they click the button, or just the white space?
+                int w = dgvCart.Columns[e.ColumnIndex].Width;
+                int startX = (w - 30) / 2;
+
+                if (e.X >= startX && e.X <= startX + 30)
+                {
+                    if (dgvCart.Rows[e.RowIndex].DataBoundItem is CartItem itemToRemove)
+                    {
+                        shoppingCart.Remove(itemToRemove);
+
+                        // Refresh Grid
+                        this.BeginInvoke(new Action(() => { RefreshCartGrid(); }));
+                    }
+                }
+            }
         }
 
         #region Load Products & Categories
@@ -267,75 +470,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             this.BeginInvoke(new Action(() => { RefreshCartGrid(); }));
         }
 
-        private void SetupCartGrid()
-        {
-            // ✅ --- ADD THIS LINE ---
-            dgvCart.AllowUserToAddRows = false; // Remove the blank "new row"
-            dgvCart.AutoGenerateColumns = false;
-            dgvCart.Columns.Clear();
 
-            dgvCart.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "ProductName",
-                HeaderText = "Item",
-                DataPropertyName = "ProductName",
-                ReadOnly = true,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            });
-
-            dgvCart.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Quantity",
-                HeaderText = "Qty",
-                DataPropertyName = "Quantity",
-                ReadOnly = false, // <-- This allows editing
-                Width = 40
-            });
-
-            dgvCart.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Subtotal",
-                HeaderText = "Cost",
-                DataPropertyName = "Subtotal",
-                ReadOnly = true,
-                Width = 70,
-                DefaultCellStyle = { Format = "N2" }
-            });
-
-            dgvCart.Columns.Add(new DataGridViewButtonColumn
-            {
-                Name = "Remove",
-                HeaderText = "",
-                Text = "X", // The text on the button
-                UseColumnTextForButtonValue = true, // This makes the "X" appear
-                Width = 30,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                DefaultCellStyle = { BackColor = Color.White, ForeColor = Color.Red, }
-            });
-
-            dgvCart.CellPainting += (s, e) =>
-            {
-                if (e.RowIndex >= 0 && e.ColumnIndex == dgvCart.Columns["Remove"].Index)
-                {
-                    e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentBackground);
-                    e.Handled = true;
-                }
-            };
-        }
-
-        private void dgvCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Check if it's the "Remove" button column
-            if (e.RowIndex >= 0 && dgvCart.Columns[e.ColumnIndex].Name == "Remove")
-            {
-                if (dgvCart.Rows[e.RowIndex].DataBoundItem is CartItem itemToRemove)
-                {
-                    shoppingCart.Remove(itemToRemove);
-                }
-                // Use BeginInvoke to safely refresh the grid
-                this.BeginInvoke(new Action(() => { RefreshCartGrid(); }));
-            }
-        }
 
         private void dgvCart_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {

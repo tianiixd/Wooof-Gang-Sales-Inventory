@@ -43,7 +43,7 @@
             this.txtPaymentRef = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtAmountTendered = new Guna.UI2.WinForms.Guna2TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblTitleChange = new System.Windows.Forms.Label();
             this.lblChange = new System.Windows.Forms.Label();
             this.btnConfirmPayment = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
@@ -225,15 +225,15 @@
             this.label4.Text = "Amount";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label5
+            // lblTitleChange
             // 
-            this.label5.Font = new System.Drawing.Font("Inter", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(0, 600);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(660, 39);
-            this.label5.TabIndex = 46;
-            this.label5.Text = "CHANGE";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitleChange.Font = new System.Drawing.Font("Inter", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleChange.Location = new System.Drawing.Point(0, 600);
+            this.lblTitleChange.Name = "lblTitleChange";
+            this.lblTitleChange.Size = new System.Drawing.Size(660, 39);
+            this.lblTitleChange.TabIndex = 46;
+            this.lblTitleChange.Text = "CHANGE";
+            this.lblTitleChange.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblChange
             // 
@@ -296,7 +296,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirmPayment);
             this.Controls.Add(this.lblChange);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblTitleChange);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtAmountTendered);
             this.Controls.Add(this.txtPaymentRef);
@@ -331,7 +331,7 @@
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox txtPaymentRef;
         private System.Windows.Forms.Label lblChange;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblTitleChange;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2TextBox txtAmountTendered;
         private Guna.UI2.WinForms.Guna2Button btnConfirmPayment;

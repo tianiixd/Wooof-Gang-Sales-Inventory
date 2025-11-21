@@ -169,7 +169,7 @@
             this.cmbFilterStatus.ItemHeight = 41;
             this.cmbFilterStatus.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilterStatus.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbFilterStatus.Location = new System.Drawing.Point(1047, 104);
+            this.cmbFilterStatus.Location = new System.Drawing.Point(1056, 104);
             this.cmbFilterStatus.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbFilterStatus.Name = "cmbFilterStatus";
             this.cmbFilterStatus.Size = new System.Drawing.Size(200, 47);
@@ -203,7 +203,7 @@
             this.cmbFilterCategory.ItemHeight = 41;
             this.cmbFilterCategory.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilterCategory.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbFilterCategory.Location = new System.Drawing.Point(1267, 104);
+            this.cmbFilterCategory.Location = new System.Drawing.Point(1276, 104);
             this.cmbFilterCategory.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbFilterCategory.Name = "cmbFilterCategory";
             this.cmbFilterCategory.Size = new System.Drawing.Size(200, 47);
@@ -215,7 +215,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.label1.Font = new System.Drawing.Font("Inter", 13F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.label1.Location = new System.Drawing.Point(598, 69);
+            this.label1.Location = new System.Drawing.Point(613, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 22);
             this.label1.TabIndex = 1;
@@ -262,7 +262,7 @@
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
             this.txtSearch.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtSearch.Location = new System.Drawing.Point(587, 95);
+            this.txtSearch.Location = new System.Drawing.Point(596, 95);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = " Search by name, brand, category...";
@@ -278,11 +278,11 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.label2.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.label2.Location = new System.Drawing.Point(51, 39);
+            this.label2.Location = new System.Drawing.Point(56, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 48);
+            this.label2.Size = new System.Drawing.Size(324, 48);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Products";
+            this.label2.Text = "Product Management";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTitle
@@ -298,10 +298,11 @@
             // 
             // label3
             // 
+            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Inter", 13F);
             this.label3.Location = new System.Drawing.Point(89, 29);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 27);
+            this.label3.Size = new System.Drawing.Size(136, 26);
             this.label3.TabIndex = 1;
             this.label3.Text = "Total Products";
             // 
@@ -335,17 +336,18 @@
             this.guna2PictureBox2.Location = new System.Drawing.Point(20, 43);
             this.guna2PictureBox2.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.guna2PictureBox2.Name = "guna2PictureBox2";
-            this.guna2PictureBox2.Size = new System.Drawing.Size(64, 63);
+            this.guna2PictureBox2.Size = new System.Drawing.Size(70, 70);
             this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox2.TabIndex = 19;
             this.guna2PictureBox2.TabStop = false;
             // 
             // label4
             // 
+            this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Inter", 13F);
             this.label4.Location = new System.Drawing.Point(95, 29);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 27);
+            this.label4.Size = new System.Drawing.Size(108, 26);
             this.label4.TabIndex = 1;
             this.label4.Text = "Total Stock";
             // 
@@ -372,7 +374,7 @@
             this.guna2PictureBox4.Location = new System.Drawing.Point(20, 43);
             this.guna2PictureBox4.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.guna2PictureBox4.Name = "guna2PictureBox4";
-            this.guna2PictureBox4.Size = new System.Drawing.Size(64, 63);
+            this.guna2PictureBox4.Size = new System.Drawing.Size(70, 70);
             this.guna2PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox4.TabIndex = 15;
             this.guna2PictureBox4.TabStop = false;
@@ -387,12 +389,12 @@
             // 
             // guna2PictureBox3
             // 
-            this.guna2PictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox3.Image")));
+            this.guna2PictureBox3.Image = global::Woof_Gang_Sales___Inventory.Properties.Resources.warning_yellow;
             this.guna2PictureBox3.ImageRotate = 0F;
             this.guna2PictureBox3.Location = new System.Drawing.Point(20, 43);
             this.guna2PictureBox3.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.guna2PictureBox3.Name = "guna2PictureBox3";
-            this.guna2PictureBox3.Size = new System.Drawing.Size(64, 63);
+            this.guna2PictureBox3.Size = new System.Drawing.Size(70, 70);
             this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox3.TabIndex = 10;
             this.guna2PictureBox3.TabStop = false;
@@ -420,7 +422,7 @@
             this.guna2PictureBox1.Location = new System.Drawing.Point(20, 43);
             this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(64, 63);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(70, 70);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox1.TabIndex = 2;
             this.guna2PictureBox1.TabStop = false;
@@ -458,10 +460,11 @@
             // 
             // label5
             // 
+            this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Inter", 13F);
             this.label5.Location = new System.Drawing.Point(92, 29);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 27);
+            this.label5.Size = new System.Drawing.Size(102, 26);
             this.label5.TabIndex = 1;
             this.label5.Text = "Low Stock";
             // 
@@ -485,10 +488,11 @@
             // 
             // label6
             // 
+            this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Inter", 13F);
             this.label6.Location = new System.Drawing.Point(94, 29);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 27);
+            this.label6.Size = new System.Drawing.Size(120, 26);
             this.label6.TabIndex = 1;
             this.label6.Text = "Out of Stock";
             // 
@@ -512,17 +516,18 @@
             this.guna2PictureBox6.Location = new System.Drawing.Point(20, 43);
             this.guna2PictureBox6.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.guna2PictureBox6.Name = "guna2PictureBox6";
-            this.guna2PictureBox6.Size = new System.Drawing.Size(64, 63);
+            this.guna2PictureBox6.Size = new System.Drawing.Size(70, 70);
             this.guna2PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox6.TabIndex = 19;
             this.guna2PictureBox6.TabStop = false;
             // 
             // label7
             // 
+            this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Inter", 13F);
             this.label7.Location = new System.Drawing.Point(107, 29);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(136, 27);
+            this.label7.Size = new System.Drawing.Size(111, 26);
             this.label7.TabIndex = 1;
             this.label7.Text = "Near Expiry";
             // 
@@ -558,14 +563,19 @@
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel2.PerformLayout();
             this.totalStockPanel.ResumeLayout(false);
+            this.totalStockPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.totalProductsPanel.ResumeLayout(false);
+            this.totalProductsPanel.PerformLayout();
             this.lowStockPanel.ResumeLayout(false);
+            this.lowStockPanel.PerformLayout();
             this.outOfStockPanel.ResumeLayout(false);
+            this.outOfStockPanel.PerformLayout();
             this.nearExpiryPanel.ResumeLayout(false);
+            this.nearExpiryPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox6)).EndInit();
             this.ResumeLayout(false);
 

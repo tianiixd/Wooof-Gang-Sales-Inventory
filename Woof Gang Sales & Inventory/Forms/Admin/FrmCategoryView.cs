@@ -79,6 +79,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             actionCol.Width = 150; // Fixed width
 
             dgvCategory.Columns.Add(actionCol);
+            categoryRepo.StatsCard(lblTotalCategory, lblEmpty, lblTop);
         }
 
 
@@ -162,6 +163,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     form.IsEditMode = true;
                     form.EditCategory(category);
                     if (form.ShowDialog() == DialogResult.OK) ReadCategory();
+                    categoryRepo.StatsCard(lblTotalCategory, lblEmpty, lblTop);
                 }
                 // Check Delete Click (Red Area)
                 else if (e.X >= startX + btnWidth + btnSpacing && e.X <= startX + (btnWidth * 2) + btnSpacing)
@@ -171,6 +173,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
                     bool success = categoryRepo.DeleteCategory(categoryID);
                     if (success) ReadCategory();
+                    categoryRepo.StatsCard(lblTotalCategory, lblEmpty, lblTop);
                 }
             }
         }
@@ -259,6 +262,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             FrmCreateEditCategory form = new FrmCreateEditCategory();
             form.IsEditMode = false;
             if (form.ShowDialog() == DialogResult.OK) ReadCategory();
+            categoryRepo.StatsCard(lblTotalCategory, lblEmpty, lblTop);
         }
 
         public void ReadCategory()

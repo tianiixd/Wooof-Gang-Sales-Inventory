@@ -2,6 +2,8 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Database;
 using Woof_Gang_Sales___Inventory.Models;
 using Woof_Gang_Sales___Inventory.Util;
@@ -108,6 +110,81 @@ namespace Woof_Gang_Sales___Inventory.Data
                 DialogHelper.ShowCustomDialog("Error Occurred", ex.Message, "error");
             }
             return suppliers;
+        }
+
+
+        public void StatsCard(Label lblTotalSuppliers, Label lblUnusedSuppliers, Label lblTopSupplier)
+        {
+            try
+            {
+                using (SqlConnection conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    
+                    string queryTotal = "SELECT COUNT(*) FROM Suppliers WHERE IsActive = 1";
+                    using (SqlCommand cmd = new SqlCommand(queryTotal, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblTotalSuppliers.Text = count.ToString("N0");
+                    }
+
+                   
+                    string queryUnused = @"
+                SELECT COUNT(*) 
+                FROM Suppliers s
+                WHERE s.IsActive = 1
+                AND NOT EXISTS (
+                    SELECT 1 FROM Products p 
+                    WHERE p.SupplierID = s.SupplierID 
+                    AND p.IsActive = 1
+                )";
+                    using (SqlCommand cmd = new SqlCommand(queryUnused, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblUnusedSuppliers.Text = count.ToString("N0");
+
+                        
+                        if (count > 0)
+                        {
+                            lblUnusedSuppliers.ForeColor = Color.Red;
+                        }
+                        else
+                        {
+                            lblUnusedSuppliers.ForeColor = Color.Black;
+                        }
+                    }
+
+                   
+                    string queryTop = @"
+                SELECT TOP 1 s.SupplierName 
+                FROM Suppliers s
+                JOIN Products p ON s.SupplierID = p.SupplierID
+                WHERE s.IsActive = 1 AND p.IsActive = 1
+                GROUP BY s.SupplierName
+                ORDER BY COUNT(p.ProductID) DESC";
+
+                    using (SqlCommand cmd = new SqlCommand(queryTop, conn))
+                    {
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            lblTopSupplier.Text = result.ToString();
+                            lblTopSupplier.ForeColor = Color.Green; // Highlight the winner
+                        }
+                        else
+                        {
+                            lblTopSupplier.Text = "None";
+                            lblTopSupplier.ForeColor = Color.FromArgb(19, 19, 26);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogHelper.ShowCustomDialog("Stats Error", ex.Message, "error");
+            }
         }
 
 

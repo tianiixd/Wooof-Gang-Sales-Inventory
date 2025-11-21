@@ -2,8 +2,9 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Database;
-using Woof_Gang_Sales___Inventory.Helpers;
 using Woof_Gang_Sales___Inventory.Models;
 using Woof_Gang_Sales___Inventory.Util;
 
@@ -129,6 +130,83 @@ namespace Woof_Gang_Sales___Inventory.Data
             }
 
             return subCategories;
+        }
+
+
+        public void StatsCard(Label lblTotal, Label lblEmpty, Label lblTop)
+        {
+            try
+            {
+                using (SqlConnection conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    // 1. TOTAL SUB-CATEGORIES
+                    // Simple count of all active categories
+                    string queryTotal = "SELECT COUNT(*) FROM SubCategories WHERE IsActive = 1";
+                    using (SqlCommand cmd = new SqlCommand(queryTotal, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblTotal.Text = count.ToString("N0");
+                    }
+
+                    // 2. EMPTY SUB-CATEGORIES
+                    // Categories that have 0 products linked to them
+                    string queryEmpty = @"
+                        SELECT COUNT(*) 
+                        FROM SubCategories s
+                        WHERE s.IsActive = 1
+                        AND NOT EXISTS (
+                            SELECT 1 FROM Products p 
+                            WHERE p.SubCategoryID = s.SubCategoryID 
+                            AND p.IsActive = 1
+                        )";
+                    using (SqlCommand cmd = new SqlCommand(queryEmpty, conn))
+                    {
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        lblEmpty.Text = count.ToString("N0");
+
+                        // Logic: Turn RED if there are empty categories (Action needed)
+                        if (count > 0)
+                        {
+                            lblEmpty.ForeColor = Color.Red;
+                        }
+                        else
+                        {
+                            lblEmpty.ForeColor = Color.Black;
+                        }
+                    }
+
+                    // 3. TOP SUB-CATEGORY
+                    // The category that contains the most products
+                    string queryTop = @"
+                        SELECT TOP 1 s.SubCategoryName 
+                        FROM SubCategories s
+                        JOIN Products p ON s.SubCategoryID = p.SubCategoryID
+                        WHERE s.IsActive = 1 AND p.IsActive = 1
+                        GROUP BY s.SubCategoryName
+                        ORDER BY COUNT(p.ProductID) DESC";
+
+                    using (SqlCommand cmd = new SqlCommand(queryTop, conn))
+                    {
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            lblTop.Text = result.ToString();
+                            lblTop.ForeColor = Color.Green;
+                        }
+                        else
+                        {
+                            lblTop.Text = "None";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DialogHelper.ShowCustomDialog("Stats Error", ex.Message, "error");
+            }
         }
 
 

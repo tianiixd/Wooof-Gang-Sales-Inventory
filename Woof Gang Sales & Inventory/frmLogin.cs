@@ -67,7 +67,7 @@ namespace Woof_Gang_Sales___Inventory
                 }
 
                 // Unified error message to prevent user enumeration
-                if (!passwordMatch)
+                if (!passwordMatch || user == null)
                 {
                     DialogHelper.ShowCustomDialog("Login Failed", "Invalid username or password.", "error");
                     return;
@@ -77,7 +77,7 @@ namespace Woof_Gang_Sales___Inventory
 
                 // Successful login
                 string fullName = $"{user.FirstName} {user.LastName}";
-                DialogHelper.ShowCustomDialog("Login Successful", $"Welcome {fullName}! You are logged in as {user.Role}.", "success");
+                DialogHelper.ShowCustomDialog("Login Successful", $"Welcome {fullName}!", "success");
 
                 this.Hide();
 
@@ -96,7 +96,7 @@ namespace Woof_Gang_Sales___Inventory
             }
             catch (Exception ex)
             {
-                DialogHelper.ShowCustomDialog("Error Occurred", "An unexpected error occurred. Please contact support.", "error");
+                DialogHelper.ShowCustomDialog("Error Occurred", "An unexpected error occurred. Please contact support. " + ex.Message, "error");
                 // Optional: Log ex.Message internally for diagnostics
             }
         }
@@ -153,22 +153,6 @@ namespace Woof_Gang_Sales___Inventory
                 DialogHelper.ShowCustomDialog("Login Failed", "Please enter username and password", "warning");
                 return false;
             }
-
-
-            if (!Regex.IsMatch(username.Trim(), @"^[a-zA-Z0-9_-]{4,}$"))
-            {
-                DialogHelper.ShowCustomDialog("Invalid Username",
-                    "Username must be at least 4 characters long and can only contain letters, numbers, underscores, and hyphens.", "warning");
-                return false;
-            }
-
-            if (!Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"))
-            {
-                DialogHelper.ShowCustomDialog("Invalid Password",
-                    "Password must be at least 8 characters long and contain at least one letter and one number.", "warning");
-                return false;
-            }
-
 
             return true;
                 

@@ -72,6 +72,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
+            this.txtCostPrice = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numOrderLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -85,7 +87,7 @@
             this.numOrderLevel.BorderRadius = 10;
             this.numOrderLevel.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.numOrderLevel.Font = new System.Drawing.Font("Nunito", 12F);
-            this.numOrderLevel.Location = new System.Drawing.Point(290, 812);
+            this.numOrderLevel.Location = new System.Drawing.Point(290, 884);
             this.numOrderLevel.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.numOrderLevel.Maximum = new decimal(new int[] {
             10,
@@ -109,7 +111,7 @@
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Inter", 13F);
-            this.label10.Location = new System.Drawing.Point(97, 812);
+            this.label10.Location = new System.Drawing.Point(97, 884);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(133, 41);
@@ -124,7 +126,7 @@
             this.numQuantity.BorderRadius = 10;
             this.numQuantity.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.numQuantity.Font = new System.Drawing.Font("Nunito", 12F);
-            this.numQuantity.Location = new System.Drawing.Point(290, 751);
+            this.numQuantity.Location = new System.Drawing.Point(290, 823);
             this.numQuantity.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(320, 41);
@@ -138,7 +140,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Inter", 13F);
-            this.label9.Location = new System.Drawing.Point(97, 751);
+            this.label9.Location = new System.Drawing.Point(97, 823);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(110, 41);
@@ -161,7 +163,7 @@
             this.txtSellingPrice.Font = new System.Drawing.Font("Nunito", 12F);
             this.txtSellingPrice.ForeColor = System.Drawing.Color.Black;
             this.txtSellingPrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSellingPrice.Location = new System.Drawing.Point(290, 690);
+            this.txtSellingPrice.Location = new System.Drawing.Point(290, 701);
             this.txtSellingPrice.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.txtSellingPrice.Name = "txtSellingPrice";
             this.txtSellingPrice.PlaceholderText = "Enter Selling Price";
@@ -183,7 +185,7 @@
             this.cmbUnit.ForeColor = System.Drawing.Color.Black;
             this.cmbUnit.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbUnit.ItemHeight = 36;
-            this.cmbUnit.Location = new System.Drawing.Point(290, 567);
+            this.cmbUnit.Location = new System.Drawing.Point(290, 578);
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(320, 42);
@@ -268,7 +270,7 @@
             this.txtWeight.Font = new System.Drawing.Font("Nunito", 12F);
             this.txtWeight.ForeColor = System.Drawing.Color.Black;
             this.txtWeight.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtWeight.Location = new System.Drawing.Point(290, 629);
+            this.txtWeight.Location = new System.Drawing.Point(290, 640);
             this.txtWeight.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.PlaceholderText = "Enter Weight/Size";
@@ -279,7 +281,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Inter", 13F);
-            this.label7.Location = new System.Drawing.Point(97, 629);
+            this.label7.Location = new System.Drawing.Point(97, 640);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(133, 41);
@@ -336,7 +338,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Inter", 13F);
-            this.label6.Location = new System.Drawing.Point(97, 690);
+            this.label6.Location = new System.Drawing.Point(97, 701);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 41);
@@ -347,7 +349,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Inter", 13F);
-            this.label5.Location = new System.Drawing.Point(97, 567);
+            this.label5.Location = new System.Drawing.Point(97, 578);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 42);
@@ -661,7 +663,7 @@
             // 
             // guna2Separator2
             // 
-            this.guna2Separator2.Location = new System.Drawing.Point(102, 549);
+            this.guna2Separator2.Location = new System.Drawing.Point(102, 560);
             this.guna2Separator2.Name = "guna2Separator2";
             this.guna2Separator2.Size = new System.Drawing.Size(508, 10);
             this.guna2Separator2.TabIndex = 61;
@@ -678,7 +680,7 @@
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Poppins", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(96, 523);
+            this.label15.Location = new System.Drawing.Point(96, 534);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(253, 30);
             this.label15.TabIndex = 63;
@@ -700,11 +702,47 @@
             this.guna2Separator3.Size = new System.Drawing.Size(426, 10);
             this.guna2Separator3.TabIndex = 64;
             // 
+            // txtCostPrice
+            // 
+            this.txtCostPrice.Animated = true;
+            this.txtCostPrice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.txtCostPrice.BorderRadius = 10;
+            this.txtCostPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCostPrice.DefaultText = "";
+            this.txtCostPrice.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtCostPrice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtCostPrice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCostPrice.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCostPrice.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCostPrice.Font = new System.Drawing.Font("Nunito", 12F);
+            this.txtCostPrice.ForeColor = System.Drawing.Color.Black;
+            this.txtCostPrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCostPrice.Location = new System.Drawing.Point(290, 762);
+            this.txtCostPrice.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.txtCostPrice.Name = "txtCostPrice";
+            this.txtCostPrice.PlaceholderText = "Enter Cost Price";
+            this.txtCostPrice.SelectedText = "";
+            this.txtCostPrice.Size = new System.Drawing.Size(320, 41);
+            this.txtCostPrice.TabIndex = 67;
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Inter", 13F);
+            this.label17.Location = new System.Drawing.Point(97, 762);
+            this.label17.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(133, 41);
+            this.label17.TabIndex = 66;
+            this.label17.Text = "Cost Price";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FrmCreateEditProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 900);
+            this.ClientSize = new System.Drawing.Size(1200, 950);
+            this.Controls.Add(this.txtCostPrice);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.guna2Separator3);
             this.Controls.Add(this.label15);
@@ -802,5 +840,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
+        private Guna.UI2.WinForms.Guna2TextBox txtCostPrice;
+        private System.Windows.Forms.Label label17;
     }
 }

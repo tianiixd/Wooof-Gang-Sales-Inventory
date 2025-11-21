@@ -282,6 +282,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             txtBrand.Text = product.Brand; // ✅ Re-added this
             txtWeight.Text = product.Weight?.ToString(); // ✅ Re-added this
             txtSellingPrice.Text = product.SellingPrice.ToString("F2");
+            txtCostPrice.Text = product.CostPrice.ToString("F2");
 
             numQuantity.Value = product.Quantity;
             numOrderLevel.Value = product.ReorderLevel ?? 5;
@@ -402,6 +403,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 Unit = string.IsNullOrWhiteSpace(cmbUnit.Text) ? null : cmbUnit.Text,
                 Weight = decimal.TryParse(txtWeight.Text, out decimal weight) ? (decimal?)weight : null,
                 SellingPrice = decimal.Parse(txtSellingPrice.Text),
+                CostPrice = decimal.Parse(txtCostPrice.Text),  
                 Quantity = (int)numQuantity.Value,
                 ReorderLevel = (int)numOrderLevel.Value < 5 ? 5 : (int)numOrderLevel.Value,
                 CategoryID = (int)cmbCategory.SelectedValue,
@@ -438,7 +440,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         {
             // 1. Check required text fields
             if (string.IsNullOrWhiteSpace(txtProductName.Text) ||
-                string.IsNullOrWhiteSpace(txtSellingPrice.Text))
+                string.IsNullOrWhiteSpace(txtSellingPrice.Text) || string.IsNullOrWhiteSpace(txtCostPrice.Text))
             {
                 DialogHelper.ShowCustomDialog("Missing Information", "Product Name and Selling Price are required.", "warning");
                 return false;
@@ -470,6 +472,12 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             if (!Regex.IsMatch(txtSellingPrice.Text, @"^\d+(\.\d{1,2})?$") || decimal.Parse(txtSellingPrice.Text) <= 0)
             {
                 DialogHelper.ShowCustomDialog("Invalid Input", "Selling Price must be a positive number (e.g., 100 or 100.50).", "warning");
+                return false;
+            }
+
+            if (!Regex.IsMatch(txtCostPrice.Text, @"^\d+(\.\d{1,2})?$") || decimal.Parse(txtSellingPrice.Text) <= 0)
+            {
+                DialogHelper.ShowCustomDialog("Invalid Input", "Cost Price must be a positive number (e.g., 100 or 100.50).", "warning");
                 return false;
             }
 
@@ -508,6 +516,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             txtBrand.Text = string.Empty;
             txtWeight.Text = string.Empty;
             txtSellingPrice.Text = string.Empty;
+            txtCostPrice.Text = string.Empty;
 
             numQuantity.Value = 0;
             numOrderLevel.Value = 5;

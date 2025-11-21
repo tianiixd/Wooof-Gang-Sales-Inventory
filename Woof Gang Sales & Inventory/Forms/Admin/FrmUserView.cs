@@ -17,7 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Woof_Gang_Sales___Inventory.Forms.Admin
 {
-    public partial class FrmUserView : frmView
+    public partial class FrmUserView : Sample
     {
         private UserRepository userRepo = new UserRepository();
 
@@ -76,7 +76,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
         private void FrmUserView_Load(object sender, EventArgs e)
         {
-            time.StartClock(lblTime, lblDate);
+            time.StartClock(lblTimeClock, lblDateClock);
+
 
             foreach (var status in statusUsers)
             {
@@ -106,7 +107,20 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             actionCol.Width = 150; // Fixed width
 
             dgvUser.Columns.Add(actionCol);
+            userRepo.StatsCard(lblTotalUsers, lblAdmins, lblStoreClerks, lblArchived);
+        }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            FrmCreateEditUser form = new FrmCreateEditUser();
+            form.IsEditMode = false;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                //Refresh All
+                ReadUsers();
+                userRepo.StatsCard(lblTotalUsers, lblAdmins, lblStoreClerks, lblArchived);
+            }
         }
 
         private void dgvUser_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -196,6 +210,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     {
                         // Refresh the grid
                         ReadUsers();
+                        userRepo.StatsCard(lblTotalUsers, lblAdmins, lblStoreClerks, lblArchived);
 
                         // ✅ If user edited themselves, update sidebar
                         if (isEditingSelf)
@@ -249,6 +264,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     bool success = userRepo.DeleteUser(userID, username);
                     if (success)
                         ReadUsers();
+                        userRepo.StatsCard(lblTotalUsers, lblAdmins, lblStoreClerks, lblArchived);
+
                 }
             }
         }
@@ -335,130 +352,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
 
 
-        public override void btnAdd_Click(object sender, EventArgs e)
-        {
-            FrmCreateEditUser form = new FrmCreateEditUser();
-            form.IsEditMode = false;
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                ReadUsers();
-            }
-
-        }
-
-        public override void btnEdit_Click(object sender, EventArgs e)
-        {
-
-            if (dgvUser.SelectedRows.Count == 0)
-            {
-                DialogHelper.ShowCustomDialog("No Selection", "Please select a user first.", "warning");
-                return;
-            }
-
-            var value = this.dgvUser.SelectedRows[0].Cells[0].Value.ToString();
-
-            if (string.IsNullOrEmpty(value)) return;
-
-            if (!int.TryParse(value, out int userID))
-            {
-                DialogHelper.ShowCustomDialog("Invalid Selection", "The selected userID is invalid.", "error");
-                return;
-            }
-
-            var user = userRepo.GetUserById(userID);
-
-            if (user == null)
-            {
-                DialogHelper.ShowCustomDialog("Not Found", "The selected user no longer exists.", "error");
-                ReadUsers();
-                return;
-            }
-
-            bool isEditingSelf = SessionManager.CurrentUser?.UserID == userID;
-
-            string originalRole = user.Role;
-            bool wasActive = user.IsActive;
-
-            FrmCreateEditUser form = new FrmCreateEditUser();
-            form.IsEditMode = true;
-            form.EditUser(user);
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                // Refresh the grid
-                ReadUsers();
-
-                // ✅ If user edited themselves, update sidebar
-                if (isEditingSelf)
-                {
-                    // Get fresh user data from database
-                    var updatedUser = userRepo.GetUserById(userID);
-                    if (updatedUser != null)
-                    {
-                        bool roleChanged = originalRole != updatedUser.Role;
-                        bool deactivated = wasActive && !updatedUser.IsActive;
-                        if (roleChanged || deactivated)
-                        {
-                            string reason = roleChanged ? "Your role has been changed." : "Your account has been deactivated.";
-
-                            DialogHelper.ShowCustomDialog("Account Changed", $"{reason} You will be logged out for security reasons.","warning");
-
-                            FrmAdminDashboard.ResetInstance();
-
-                            SessionManager.CurrentUser = null;
-
-                            frmLogin loginForm = new frmLogin();
-                            loginForm.Show();
-                            return;
-                        }
-                        else
-                        {
-                            SessionManager.CurrentUser = updatedUser;
-                            // Get the dashboard instance to refresh its UI
-                            var dashboard = FrmAdminDashboard.GetInstance();
-                            dashboard.RefreshProfile(updatedUser);
-                        }
-                    }
-                }
-            }
-        }
-
-        public override void btnDelete_Click(object sender, EventArgs e)
-        {
-
-            if (dgvUser.SelectedRows.Count == 0)
-            {
-                DialogHelper.ShowCustomDialog("No Selection", "Please select a user first.", "warning");
-                return;
-            }
-
-            var value = this.dgvUser.SelectedRows[0].Cells[0].Value.ToString();
-
-            if (int.TryParse(value, out int parsedUserID) && SessionManager.CurrentUser?.UserID == parsedUserID)
-            {
-                DialogHelper.ShowCustomDialog("Action Denied", "You cannot archive your own account while you are logged in.", "error");
-                return;
-            }
-
-            var username = this.dgvUser.SelectedRows[0].Cells["Username"].Value.ToString();
-
-            if (string.IsNullOrEmpty(value)) return;
-
-            int userID = int.Parse(value);
-
-            DialogResult result = DialogHelper.ShowConfirmDialog("Archive User","Are you sure you want to archive this user?","warning");
-
-            if (result == DialogResult.No) return;
-           
-            bool success = userRepo.DeleteUser(userID, username);
-            if (success)
-                ReadUsers();
-
-        }
-
-
-        public override void txtSearch_TextChanged(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             ReadUsers();
         }

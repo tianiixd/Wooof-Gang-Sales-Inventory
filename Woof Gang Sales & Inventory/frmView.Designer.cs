@@ -36,12 +36,16 @@
             this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2Panel1
             // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
+            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
+            this.guna2Panel1.Controls.Add(this.lblDate);
+            this.guna2Panel1.Controls.Add(this.lblTime);
             this.guna2Panel1.Controls.Add(this.cmbFilterStatus);
             this.guna2Panel1.Controls.Add(this.cmbFilterRole);
             this.guna2Panel1.Controls.Add(this.label1);
@@ -51,7 +55,7 @@
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1674, 154);
+            this.guna2Panel1.Size = new System.Drawing.Size(1674, 156);
             this.guna2Panel1.TabIndex = 0;
             // 
             // cmbFilterStatus
@@ -71,7 +75,7 @@
             this.cmbFilterStatus.ItemHeight = 41;
             this.cmbFilterStatus.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilterStatus.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbFilterStatus.Location = new System.Drawing.Point(486, 91);
+            this.cmbFilterStatus.Location = new System.Drawing.Point(1119, 104);
             this.cmbFilterStatus.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbFilterStatus.Name = "cmbFilterStatus";
             this.cmbFilterStatus.Size = new System.Drawing.Size(168, 47);
@@ -96,7 +100,7 @@
             this.cmbFilterRole.ItemHeight = 41;
             this.cmbFilterRole.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilterRole.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbFilterRole.Location = new System.Drawing.Point(674, 91);
+            this.cmbFilterRole.Location = new System.Drawing.Point(1307, 104);
             this.cmbFilterRole.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbFilterRole.Name = "cmbFilterRole";
             this.cmbFilterRole.Size = new System.Drawing.Size(169, 47);
@@ -107,7 +111,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Inter", 13F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.label1.Location = new System.Drawing.Point(38, 56);
+            this.label1.Location = new System.Drawing.Point(674, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 22);
             this.label1.TabIndex = 1;
@@ -128,12 +132,12 @@
             this.btnAdd.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(204)))), ((int)(((byte)(242)))));
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageOffset = new System.Drawing.Point(-2, 0);
-            this.btnAdd.Location = new System.Drawing.Point(1492, 82);
+            this.btnAdd.Location = new System.Drawing.Point(1489, 95);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(142, 56);
             this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Add User";
+            this.btnAdd.Text = "New User";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtSearch
@@ -154,7 +158,7 @@
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
             this.txtSearch.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtSearch.Location = new System.Drawing.Point(26, 82);
+            this.txtSearch.Location = new System.Drawing.Point(659, 95);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = " Search by name, username, role...";
@@ -166,25 +170,48 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.Font = new System.Drawing.Font("Inter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.lblTitle.Location = new System.Drawing.Point(3, 0);
+            this.lblTitle.Location = new System.Drawing.Point(56, 47);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1668, 95);
+            this.lblTitle.Size = new System.Drawing.Size(293, 48);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Users List";
+            this.lblTitle.Text = "Users Management";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Font = new System.Drawing.Font("Inter", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
+            this.lblTime.Location = new System.Drawing.Point(1454, 11);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(191, 39);
+            this.lblTime.TabIndex = 7;
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblDate
+            // 
+            this.lblDate.Font = new System.Drawing.Font("Inter", 15F);
+            this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
+            this.lblDate.Location = new System.Drawing.Point(1200, 43);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(445, 39);
+            this.lblDate.TabIndex = 8;
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frmView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.ClientSize = new System.Drawing.Size(1674, 1031);
             this.Controls.Add(this.guna2Panel1);
             this.Name = "frmView";
             this.Text = "View";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.guna2Panel1.ResumeLayout(false);
+            this.guna2Panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -197,5 +224,7 @@
         private System.Windows.Forms.Label label1;
         public Guna.UI2.WinForms.Guna2ComboBox cmbFilterRole;
         public Guna.UI2.WinForms.Guna2ComboBox cmbFilterStatus;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblDate;
     }
 }

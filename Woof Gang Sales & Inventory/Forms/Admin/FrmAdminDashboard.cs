@@ -230,7 +230,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
 
         private void btnSubCategory_Click(object sender, EventArgs e)
         {
-            if (subCategoryView == null || categoryView.IsDisposed)
+            if (subCategoryView == null || subCategoryView.IsDisposed)
             {
                 subCategoryView = new FrmSubCategoryView();
             }
