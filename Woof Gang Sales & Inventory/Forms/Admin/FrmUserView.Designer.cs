@@ -238,7 +238,7 @@
             // 
             this.label3.Font = new System.Drawing.Font("Inter", 13F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.label3.Location = new System.Drawing.Point(699, 60);
+            this.label3.Location = new System.Drawing.Point(699, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 22);
             this.label3.TabIndex = 1;

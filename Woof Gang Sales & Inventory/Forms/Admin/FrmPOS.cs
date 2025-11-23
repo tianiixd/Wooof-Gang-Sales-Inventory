@@ -48,7 +48,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             cmbCategoryFilter.SelectedIndexChanged += cmbCategoryFilter_SelectedIndexChanged;
             cmbSubCategoryFilter.SelectedIndexChanged += Filter_Changed;
             txtSearchProduct.TextChanged += Filter_Changed;
-            cmbDiscount.SelectedIndexChanged += (s, ev) => RefreshCartGrid();
+            //cmbDiscount.SelectedIndexChanged += (s, ev) => RefreshCartGrid();
 
             dgvCart.CellFormatting += dgvCart_CellFormatting;
             dgvCart.CellValueChanged += dgvCart_CellValueChanged;
@@ -82,7 +82,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
             LoadCategoryFilter();
             LoadAllSubCategories();
-            LoadDiscountFilter();
+            //LoadDiscountFilter();
 
             // Manually trigger the category change event
             cmbCategoryFilter_SelectedIndexChanged(null, null);
@@ -306,6 +306,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             allSubCategories = subCategoryRepo.GetSubCategories("");
         }
 
+        /*
         private void LoadDiscountFilter()
         {
             try
@@ -329,6 +330,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 DialogHelper.ShowCustomDialog("Error Loading Discounts", ex.Message, "error");
             }
         }
+        */
 
 
         private void cmbCategoryFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -510,7 +512,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private void RefreshCartGrid()
         {
             // --- FIX for Reentrant Call ---
-            // Use a temporary BindingList to prevent grid errors
             var bindingList = new BindingList<CartItem>(shoppingCart);
             dgvCart.DataSource = bindingList;
 
@@ -520,38 +521,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             }
             // --- End of Fix ---
 
-
-            if (cmbDiscount == null) return;
-
-            decimal subtotal = shoppingCart.Sum(item => item.Subtotal);
-
-            int discountID = 0;
-            if (cmbDiscount.SelectedValue != null)
-            {
-                int.TryParse(cmbDiscount.SelectedValue.ToString(), out discountID);
-            }
-
-            decimal total = subtotal;
-            decimal discountAmount = 0;
-
-            if (discountID > 0)
-            {
-                Discount? selectedDiscount = allDiscounts.FirstOrDefault(d => d.DiscountID == discountID);
-                if (selectedDiscount != null)
-                {
-                    if (selectedDiscount.DiscountType == "Percentage")
-                    {
-                        decimal percent = selectedDiscount.Value / 100m;
-                        discountAmount = subtotal * percent;
-                        total = subtotal - discountAmount;
-                    }
-                    else // "Fixed"
-                    {
-                        discountAmount = selectedDiscount.Value;
-                        total = subtotal - discountAmount;
-                    }
-                }
-            }
+            // ✅ LOGIC SIMPLIFIED: Just sum the items. No discounts.
+            decimal total = shoppingCart.Sum(item => item.Subtotal);
 
             lblPrice.Text = total.ToString("C");
         }
@@ -611,7 +582,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             decimal.TryParse(lblPrice.Text, System.Globalization.NumberStyles.Currency,
                              System.Globalization.CultureInfo.CurrentCulture, out decimal totalAmount);
 
-            int? discountId = (int)cmbDiscount.SelectedValue > 0 ? (int)cmbDiscount.SelectedValue : (int?)null;
+            int? discountId = null;
 
             // ✅ --- Get the user from the global session ---
             User? loggedInUser = SessionManager.CurrentUser;
@@ -634,20 +605,10 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 // 5. Check if it was successful
                 if (result == DialogResult.OK)
                 {
-                    // Success! The payment form already showed the success message
-                    // and saved everything to the database.
-                    // We just need to clear the cart in FrmPOS.
                     shoppingCart.Clear();
-                    cmbDiscount.SelectedIndex = 0;
-                    // txtCustomerName.Text = ""; // Clear customer if you have one
                     RefreshCartGrid();
                     LoadProductsToPanel();
                 }
-                // else
-                // {
-                //   // User clicked "Cancel" on the payment form.
-                //   // Do nothing. The cart remains as-is.
-                // }
             }
         }
 

@@ -29,6 +29,9 @@ namespace Woof_Gang_Sales___Inventory.Admin
         private FrmSupplierView supplierView;
         private FrmPOS posView;
         private FrmPurchaseOrderView purchaseOrderView;
+        private FrmSalesHistory saleView;
+        private FrmSalesReports salesReportsView;
+        private FrmInventoryReports inventoryReportsView;
         public static FrmAdminDashboard GetInstance(User? user = null)
         {
             if (formAdmin == null || formAdmin.IsDisposed)
@@ -269,6 +272,36 @@ namespace Woof_Gang_Sales___Inventory.Admin
             }
 
             AddControls(purchaseOrderView);
+        }
+
+        private void btnSaleHistory_Click(object sender, EventArgs e)
+        {
+            if (saleView == null|| saleView.IsDisposed)
+            {
+                saleView = new FrmSalesHistory();
+            }
+
+            AddControls(saleView);
+        }
+
+        private void btnSalesReports_Click(object sender, EventArgs e)
+        {
+            if (salesReportsView == null || salesReportsView.IsDisposed)
+            {
+                salesReportsView = new FrmSalesReports();
+            }
+
+            AddControls(salesReportsView);
+        }
+
+        private void btnInventoryReports_Click(object sender, EventArgs e)
+        {
+            if (inventoryReportsView == null || inventoryReportsView.IsDisposed) 
+            {
+                inventoryReportsView = new FrmInventoryReports();
+            }
+
+            AddControls(inventoryReportsView);
         }
     }
 }

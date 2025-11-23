@@ -270,46 +270,49 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 string.IsNullOrWhiteSpace(lastName) ||
                 string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
-                string.IsNullOrWhiteSpace(confirmPassword)) // <-- ADDED
+                string.IsNullOrWhiteSpace(confirmPassword))
             {
                 DialogHelper.ShowCustomDialog("Missing Information",
                     "Please enter all the required fields.", "warning");
                 return false;
             }
 
-            // 2. Regex for First Name (letters, spaces, hyphens)
-            if (!Regex.IsMatch(firstName.Trim(), @"^[\p{L}\s'-]+$"))
+            // 2. Regex for First Name (Allows "Jr.", "3rd", etc.)
+            // Improved pattern: Letters, Numbers, Spaces, Dots, Hyphens, Apostrophes
+            if (!Regex.IsMatch(firstName.Trim(), @"^[\p{L}0-9\s.'-]+$"))
             {
-                DialogHelper.ShowCustomDialog("Invalid Input",
-                    "First name can only contain letters, spaces, hyphens, or apostrophes.", "warning");
+                DialogHelper.ShowCustomDialog("Invalid First Name",
+                    "First name contains invalid characters. Allowed: Letters, Numbers, Spaces, Dots, Hyphens, and Apostrophes.", "warning");
                 return false;
             }
 
-            // 3. Regex for Last Name (letters, spaces, hyphens)
-            if (!Regex.IsMatch(lastName.Trim(), @"^[\p{L}\s'-]+$"))
+            // 3. Regex for Last Name (Allows "Jr.", "3rd", etc.)
+            if (!Regex.IsMatch(lastName.Trim(), @"^[\p{L}0-9\s.'-]+$"))
             {
-                DialogHelper.ShowCustomDialog("Invalid Input",
-                    "Last name can only contain letters, spaces, hyphens, or apostrophes.", "warning");
+                DialogHelper.ShowCustomDialog("Invalid Last Name",
+                    "Last name contains invalid characters. Allowed: Letters, Numbers, Spaces, Dots, Hyphens, and Apostrophes.", "warning");
                 return false;
             }
 
-            // 4. Regex for Username (min 4 chars, letters, numbers, underscore, hyphen)
-            if (!Regex.IsMatch(username.Trim(), @"^[a-zA-Z0-9_-]{4,}$"))
+            // 4. Regex for Username
+            // Added {4,20} to limit max length to 20 (prevents DB errors)
+            if (!Regex.IsMatch(username.Trim(), @"^[a-zA-Z0-9_-]{4,20}$"))
             {
                 DialogHelper.ShowCustomDialog("Invalid Username",
-                    "Username must be at least 4 characters long and can only contain letters, numbers, underscores, and hyphens.", "warning");
+                    "Username must be 4-20 characters long and can only contain letters, numbers, underscores, and hyphens.", "warning");
                 return false;
             }
 
-            // 5. Regex for Password (min 8 chars, at least 1 letter and 1 number)
-            if (!Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"))
+            // 5. Regex for Password
+            // FIXED: Changed [A-Za-z\d] to . (dot) to allow special characters like @, #, !
+            if (!Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d).{8,}$"))
             {
                 DialogHelper.ShowCustomDialog("Invalid Password",
                     "Password must be at least 8 characters long and contain at least one letter and one number.", "warning");
                 return false;
             }
 
-            // 6. NEW: Check if passwords match
+            // 6. Check if passwords match
             if (password != confirmPassword)
             {
                 DialogHelper.ShowCustomDialog("Password Mismatch",

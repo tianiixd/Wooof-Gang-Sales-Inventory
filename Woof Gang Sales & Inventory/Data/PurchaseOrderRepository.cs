@@ -439,16 +439,51 @@ namespace Woof_Gang_Sales___Inventory.Data
         }
 
 
-        /*
-        public bool ReceivePurchaseOrder(int poID, List<PurchaseOrderDetail> receivedItems, DateTime? expirationDate)
+        public bool ReceivePurchaseOrder(int poID, List<PurchaseOrderDetail> receivedItems)
         {
-            // This will be a large transaction that:
-            // 1. Opens a connection and begins a transaction
-            // 2. Calls _productRepo.ReceiveStock() for each item IN THE TRANSACTION
-            // 3. Updates this PO's Status to "Received" AND sets ReceivedDate
-            // 4. Commits or Rolls back
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. Update PO Status to 'Received' and set ReceivedDate
+                        string updatePO = @"UPDATE PurchaseOrders 
+                                    SET Status = 'Received', 
+                                        ReceivedDate = GETDATE(),
+                                        UpdatedAt = GETDATE() 
+                                    WHERE POID = @POID";
+
+                        using (SqlCommand cmd = new SqlCommand(updatePO, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@POID", poID);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // 2. Loop through items and update Product Stock
+                        foreach (var item in receivedItems)
+                        {
+                            // Call the ProductRepository logic we made earlier
+                            // We pass the transaction so it's all part of the same safety net
+                            // Note: expirationDate is passed inside the item object in this logic
+                            _productRepo.ReceiveStock(item.ProductID, item.Quantity, item.ExpirationDate, conn, transaction);
+                        }
+
+                        // 3. Commit Transaction
+                        transaction.Commit();
+                        DialogHelper.ShowCustomDialog("Success", "Stocks have been added to inventory successfully!", "success");
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        DialogHelper.ShowCustomDialog("Transaction Error", $"Failed to receive order: {ex.Message}", "error");
+                        return false;
+                    }
+                }
+            }
         }
-        */
 
 
         // --- Mapping Helpers ---

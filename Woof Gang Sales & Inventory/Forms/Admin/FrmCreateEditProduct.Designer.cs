@@ -101,7 +101,7 @@
             0});
             this.numOrderLevel.Name = "numOrderLevel";
             this.numOrderLevel.Size = new System.Drawing.Size(320, 41);
-            this.numOrderLevel.TabIndex = 45;
+            this.numOrderLevel.TabIndex = 39;
             this.numOrderLevel.Value = new decimal(new int[] {
             5,
             0,
@@ -130,7 +130,7 @@
             this.numQuantity.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(320, 41);
-            this.numQuantity.TabIndex = 43;
+            this.numQuantity.TabIndex = 38;
             this.numQuantity.Value = new decimal(new int[] {
             1,
             0,
@@ -169,7 +169,7 @@
             this.txtSellingPrice.PlaceholderText = "Enter Selling Price";
             this.txtSellingPrice.SelectedText = "";
             this.txtSellingPrice.Size = new System.Drawing.Size(320, 41);
-            this.txtSellingPrice.TabIndex = 41;
+            this.txtSellingPrice.TabIndex = 36;
             // 
             // cmbUnit
             // 
@@ -189,7 +189,7 @@
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(320, 42);
-            this.cmbUnit.TabIndex = 40;
+            this.cmbUnit.TabIndex = 34;
             this.cmbUnit.TextOffset = new System.Drawing.Point(3, 0);
             this.cmbUnit.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
@@ -211,7 +211,7 @@
             this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(320, 42);
-            this.cmbCategory.TabIndex = 39;
+            this.cmbCategory.TabIndex = 32;
             this.cmbCategory.TextOffset = new System.Drawing.Point(3, 0);
             this.cmbCategory.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
@@ -248,7 +248,7 @@
             this.toggleProductStatus.Location = new System.Drawing.Point(833, 751);
             this.toggleProductStatus.Name = "toggleProductStatus";
             this.toggleProductStatus.Size = new System.Drawing.Size(35, 20);
-            this.toggleProductStatus.TabIndex = 36;
+            this.toggleProductStatus.TabIndex = 42;
             this.toggleProductStatus.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.toggleProductStatus.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.toggleProductStatus.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
@@ -276,7 +276,7 @@
             this.txtWeight.PlaceholderText = "Enter Weight/Size";
             this.txtWeight.SelectedText = "";
             this.txtWeight.Size = new System.Drawing.Size(320, 41);
-            this.txtWeight.TabIndex = 33;
+            this.txtWeight.TabIndex = 35;
             // 
             // label7
             // 
@@ -304,13 +304,13 @@
             this.txtBrand.Font = new System.Drawing.Font("Nunito", 12F);
             this.txtBrand.ForeColor = System.Drawing.Color.Black;
             this.txtBrand.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBrand.Location = new System.Drawing.Point(290, 288);
+            this.txtBrand.Location = new System.Drawing.Point(290, 227);
             this.txtBrand.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.PlaceholderText = "Enter Brand";
             this.txtBrand.SelectedText = "";
             this.txtBrand.Size = new System.Drawing.Size(320, 41);
-            this.txtBrand.TabIndex = 30;
+            this.txtBrand.TabIndex = 29;
             // 
             // txtProductName
             // 
@@ -327,13 +327,13 @@
             this.txtProductName.Font = new System.Drawing.Font("Nunito", 12F);
             this.txtProductName.ForeColor = System.Drawing.Color.Black;
             this.txtProductName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtProductName.Location = new System.Drawing.Point(290, 227);
+            this.txtProductName.Location = new System.Drawing.Point(290, 288);
             this.txtProductName.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.PlaceholderText = "Enter Product Name";
             this.txtProductName.SelectedText = "";
             this.txtProductName.Size = new System.Drawing.Size(320, 41);
-            this.txtProductName.TabIndex = 29;
+            this.txtProductName.TabIndex = 30;
             // 
             // label6
             // 
@@ -371,7 +371,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Inter", 13F);
-            this.label3.Location = new System.Drawing.Point(97, 288);
+            this.label3.Location = new System.Drawing.Point(97, 227);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 41);
@@ -382,7 +382,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Inter", 13F);
-            this.label2.Location = new System.Drawing.Point(97, 227);
+            this.label2.Location = new System.Drawing.Point(97, 288);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 41);
@@ -413,7 +413,7 @@
             // 
             // guna2Panel1
             // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
+            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
             this.guna2Panel1.Controls.Add(this.lblTitle);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
@@ -425,7 +425,7 @@
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
             this.lblTitle.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
@@ -458,7 +458,7 @@
             this.cmbSubCategory.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.cmbSubCategory.Name = "cmbSubCategory";
             this.cmbSubCategory.Size = new System.Drawing.Size(320, 42);
-            this.cmbSubCategory.TabIndex = 51;
+            this.cmbSubCategory.TabIndex = 33;
             this.cmbSubCategory.TextOffset = new System.Drawing.Point(3, 0);
             this.cmbSubCategory.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
@@ -517,7 +517,7 @@
             this.btnCancel.Location = new System.Drawing.Point(895, 807);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(139, 51);
-            this.btnCancel.TabIndex = 47;
+            this.btnCancel.TabIndex = 44;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -540,7 +540,7 @@
             this.btnSave.Location = new System.Drawing.Point(688, 807);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 51);
-            this.btnSave.TabIndex = 46;
+            this.btnSave.TabIndex = 43;
             this.btnSave.Text = "Add";
             this.btnSave.TextOffset = new System.Drawing.Point(-5, 0);
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -563,7 +563,7 @@
             this.cmbSupplier.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.cmbSupplier.Name = "cmbSupplier";
             this.cmbSupplier.Size = new System.Drawing.Size(320, 42);
-            this.cmbSupplier.TabIndex = 53;
+            this.cmbSupplier.TabIndex = 31;
             this.cmbSupplier.TextOffset = new System.Drawing.Point(3, 0);
             this.cmbSupplier.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
@@ -611,7 +611,7 @@
             this.chkHasExpiration.Location = new System.Drawing.Point(688, 694);
             this.chkHasExpiration.Name = "chkHasExpiration";
             this.chkHasExpiration.Size = new System.Drawing.Size(177, 26);
-            this.chkHasExpiration.TabIndex = 55;
+            this.chkHasExpiration.TabIndex = 41;
             this.chkHasExpiration.Text = "This product expires\r\n";
             this.chkHasExpiration.UncheckedState.BorderColor = System.Drawing.Color.Black;
             this.chkHasExpiration.UncheckedState.BorderRadius = 3;
@@ -639,7 +639,7 @@
             this.dtpExpirationDate.MinDate = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
             this.dtpExpirationDate.Name = "dtpExpirationDate";
             this.dtpExpirationDate.Size = new System.Drawing.Size(320, 41);
-            this.dtpExpirationDate.TabIndex = 56;
+            this.dtpExpirationDate.TabIndex = 40;
             this.dtpExpirationDate.Value = new System.DateTime(2025, 11, 6, 0, 0, 0, 0);
             // 
             // label13
@@ -723,7 +723,7 @@
             this.txtCostPrice.PlaceholderText = "Enter Cost Price";
             this.txtCostPrice.SelectedText = "";
             this.txtCostPrice.Size = new System.Drawing.Size(320, 41);
-            this.txtCostPrice.TabIndex = 67;
+            this.txtCostPrice.TabIndex = 37;
             // 
             // label17
             // 

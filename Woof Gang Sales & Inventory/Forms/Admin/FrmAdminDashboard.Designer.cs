@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAdminDashboard));
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnReports = new Guna.UI2.WinForms.Guna2Button();
+            this.btnInventoryReports = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSaleHistory = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSalesReports = new Guna.UI2.WinForms.Guna2Button();
             this.btnPurchaseOrders = new Guna.UI2.WinForms.Guna2Button();
             this.btnSuppliers = new Guna.UI2.WinForms.Guna2Button();
             this.btnSubCategory = new Guna.UI2.WinForms.Guna2Button();
@@ -38,8 +40,9 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.btnLogOut = new Guna.UI2.WinForms.Guna2Button();
             this.btnUsers = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSales = new Guna.UI2.WinForms.Guna2Button();
+            this.btnPOS = new Guna.UI2.WinForms.Guna2Button();
             this.btnProducts = new Guna.UI2.WinForms.Guna2Button();
+            this.btnHome = new Guna.UI2.WinForms.Guna2Button();
             this.lblUser = new System.Windows.Forms.Label();
             this.picProfileImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -47,7 +50,6 @@
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.btnExit = new Guna.UI2.WinForms.Guna2ControlBox();
             this.CenterPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnHome = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picProfileImage)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -57,7 +59,9 @@
             // 
             this.guna2Panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
             this.guna2Panel3.BorderRadius = 5;
-            this.guna2Panel3.Controls.Add(this.btnReports);
+            this.guna2Panel3.Controls.Add(this.btnInventoryReports);
+            this.guna2Panel3.Controls.Add(this.btnSaleHistory);
+            this.guna2Panel3.Controls.Add(this.btnSalesReports);
             this.guna2Panel3.Controls.Add(this.btnPurchaseOrders);
             this.guna2Panel3.Controls.Add(this.btnSuppliers);
             this.guna2Panel3.Controls.Add(this.btnSubCategory);
@@ -65,7 +69,7 @@
             this.guna2Panel3.Controls.Add(this.lblRole);
             this.guna2Panel3.Controls.Add(this.btnLogOut);
             this.guna2Panel3.Controls.Add(this.btnUsers);
-            this.guna2Panel3.Controls.Add(this.btnSales);
+            this.guna2Panel3.Controls.Add(this.btnPOS);
             this.guna2Panel3.Controls.Add(this.btnProducts);
             this.guna2Panel3.Controls.Add(this.btnHome);
             this.guna2Panel3.Controls.Add(this.lblUser);
@@ -75,34 +79,95 @@
             this.guna2Panel3.Size = new System.Drawing.Size(246, 1080);
             this.guna2Panel3.TabIndex = 5;
             // 
-            // btnReports
+            // btnInventoryReports
             // 
-            this.btnReports.Animated = true;
-            this.btnReports.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnReports.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
-            this.btnReports.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.btnReports.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReports.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnReports.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnReports.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnReports.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnReports.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
-            this.btnReports.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
-            this.btnReports.Font = new System.Drawing.Font("Inter", 15F);
-            this.btnReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
-            this.btnReports.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
-            this.btnReports.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.btnReports.Image = ((System.Drawing.Image)(resources.GetObject("btnReports.Image")));
-            this.btnReports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnReports.ImageOffset = new System.Drawing.Point(3, 0);
-            this.btnReports.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnReports.Location = new System.Drawing.Point(0, 669);
-            this.btnReports.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(246, 45);
-            this.btnReports.TabIndex = 13;
-            this.btnReports.Text = "Reports";
-            this.btnReports.TextOffset = new System.Drawing.Point(-10, 0);
+            this.btnInventoryReports.Animated = true;
+            this.btnInventoryReports.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnInventoryReports.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnInventoryReports.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnInventoryReports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInventoryReports.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnInventoryReports.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnInventoryReports.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnInventoryReports.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnInventoryReports.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
+            this.btnInventoryReports.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnInventoryReports.Font = new System.Drawing.Font("Inter", 15F);
+            this.btnInventoryReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
+            this.btnInventoryReports.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
+            this.btnInventoryReports.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnInventoryReports.Image = ((System.Drawing.Image)(resources.GetObject("btnInventoryReports.Image")));
+            this.btnInventoryReports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInventoryReports.ImageOffset = new System.Drawing.Point(5, 0);
+            this.btnInventoryReports.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnInventoryReports.Location = new System.Drawing.Point(3, 785);
+            this.btnInventoryReports.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.btnInventoryReports.Name = "btnInventoryReports";
+            this.btnInventoryReports.Size = new System.Drawing.Size(246, 45);
+            this.btnInventoryReports.TabIndex = 15;
+            this.btnInventoryReports.Text = "Inventory Report";
+            this.btnInventoryReports.TextOffset = new System.Drawing.Point(15, 0);
+            this.btnInventoryReports.Click += new System.EventHandler(this.btnInventoryReports_Click);
+            // 
+            // btnSaleHistory
+            // 
+            this.btnSaleHistory.Animated = true;
+            this.btnSaleHistory.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnSaleHistory.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnSaleHistory.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnSaleHistory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaleHistory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaleHistory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaleHistory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSaleHistory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSaleHistory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
+            this.btnSaleHistory.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnSaleHistory.Font = new System.Drawing.Font("Inter", 15F);
+            this.btnSaleHistory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
+            this.btnSaleHistory.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
+            this.btnSaleHistory.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnSaleHistory.Image = ((System.Drawing.Image)(resources.GetObject("btnSaleHistory.Image")));
+            this.btnSaleHistory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSaleHistory.ImageOffset = new System.Drawing.Point(3, 0);
+            this.btnSaleHistory.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnSaleHistory.Location = new System.Drawing.Point(0, 669);
+            this.btnSaleHistory.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.btnSaleHistory.Name = "btnSaleHistory";
+            this.btnSaleHistory.Size = new System.Drawing.Size(246, 45);
+            this.btnSaleHistory.TabIndex = 14;
+            this.btnSaleHistory.Text = "Sale History";
+            this.btnSaleHistory.TextOffset = new System.Drawing.Point(12, 0);
+            this.btnSaleHistory.Click += new System.EventHandler(this.btnSaleHistory_Click);
+            // 
+            // btnSalesReports
+            // 
+            this.btnSalesReports.Animated = true;
+            this.btnSalesReports.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnSalesReports.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnSalesReports.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnSalesReports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalesReports.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSalesReports.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSalesReports.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSalesReports.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSalesReports.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
+            this.btnSalesReports.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnSalesReports.Font = new System.Drawing.Font("Inter", 15F);
+            this.btnSalesReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
+            this.btnSalesReports.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
+            this.btnSalesReports.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnSalesReports.Image = ((System.Drawing.Image)(resources.GetObject("btnSalesReports.Image")));
+            this.btnSalesReports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSalesReports.ImageOffset = new System.Drawing.Point(5, 0);
+            this.btnSalesReports.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSalesReports.Location = new System.Drawing.Point(0, 727);
+            this.btnSalesReports.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.btnSalesReports.Name = "btnSalesReports";
+            this.btnSalesReports.Size = new System.Drawing.Size(246, 45);
+            this.btnSalesReports.TabIndex = 13;
+            this.btnSalesReports.Text = "Sales Report";
+            this.btnSalesReports.TextOffset = new System.Drawing.Point(15, 0);
+            this.btnSalesReports.Click += new System.EventHandler(this.btnSalesReports_Click);
             // 
             // btnPurchaseOrders
             // 
@@ -258,7 +323,7 @@
             this.btnLogOut.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnLogOut.ImageOffset = new System.Drawing.Point(8, 0);
             this.btnLogOut.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnLogOut.Location = new System.Drawing.Point(0, 785);
+            this.btnLogOut.Location = new System.Drawing.Point(0, 901);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(246, 45);
@@ -287,7 +352,7 @@
             this.btnUsers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnUsers.ImageOffset = new System.Drawing.Point(6, 0);
             this.btnUsers.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnUsers.Location = new System.Drawing.Point(0, 727);
+            this.btnUsers.Location = new System.Drawing.Point(0, 843);
             this.btnUsers.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(246, 45);
@@ -296,35 +361,35 @@
             this.btnUsers.TextOffset = new System.Drawing.Point(-5, 0);
             this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
-            // btnSales
+            // btnPOS
             // 
-            this.btnSales.Animated = true;
-            this.btnSales.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnSales.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
-            this.btnSales.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.btnSales.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSales.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSales.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSales.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSales.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSales.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
-            this.btnSales.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
-            this.btnSales.Font = new System.Drawing.Font("Inter", 15F);
-            this.btnSales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
-            this.btnSales.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
-            this.btnSales.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.btnSales.Image = ((System.Drawing.Image)(resources.GetObject("btnSales.Image")));
-            this.btnSales.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSales.ImageOffset = new System.Drawing.Point(3, 0);
-            this.btnSales.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSales.Location = new System.Drawing.Point(0, 611);
-            this.btnSales.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.btnSales.Name = "btnSales";
-            this.btnSales.Size = new System.Drawing.Size(246, 45);
-            this.btnSales.TabIndex = 5;
-            this.btnSales.Text = "Sales";
-            this.btnSales.TextOffset = new System.Drawing.Point(-10, 0);
-            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
+            this.btnPOS.Animated = true;
+            this.btnPOS.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnPOS.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnPOS.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnPOS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPOS.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPOS.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPOS.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPOS.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPOS.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
+            this.btnPOS.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnPOS.Font = new System.Drawing.Font("Inter", 15F);
+            this.btnPOS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
+            this.btnPOS.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
+            this.btnPOS.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnPOS.Image = ((System.Drawing.Image)(resources.GetObject("btnPOS.Image")));
+            this.btnPOS.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPOS.ImageOffset = new System.Drawing.Point(3, 0);
+            this.btnPOS.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnPOS.Location = new System.Drawing.Point(0, 611);
+            this.btnPOS.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.btnPOS.Name = "btnPOS";
+            this.btnPOS.Size = new System.Drawing.Size(246, 45);
+            this.btnPOS.TabIndex = 5;
+            this.btnPOS.Text = "POS";
+            this.btnPOS.TextOffset = new System.Drawing.Point(-10, 0);
+            this.btnPOS.Click += new System.EventHandler(this.btnSales_Click);
             // 
             // btnProducts
             // 
@@ -355,6 +420,36 @@
             this.btnProducts.Text = "Products";
             this.btnProducts.TextOffset = new System.Drawing.Point(7, 0);
             this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
+            // 
+            // btnHome
+            // 
+            this.btnHome.Animated = true;
+            this.btnHome.BackColor = System.Drawing.Color.Transparent;
+            this.btnHome.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnHome.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnHome.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHome.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnHome.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnHome.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnHome.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnHome.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
+            this.btnHome.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
+            this.btnHome.Font = new System.Drawing.Font("Inter", 15F);
+            this.btnHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
+            this.btnHome.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
+            this.btnHome.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.btnHome.Image = ((System.Drawing.Image)(resources.GetObject("btnHome.Image")));
+            this.btnHome.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnHome.ImageOffset = new System.Drawing.Point(5, 0);
+            this.btnHome.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnHome.Location = new System.Drawing.Point(0, 261);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(246, 45);
+            this.btnHome.TabIndex = 2;
+            this.btnHome.Text = "Dashboard";
+            this.btnHome.TextOffset = new System.Drawing.Point(15, 0);
             // 
             // lblUser
             // 
@@ -448,36 +543,6 @@
             this.CenterPanel.TabIndex = 4;
             this.CenterPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel2_Paint);
             // 
-            // btnHome
-            // 
-            this.btnHome.Animated = true;
-            this.btnHome.BackColor = System.Drawing.Color.Transparent;
-            this.btnHome.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnHome.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
-            this.btnHome.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHome.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnHome.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnHome.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnHome.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnHome.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(70)))));
-            this.btnHome.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
-            this.btnHome.Font = new System.Drawing.Font("Inter", 15F);
-            this.btnHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
-            this.btnHome.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(100)))));
-            this.btnHome.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.btnHome.Image = ((System.Drawing.Image)(resources.GetObject("btnHome.Image")));
-            this.btnHome.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnHome.ImageOffset = new System.Drawing.Point(5, 0);
-            this.btnHome.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnHome.Location = new System.Drawing.Point(0, 261);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(246, 45);
-            this.btnHome.TabIndex = 2;
-            this.btnHome.Text = "Dashboard";
-            this.btnHome.TextOffset = new System.Drawing.Point(15, 0);
-            // 
             // FrmAdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
@@ -509,7 +574,7 @@
         private Guna.UI2.WinForms.Guna2CirclePictureBox picProfileImage;
         private Guna.UI2.WinForms.Guna2Button btnUsers;
         private Guna.UI2.WinForms.Guna2Button btnProducts;
-        private Guna.UI2.WinForms.Guna2Button btnSales;
+        private Guna.UI2.WinForms.Guna2Button btnPOS;
         private Guna.UI2.WinForms.Guna2Button btnLogOut;
         public System.Windows.Forms.Label lblUser;
         public System.Windows.Forms.Label lblRole;
@@ -517,7 +582,9 @@
         private Guna.UI2.WinForms.Guna2Button btnSubCategory;
         private Guna.UI2.WinForms.Guna2Button btnSuppliers;
         private Guna.UI2.WinForms.Guna2Button btnPurchaseOrders;
-        private Guna.UI2.WinForms.Guna2Button btnReports;
+        private Guna.UI2.WinForms.Guna2Button btnSalesReports;
         private Guna.UI2.WinForms.Guna2Button btnHome;
+        private Guna.UI2.WinForms.Guna2Button btnSaleHistory;
+        private Guna.UI2.WinForms.Guna2Button btnInventoryReports;
     }
 }

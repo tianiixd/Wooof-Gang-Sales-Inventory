@@ -52,7 +52,7 @@ namespace Woof_Gang_Sales___Inventory.Data
                                         OR p.SKU LIKE @search OR s.SupplierName LIKE @search 
                                         OR sc.SubCategoryName LIKE @search OR c.CategoryName LIKE @search)";
                     }
-                    query += " ORDER BY p.ProductName ASC";
+                    query += " ORDER BY p.Brand ASC";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {

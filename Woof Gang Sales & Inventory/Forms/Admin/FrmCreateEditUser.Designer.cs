@@ -348,7 +348,7 @@
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
-            this.lblTitle.Font = new System.Drawing.Font("Inter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
             this.lblTitle.Location = new System.Drawing.Point(2, 0);
             this.lblTitle.Name = "lblTitle";
@@ -495,7 +495,7 @@
             // 
             // label11
             // 
-            this.label11.Font = new System.Drawing.Font("Inter", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Poppins", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(747, 153);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
             this.label11.Name = "label11";
@@ -547,7 +547,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(312, 22);
             this.label13.TabIndex = 33;
-            this.label13.Text = "(Min 4 chars. Letters, numbers, _ , - allowed)";
+            this.label13.Text = "(4-20 characters. Letters, numbers, _ and - allowed)";
             // 
             // label14
             // 
@@ -557,7 +557,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(312, 22);
             this.label14.TabIndex = 34;
-            this.label14.Text = "(Min 8 chars. At least one letter and one number)";
+            this.label14.Text = "(Min 8 chars. Must include 1 letter && 1 number. Symbols allowed)";
             // 
             // guna2Separator5
             // 

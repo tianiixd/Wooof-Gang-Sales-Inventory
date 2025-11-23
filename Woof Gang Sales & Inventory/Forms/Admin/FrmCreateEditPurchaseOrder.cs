@@ -26,6 +26,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private int _lastSelectedProductId = -1;
         private BindingList<PurchaseOrderDetail> _cartItems;
         private List<Product> _availableProducts;
+        private List<Product> _lowStockList = null;
 
         // UI Constants
         private int btnWidth = 45;
@@ -47,6 +48,9 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             _poID = poID;
             _cartItems = new BindingList<PurchaseOrderDetail>();
 
+            LoadSuppliers();
+            SetupGrids();
+
             // Wire up events
             cmbSupplier.SelectedIndexChanged += cmbSupplier_SelectedIndexChanged;
             
@@ -62,6 +66,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             dgvOrderItems.CellMouseMove += dgvOrderItems_CellMouseMove;
             dgvOrderItems.CellMouseLeave += dgvOrderItems_CellMouseLeave;
             dgvOrderItems.CellValueChanged += dgvOrderItems_CellValueChanged;
+            dgvOrderItems.CellFormatting += dgvOrderItems_CellFormatting;
 
             dtpOrderDate.MaxDate = DateTime.Today.AddYears(100);
             dtpOrderDate.MinDate = DateTime.Today;
@@ -69,7 +74,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
 
         private void FrmCreateEditPurchaseOrder_Load(object sender, EventArgs e)
         {
-            LoadSuppliers();
             SetupGrids();
 
             // ✅ --- FIX 1: Reset Date Constraints ---
@@ -80,13 +84,15 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             if (_poID > 0)
             {
                 IsEditMode = true;
-                lblTitle.Text = $"Edit Purchase Order #{_poID}";
+                lblPOTitle.Text = $"Edit Purchase Order #{_poID}";
+                this.btnSave.Text = "Save";
+                this.btnSave.Image = Properties.Resources.edit3;
                 LoadOrderData(_poID);
             }
             else
             {
                 IsEditMode = false;
-                lblTitle.Text = "Create New Purchase Order";
+                lblPOTitle.Text = "Create New Purchase Order";
 
                 // Now safe to set to Today
                 dtpOrderDate.Value = DateTime.Today;
@@ -109,12 +115,16 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             dgvAvailableProducts.AutoGenerateColumns = false;
             dgvAvailableProducts.Columns.Clear();
 
+            
+
             dgvAvailableProducts.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductID", DataPropertyName = "ProductID", Visible = false });
             dgvAvailableProducts.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductName", HeaderText = "Product", DataPropertyName = "ProductName", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, ReadOnly = true});
             dgvAvailableProducts.Columns.Add(new DataGridViewTextBoxColumn { Name = "CurrentStock", HeaderText = "Stock", DataPropertyName = "Quantity", Width = 80 , ReadOnly = true } );
             var costCol = new DataGridViewTextBoxColumn { Name = "Cost", HeaderText = "Cost", DataPropertyName = "CostPrice", Width = 100, ReadOnly = true };
             costCol.DefaultCellStyle.Format = "N2";
             dgvAvailableProducts.Columns.Add(costCol);
+            dgvAvailableProducts.RowTemplate.Height = 42;
+            
 
             DataGridViewButtonColumn addBtn = new DataGridViewButtonColumn();
             addBtn.Name = "Add";
@@ -130,6 +140,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             dgvOrderItems.AutoGenerateColumns = false;
             dgvOrderItems.Columns.Clear();
             dgvOrderItems.DataSource = _cartItems;
+            dgvOrderItems.RowTemplate.Height = 42;
 
             dgvOrderItems.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductID", DataPropertyName = "ProductID", Visible = false });
             dgvOrderItems.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductName", HeaderText = "Product", DataPropertyName = "ProductName", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, ReadOnly = true });
@@ -152,7 +163,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             dgvOrderItems.Columns.Add(delBtn);
             DataGridViewStyler.ApplyStyle(dgvAvailableProducts);
             DataGridViewStyler.ApplyStyle(dgvOrderItems);
-            dgvAvailableProducts.CellFormatting += dgvAvailableProducts_CellFormatting;   
+            dgvAvailableProducts.CellFormatting += dgvAvailableProducts_CellFormatting;
         }
 
         // ✅ --- FIX 2: Added ColumnIndex Check ---
@@ -199,6 +210,39 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 }
             }
         }
+
+        private void dgvOrderItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            // 1. Existing Logic: Display Brand + Product Name
+            if (dgvOrderItems.Columns[e.ColumnIndex].Name == "ProductName")
+            {
+                var product = dgvOrderItems.Rows[e.RowIndex].DataBoundItem as PurchaseOrderDetail;
+                if (product != null)
+                {
+                    // Note: Since PurchaseOrderDetail already has the combined name from the "Add" logic, 
+                    // you might strictly not need this, but it's safe to keep.
+                    e.Value = product.ProductName;
+                }
+            }
+
+            // ✅ 2. NEW LOGIC: Calculate Subtotal dynamically
+            else if (dgvOrderItems.Columns[e.ColumnIndex].Name == "Subtotal")
+            {
+                var item = dgvOrderItems.Rows[e.RowIndex].DataBoundItem as PurchaseOrderDetail;
+                if (item != null)
+                {
+                    // Calculate: Qty * Cost
+                    decimal subtotal = item.Quantity * item.UnitCost;
+
+                    // Display it
+                    e.Value = subtotal.ToString("C");
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
 
         // ✅ --- FIX 2: Added ColumnIndex Check ---
         private void dgvOrderItems_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -427,28 +471,20 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         public void LoadAutoRestockItems(List<Product> itemsToRestock)
         {
             if (itemsToRestock == null || itemsToRestock.Count == 0) return;
-            int supplierId = itemsToRestock[0].SupplierID ?? 0;
-            if (supplierId > 0)
-            {
-                cmbSupplier.SelectedValue = supplierId;
-                cmbSupplier.Enabled = false;
-            }
-            foreach (var product in itemsToRestock)
-            {
-                int targetStock = (product.ReorderLevel ?? 5) + 20;
-                int qtyToOrder = targetStock - product.Quantity;
-                if (qtyToOrder <= 0) qtyToOrder = 10;
 
-                _cartItems.Add(new PurchaseOrderDetail
-                {
-                    ProductID = product.ProductID,
-                    ProductName = product.ProductName,
-                    Quantity = qtyToOrder,
-                    UnitCost = product.SellingPrice
-                });
+            // 1. Store the list for later use
+            _lowStockList = itemsToRestock;
+
+            // 3. Select the supplier of the first item (Just to be helpful)
+            // This will trigger 'cmbSupplier_SelectedIndexChanged' automatically!
+            int firstSupplierId = itemsToRestock[0].SupplierID ?? 0;
+            if (firstSupplierId > 0)
+            {
+                cmbSupplier.SelectedValue = firstSupplierId;
             }
-            CalculateTotals();
-            lblTitle.Text = "Auto-Restock Purchase Order";
+
+            // ✅ CRITICAL: Do NOT disable the combo box. 
+            // cmbSupplier.Enabled = false; <--- REMOVED THIS
         }
 
         private void LoadProductsForSupplier(int supplierId)
@@ -462,14 +498,55 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         {
             if (cmbSupplier.SelectedValue != null && int.TryParse(cmbSupplier.SelectedValue.ToString(), out int supplierId))
             {
+                // 1. Standard Logic: Clear Cart if changing suppliers
                 if (_cartItems.Count > 0)
                 {
+                    // Only ask if we are NOT just starting up (optional check)
                     var result = DialogHelper.ShowConfirmDialog("Change Supplier?", "Changing supplier will clear your current cart. Continue?", "warning");
-                    if (result == DialogResult.No) { return; }
+                    if (result == DialogResult.No)
+                    {
+                        // Revert selection? (Complex logic, simpler to just return for now)
+                        return;
+                    }
                     _cartItems.Clear();
                     CalculateTotals();
                 }
+
+                // 2. Load Left Grid (Existing Logic)
                 LoadProductsForSupplier(supplierId);
+
+                // ✅ 3. NEW: Check if we have Auto-Restock items for THIS supplier
+                if (_lowStockList != null && _lowStockList.Count > 0)
+                {
+                    // Find items in our "To-Do List" that match this supplier
+                    var itemsForThisSupplier = _lowStockList.Where(p => p.SupplierID == supplierId).ToList();
+
+                    if (itemsForThisSupplier.Count > 0)
+                    {
+                        foreach (var product in itemsForThisSupplier)
+                        {
+                            // Calculate Quantity (Target - Current)
+                            int targetStock = (product.ReorderLevel ?? 5) + 30;
+                            int qtyToOrder = targetStock - product.Quantity;
+                            if (qtyToOrder <= 0) qtyToOrder = 10;
+
+                            // Add to Cart
+                            _cartItems.Add(new PurchaseOrderDetail
+                            {
+                                ProductID = product.ProductID,
+                                ProductName = product.ProductName, // Or combine with Brand if you prefer
+                                Quantity = qtyToOrder,
+                                UnitCost = product.CostPrice
+                            });
+                        }
+
+                        // Update UI
+                        CalculateTotals();
+
+                        // Optional: Inform the user
+                        // DialogHelper.ShowCustomDialog("Auto-Added", $"Added {itemsForThisSupplier.Count} low-stock items.", "success");
+                    }
+                }
             }
         }
 
@@ -494,14 +571,10 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private void CalculateTotals()
         {
             decimal grandTotal = 0;
-            foreach (DataGridViewRow row in dgvOrderItems.Rows)
+
+            foreach (var item in _cartItems)
             {
-                if (row.DataBoundItem is PurchaseOrderDetail item)
-                {
-                    decimal subtotal = item.Quantity * item.UnitCost;
-                    row.Cells["Subtotal"].Value = subtotal;
-                    grandTotal += subtotal;
-                }
+                grandTotal += (item.Quantity * item.UnitCost);
             }
             if (lblTotal != null) lblTotal.Text = grandTotal.ToString("C");
         }

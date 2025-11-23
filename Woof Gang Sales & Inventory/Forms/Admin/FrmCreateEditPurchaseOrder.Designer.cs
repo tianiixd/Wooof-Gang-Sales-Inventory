@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCreateEditPurchaseOrder));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblPOTitle = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvAvailableProducts = new System.Windows.Forms.DataGridView();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -65,27 +65,27 @@
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
-            this.guna2Panel1.Controls.Add(this.lblTitle);
+            this.guna2Panel1.Controls.Add(this.lblPOTitle);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(1250, 120);
             this.guna2Panel1.TabIndex = 1;
             // 
-            // lblTitle
+            // lblPOTitle
             // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblPOTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
-            this.lblTitle.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.lblTitle.Location = new System.Drawing.Point(12, 30);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(339, 48);
-            this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "Create Purchase Order";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPOTitle.AutoSize = true;
+            this.lblPOTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(47)))));
+            this.lblPOTitle.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPOTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
+            this.lblPOTitle.Location = new System.Drawing.Point(12, 30);
+            this.lblPOTitle.Name = "lblPOTitle";
+            this.lblPOTitle.Size = new System.Drawing.Size(339, 48);
+            this.lblPOTitle.TabIndex = 1;
+            this.lblPOTitle.Text = "Create Purchase Order";
+            this.lblPOTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitContainer1
             // 
@@ -449,7 +449,6 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private Guna.UI2.WinForms.Guna2ComboBox cmbSupplier;
         private System.Windows.Forms.Label label12;
@@ -471,5 +470,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtCostPrice;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse3;
+        public System.Windows.Forms.Label lblPOTitle;
     }
 }

@@ -28,7 +28,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         public FrmPayment()
         {
             InitializeComponent();
-            this.DialogResult = DialogResult.Cancel; // Default to cancel
+            this.DialogResult = DialogResult.Cancel;
+            
         }
 
         /// <summary>
@@ -61,7 +62,6 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             // Wire up events
             cmbPaymentMethod.SelectedIndexChanged += cmbPaymentMethod_SelectedIndexChanged;
             txtAmountTendered.TextChanged += txtAmountTendered_TextChanged;
-            btnConfirmPayment.Click += btnConfirmPayment_Click;
             btnCancel.Click += (s, ev) => { this.Close(); };
         }
 
@@ -77,11 +77,23 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             if (method == "Cash")
             {
                 // ✅ --- FIX: Show/Enable Tendered, Hide/Disable Ref ---
+                txtAmountTendered.Text = string.Empty;
                 txtAmountTendered.Enabled = true;
-                txtPaymentRef.Visible = true;
+
+
+                lblRefTitle.Visible = false;
+
+                txtPaymentRef.Visible = false;
                 txtPaymentRef.Enabled = false;
-                lblChange.Enabled = true;
-                lblTitleChange.Enabled = true;
+
+                txtPaymentRef.PlaceholderText = string.Empty;
+                lblChange.Visible = true;
+                lblTitleChange.Visible = true;
+
+                this.Size = new System.Drawing.Size(744, 470);
+                btnConfirmPayment.Location = new System.Drawing.Point(60, 362);
+                btnCancel.Location = new System.Drawing.Point(441, 362);
+
             }
             else
             {
@@ -89,12 +101,19 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 txtAmountTendered.Text = _totalAmount.ToString("F2"); // Auto-fill exact amount
                 txtAmountTendered.Enabled = false; // Disable tendered for digital
 
+                lblRefTitle.Visible = true;
                 txtPaymentRef.Visible = true;
                 txtPaymentRef.Enabled = true;
                 txtPaymentRef.PlaceholderText = $"{method} Reference #";
                 txtPaymentRef.Focus();
+
                 lblChange.Visible = false;
                 lblTitleChange.Visible = false;
+
+                this.Size = new System.Drawing.Size(744, 590);
+                btnConfirmPayment.Location = new System.Drawing.Point(60, 482);
+                btnCancel.Location = new System.Drawing.Point(441, 482);
+
             }
         }
 
@@ -186,6 +205,17 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             decimal finalTenderedAmount = (paymentMethod == "Cash") ? _tenderedAmount : _totalAmount;
             string finalRefNumber = (paymentMethod == "Cash") ? null : refNumber;
 
+            string customerName = txtCustomerName.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(customerName))
+            {
+                if (!Regex.IsMatch(customerName, @"^[\p{L}0-9\s.'-]+$"))
+                {
+                    DialogHelper.ShowCustomDialog("Invalid Name",
+                        "Customer name contains invalid characters. Allowed: Letters, Numbers, Spaces, Dots, Hyphens, and Apostrophes.", "warning");
+                    return;
+                }
+            }
+
             // --- Build the Sale Object ---
             Sale newSale = new Sale
             {
@@ -193,7 +223,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 SaleTime = DateTime.Now.TimeOfDay,  // ✅ Use .TimeOfDay
                 CashierID = _loggedInUser.UserID,
                 DiscountID = _discountID,
-                CustomerName = null, // We can add a textbox for this later if needed
+                CustomerName = customerName, // We can add a textbox for this later if needed
                 TotalAmount = _totalAmount,
                 PaymentMethod = paymentMethod,
                 PaymentRef = finalRefNumber,

@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlCart = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbDiscount = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblPrice = new System.Windows.Forms.Label();
             this.btnPay = new Guna.UI2.WinForms.Guna2Button();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -78,83 +76,41 @@
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
             this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.dgvCart.Location = new System.Drawing.Point(3, 91);
+            this.dgvCart.Location = new System.Drawing.Point(-1, 91);
             this.dgvCart.MultiSelect = false;
             this.dgvCart.Name = "dgvCart";
-            this.dgvCart.Size = new System.Drawing.Size(462, 711);
+            this.dgvCart.Size = new System.Drawing.Size(462, 735);
             this.dgvCart.TabIndex = 2;
             // 
             // guna2Panel1
             // 
-            this.guna2Panel1.Controls.Add(this.label2);
-            this.guna2Panel1.Controls.Add(this.cmbDiscount);
             this.guna2Panel1.Controls.Add(this.lblPrice);
             this.guna2Panel1.Controls.Add(this.btnPay);
             this.guna2Panel1.Controls.Add(this.lblTotal);
-            this.guna2Panel1.Location = new System.Drawing.Point(0, 803);
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 832);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(468, 228);
+            this.guna2Panel1.Size = new System.Drawing.Size(468, 199);
             this.guna2Panel1.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Inter", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label2.Location = new System.Drawing.Point(23, 65);
-            this.label2.Margin = new System.Windows.Forms.Padding(5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 28);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Discount";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cmbDiscount
-            // 
-            this.cmbDiscount.BackColor = System.Drawing.Color.Transparent;
-            this.cmbDiscount.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.cmbDiscount.BorderRadius = 8;
-            this.cmbDiscount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbDiscount.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbDiscount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDiscount.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbDiscount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbDiscount.Font = new System.Drawing.Font("Nunito", 12F);
-            this.cmbDiscount.ForeColor = System.Drawing.Color.Black;
-            this.cmbDiscount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbDiscount.ItemHeight = 41;
-            this.cmbDiscount.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDiscount.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbDiscount.Location = new System.Drawing.Point(28, 101);
-            this.cmbDiscount.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.cmbDiscount.Name = "cmbDiscount";
-            this.cmbDiscount.Size = new System.Drawing.Size(230, 47);
-            this.cmbDiscount.TabIndex = 9;
-            this.cmbDiscount.TextOffset = new System.Drawing.Point(3, 0);
-            this.cmbDiscount.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
             // lblPrice
             // 
-            this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Inter", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
             this.lblPrice.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblPrice.Location = new System.Drawing.Point(135, 7);
+            this.lblPrice.Location = new System.Drawing.Point(114, 35);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(5);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(44, 48);
+            this.lblPrice.Size = new System.Drawing.Size(327, 48);
             this.lblPrice.TabIndex = 5;
-            this.lblPrice.Text = "₱";
             this.lblPrice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnPay
@@ -170,7 +126,7 @@
             this.btnPay.Font = new System.Drawing.Font("Inter", 16F);
             this.btnPay.ForeColor = System.Drawing.Color.White;
             this.btnPay.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(150)))), ((int)(((byte)(48)))));
-            this.btnPay.Location = new System.Drawing.Point(5, 158);
+            this.btnPay.Location = new System.Drawing.Point(5, 130);
             this.btnPay.Margin = new System.Windows.Forms.Padding(5, 3, 5, 5);
             this.btnPay.Name = "btnPay";
             this.btnPay.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(30)))));
@@ -182,14 +138,13 @@
             // 
             // lblTotal
             // 
-            this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Inter", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
             this.lblTotal.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblTotal.Location = new System.Drawing.Point(21, 16);
+            this.lblTotal.Location = new System.Drawing.Point(21, 35);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(5);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(83, 39);
+            this.lblTotal.Size = new System.Drawing.Size(83, 48);
             this.lblTotal.TabIndex = 4;
             this.lblTotal.Text = "Total";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -402,7 +357,6 @@
             this.pnlCart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
             this.pnlCartTop.ResumeLayout(false);
             this.pnlFilters.ResumeLayout(false);
             this.pnlCenter.ResumeLayout(false);
@@ -421,8 +375,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private System.Windows.Forms.Label lblPrice;
         private Guna.UI2.WinForms.Guna2Panel pnlCartTop;
-        private System.Windows.Forms.Label label2;
-        public Guna.UI2.WinForms.Guna2ComboBox cmbDiscount;
         private Guna.UI2.WinForms.Guna2Panel pnlFilters;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblTime;

@@ -28,36 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlCard = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblBrand = new System.Windows.Forms.Label();
             this.lblStock = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.picImage = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.lblBrand = new System.Windows.Forms.Label();
-            this.pnlCard.SuspendLayout();
+            this.pnlCard = new Guna.UI2.WinForms.Guna2Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
+            this.pnlCard.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlCard
+            // lblBrand
             // 
-            this.pnlCard.BackColor = System.Drawing.Color.Transparent;
-            this.pnlCard.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnlCard.BorderRadius = 8;
-            this.pnlCard.BorderThickness = 2;
-            this.pnlCard.Controls.Add(this.lblBrand);
-            this.pnlCard.Controls.Add(this.lblStock);
-            this.pnlCard.Controls.Add(this.lblPrice);
-            this.pnlCard.Controls.Add(this.lblTitle);
-            this.pnlCard.Controls.Add(this.picImage);
-            this.pnlCard.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.pnlCard.CustomBorderThickness = new System.Windows.Forms.Padding(1);
-            this.pnlCard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCard.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.pnlCard.Location = new System.Drawing.Point(0, 0);
-            this.pnlCard.Name = "pnlCard";
-            this.pnlCard.ShadowDecoration.Enabled = true;
-            this.pnlCard.Size = new System.Drawing.Size(200, 200);
-            this.pnlCard.TabIndex = 0;
+            this.lblBrand.Font = new System.Drawing.Font("Inter", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
+            this.lblBrand.Location = new System.Drawing.Point(2, 116);
+            this.lblBrand.Name = "lblBrand";
+            this.lblBrand.Size = new System.Drawing.Size(194, 20);
+            this.lblBrand.TabIndex = 4;
+            this.lblBrand.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblStock
             // 
@@ -99,15 +88,26 @@
             this.picImage.TabIndex = 0;
             this.picImage.TabStop = false;
             // 
-            // lblBrand
+            // pnlCard
             // 
-            this.lblBrand.Font = new System.Drawing.Font("Inter", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(44)))), ((int)(((byte)(73)))));
-            this.lblBrand.Location = new System.Drawing.Point(2, 116);
-            this.lblBrand.Name = "lblBrand";
-            this.lblBrand.Size = new System.Drawing.Size(194, 20);
-            this.lblBrand.TabIndex = 4;
-            this.lblBrand.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pnlCard.BackColor = System.Drawing.Color.Transparent;
+            this.pnlCard.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlCard.BorderRadius = 8;
+            this.pnlCard.BorderThickness = 2;
+            this.pnlCard.Controls.Add(this.lblBrand);
+            this.pnlCard.Controls.Add(this.lblStock);
+            this.pnlCard.Controls.Add(this.lblPrice);
+            this.pnlCard.Controls.Add(this.lblTitle);
+            this.pnlCard.Controls.Add(this.picImage);
+            this.pnlCard.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.pnlCard.CustomBorderThickness = new System.Windows.Forms.Padding(1);
+            this.pnlCard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCard.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
+            this.pnlCard.Location = new System.Drawing.Point(0, 0);
+            this.pnlCard.Name = "pnlCard";
+            this.pnlCard.ShadowDecoration.Enabled = true;
+            this.pnlCard.Size = new System.Drawing.Size(200, 200);
+            this.pnlCard.TabIndex = 0;
             // 
             // ProductCard
             // 
@@ -117,19 +117,18 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "ProductCard";
             this.Size = new System.Drawing.Size(200, 200);
-            this.pnlCard.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
+            this.pnlCard.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2Panel pnlCard;
         private Guna.UI2.WinForms.Guna2PictureBox picImage;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.Label lblBrand;
+        private Guna.UI2.WinForms.Guna2Panel pnlCard;
     }
 }

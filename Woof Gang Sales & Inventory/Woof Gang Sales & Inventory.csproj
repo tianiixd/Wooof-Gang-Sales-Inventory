@@ -232,6 +232,7 @@
   <ItemGroup>
     <Compile Include="Data\CategoryRepository.cs" />
     <Compile Include="Data\Database\DBConnection.cs" />
+    <Compile Include="Data\ReportsRepository.cs" />
     <Compile Include="Data\DiscountRepository.cs" />
     <Compile Include="Data\ProductRepository.cs" />
     <Compile Include="Data\PurchaseOrderRepository.cs" />
@@ -294,6 +295,12 @@
     <Compile Include="Forms\Admin\FrmCreateEditUser.Designer.cs">
       <DependentUpon>FrmCreateEditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\FrmInventoryReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmInventoryReports.Designer.cs">
+      <DependentUpon>FrmInventoryReports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Admin\FrmPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,6 +324,24 @@
     </Compile>
     <Compile Include="Forms\Admin\FrmPurchaseOrderView.Designer.cs">
       <DependentUpon>FrmPurchaseOrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmReceivePO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmReceivePO.Designer.cs">
+      <DependentUpon>FrmReceivePO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmSaleHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmSaleHistory.Designer.cs">
+      <DependentUpon>FrmSaleHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmSalesReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\FrmSalesReports.Designer.cs">
+      <DependentUpon>FrmSalesReports.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin\FrmSubCategoryView.cs">
       <SubType>Form</SubType>
@@ -357,12 +382,16 @@
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Discount.cs" />
+    <Compile Include="Models\InventoryReportItem.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\PurchaseOrderDetail.cs" />
     <Compile Include="Models\PurchaseOrderDetailView.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\SalesDetail.cs" />
+    <Compile Include="Models\SalesDetailView.cs" />
+    <Compile Include="Models\SalesReportItem.cs" />
+    <Compile Include="Models\SaleViewModel.cs" />
     <Compile Include="Models\StockTransaction.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -384,6 +413,7 @@
     <Compile Include="Util\DataGridViewStyler.cs" />
     <Compile Include="Util\DataHelper.cs" />
     <Compile Include="Util\DialogHelper.cs" />
+    <Compile Include="Util\ExportHelper.cs" />
     <Compile Include="Util\FormHelper.cs" />
     <Compile Include="Util\PasswordHelper.cs" />
     <Compile Include="frmView.cs">
@@ -423,6 +453,9 @@
     <EmbeddedResource Include="Forms\Admin\FrmCreateEditUser.resx">
       <DependentUpon>FrmCreateEditUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\FrmInventoryReports.resx">
+      <DependentUpon>FrmInventoryReports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\FrmPayment.resx">
       <DependentUpon>FrmPayment.cs</DependentUpon>
     </EmbeddedResource>
@@ -434,6 +467,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\FrmPurchaseOrderView.resx">
       <DependentUpon>FrmPurchaseOrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\FrmReceivePO.resx">
+      <DependentUpon>FrmReceivePO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\FrmSaleHistory.resx">
+      <DependentUpon>FrmSaleHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\FrmSalesReports.resx">
+      <DependentUpon>FrmSalesReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\FrmSubCategoryView.resx">
       <DependentUpon>FrmSubCategoryView.cs</DependentUpon>
