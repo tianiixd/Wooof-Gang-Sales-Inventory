@@ -61,9 +61,9 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             {
                 // Reset labels if empty
                 lblTotalValue.Text = "₱0.00";
-                lblTotalItems.Text = "0";
-                lblLowStock.Text = "0";
-                lblOutStock.Text = "0";
+                lblFastMoving.Text = "0";
+                lblSlowMoving.Text = "0";
+                lblNonMoving.Text = "0";
                 return;
             }
 
@@ -71,26 +71,20 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             decimal totalValue = _reportData.Sum(x => x.TotalAssetValue);
             lblTotalValue.Text = totalValue.ToString("C");
 
-            // Card 2: Total Items (SKUs)
-            lblTotalItems.Text = _reportData.Count.ToString("N0");
+            // ✅ FIX: Ensure this logic matches the "Movement" column logic exactly
 
-            // Card 3: Low Stock (Warning)
-            // Items that are low but NOT zero
-            int lowStockCount = _reportData.Count(x => x.Status == "Low Stock");
-            lblLowStock.Text = lowStockCount.ToString("N0");
+            // Card 2: Fast Moving (Sold > 50)
+            // MAKE SURE this matches the string in your Repository logic ("Fast Moving")
+            int fastCount = _reportData.Count(x => x.StockMovement == "Fast Moving");
+            lblFastMoving.Text = fastCount.ToString("N0");
 
-            // Visual Logic: Orange for warning
-            if (lowStockCount > 0) lblLowStock.ForeColor = Color.Orange;
-            else lblLowStock.ForeColor = Color.Green;
+            // Card 3: Slow Moving (Sold 1-50)
+            int slowCount = _reportData.Count(x => x.StockMovement == "Slow Moving");
+            lblSlowMoving.Text = slowCount.ToString("N0");
 
-            // Card 4: Out of Stock (Critical)
-            // Items that are strictly zero
-            int outStockCount = _reportData.Count(x => x.Status == "Out of Stock");
-            lblOutStock.Text = outStockCount.ToString("N0");
-
-            // Visual Logic: Red for critical
-            if (outStockCount > 0) lblOutStock.ForeColor = Color.Red;
-            else lblOutStock.ForeColor = Color.Green;
+            // Card 4: Non-Moving (Sold 0)
+            int nonMovingCount = _reportData.Count(x => x.StockMovement == "Non-Moving");
+            lblNonMoving.Text = nonMovingCount.ToString("N0");
         }
 
         private void FormatGrid()
@@ -139,6 +133,16 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                             e.CellStyle.SelectionForeColor = Color.Green;
                         }
                     }
+
+                    // 2. MOVEMENT COLUMN (Text Color)
+                    if (dgvInventory.Columns[e.ColumnIndex].Name == "StockMovement")
+                    {
+                        string val = e.Value?.ToString();
+                        if (val == "Fast Moving") e.CellStyle.ForeColor = Color.Green;
+                        else if (val == "Slow Moving") e.CellStyle.ForeColor = Color.Orange;
+                        else e.CellStyle.ForeColor = Color.Gray;
+                    }
+
                 };
             }
         }

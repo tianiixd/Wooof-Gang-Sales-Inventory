@@ -131,7 +131,7 @@ namespace Woof_Gang_Sales___Inventory.Util
                                 doc.Add(new Paragraph("Wooof Gang Pet Hotel, Grooming & Supplies")
                                     .SetFont(fontBold).SetFontSize(16).SetTextAlignment(TextAlignment.CENTER));
 
-                                doc.Add(new Paragraph("#40 Yakal Street, Neopolitan VI Sitio Seville, Fairview, Quezon City.\nContact: (63+) 0962-694-7474")
+                                doc.Add(new Paragraph("#40 Yakal Street, Neopolitan VI Sitio Seville, Fairview, Quezon City.\nContact: 09626947474")
                                     .SetFont(fontNormal).SetFontSize(10).SetTextAlignment(TextAlignment.CENTER)
                                     .SetFontColor(ColorConstants.DARK_GRAY));
 
@@ -252,7 +252,7 @@ namespace Woof_Gang_Sales___Inventory.Util
                                 doc.Add(new Paragraph("Wooof Gang Pet Hotel, Grooming & Supplies")
                                     .SetFont(fontBold).SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
 
-                                doc.Add(new Paragraph("#40 Yakal Street, Neopolitan VI Sitio Seville, Fairview, Quezon City.\nContact: (63+) 0962 694 7474")
+                                doc.Add(new Paragraph("#40 Yakal Street, Neopolitan VI Sitio Seville, Fairview, Quezon City.\nContact: 0962 694 7474")
                                     .SetFont(fontNormal).SetFontSize(10).SetTextAlignment(TextAlignment.CENTER)
                                     .SetFontColor(ColorConstants.DARK_GRAY)
                                     .SetMarginBottom(20)); // Add space before title

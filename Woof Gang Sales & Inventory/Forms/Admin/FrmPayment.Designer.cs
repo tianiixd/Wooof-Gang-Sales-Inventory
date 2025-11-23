@@ -302,7 +302,7 @@
             this.txtCustomerName.Location = new System.Drawing.Point(59, 106);
             this.txtCustomerName.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.PlaceholderText = "Enter Amount";
+            this.txtCustomerName.PlaceholderText = "Enter Customer Name";
             this.txtCustomerName.SelectedText = "";
             this.txtCustomerName.Size = new System.Drawing.Size(250, 41);
             this.txtCustomerName.TabIndex = 50;

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInventoryReports));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.lblDateClock = new System.Windows.Forms.Label();
@@ -44,15 +44,15 @@
             this.itemsPanel = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblTotalItems = new System.Windows.Forms.Label();
+            this.lblFastMoving = new System.Windows.Forms.Label();
             this.lowStockPanel = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblLowStock = new System.Windows.Forms.Label();
+            this.lblSlowMoving = new System.Windows.Forms.Label();
             this.outOfStockPanel = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblOutStock = new System.Windows.Forms.Label();
+            this.lblNonMoving = new System.Windows.Forms.Label();
             this.btnExportPdf = new Guna.UI2.WinForms.Guna2Button();
             this.btnExportExcel = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
@@ -124,14 +124,14 @@
             this.dgvInventory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvInventory.BackgroundColor = System.Drawing.Color.White;
             this.dgvInventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Inter", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Inter", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInventory.Location = new System.Drawing.Point(14, 344);
             this.dgvInventory.Margin = new System.Windows.Forms.Padding(5);
@@ -197,7 +197,7 @@
             this.itemsPanel.BorderRadius = 20;
             this.itemsPanel.Controls.Add(this.guna2PictureBox2);
             this.itemsPanel.Controls.Add(this.label1);
-            this.itemsPanel.Controls.Add(this.lblTotalItems);
+            this.itemsPanel.Controls.Add(this.lblFastMoving);
             this.itemsPanel.Location = new System.Drawing.Point(421, 176);
             this.itemsPanel.Margin = new System.Windows.Forms.Padding(20, 10, 20, 10);
             this.itemsPanel.Name = "itemsPanel";
@@ -223,15 +223,15 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 27);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Total Items";
+            this.label1.Text = "Fast Moving";
             // 
-            // lblTotalItems
+            // lblFastMoving
             // 
-            this.lblTotalItems.Font = new System.Drawing.Font("Inter", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalItems.Location = new System.Drawing.Point(112, 77);
-            this.lblTotalItems.Name = "lblTotalItems";
-            this.lblTotalItems.Size = new System.Drawing.Size(185, 36);
-            this.lblTotalItems.TabIndex = 3;
+            this.lblFastMoving.Font = new System.Drawing.Font("Inter", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFastMoving.Location = new System.Drawing.Point(112, 77);
+            this.lblFastMoving.Name = "lblFastMoving";
+            this.lblFastMoving.Size = new System.Drawing.Size(185, 36);
+            this.lblFastMoving.TabIndex = 3;
             // 
             // lowStockPanel
             // 
@@ -239,7 +239,7 @@
             this.lowStockPanel.BorderRadius = 20;
             this.lowStockPanel.Controls.Add(this.guna2PictureBox3);
             this.lowStockPanel.Controls.Add(this.label2);
-            this.lowStockPanel.Controls.Add(this.lblLowStock);
+            this.lowStockPanel.Controls.Add(this.lblSlowMoving);
             this.lowStockPanel.Location = new System.Drawing.Point(761, 176);
             this.lowStockPanel.Margin = new System.Windows.Forms.Padding(20, 10, 20, 10);
             this.lowStockPanel.Name = "lowStockPanel";
@@ -265,15 +265,15 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(164, 27);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Low Stock";
+            this.label2.Text = "Slow Moving";
             // 
-            // lblLowStock
+            // lblSlowMoving
             // 
-            this.lblLowStock.Font = new System.Drawing.Font("Inter", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLowStock.Location = new System.Drawing.Point(112, 77);
-            this.lblLowStock.Name = "lblLowStock";
-            this.lblLowStock.Size = new System.Drawing.Size(185, 36);
-            this.lblLowStock.TabIndex = 3;
+            this.lblSlowMoving.Font = new System.Drawing.Font("Inter", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSlowMoving.Location = new System.Drawing.Point(112, 77);
+            this.lblSlowMoving.Name = "lblSlowMoving";
+            this.lblSlowMoving.Size = new System.Drawing.Size(185, 36);
+            this.lblSlowMoving.TabIndex = 3;
             // 
             // outOfStockPanel
             // 
@@ -281,7 +281,7 @@
             this.outOfStockPanel.BorderRadius = 20;
             this.outOfStockPanel.Controls.Add(this.guna2PictureBox4);
             this.outOfStockPanel.Controls.Add(this.label3);
-            this.outOfStockPanel.Controls.Add(this.lblOutStock);
+            this.outOfStockPanel.Controls.Add(this.lblNonMoving);
             this.outOfStockPanel.Location = new System.Drawing.Point(1101, 176);
             this.outOfStockPanel.Margin = new System.Windows.Forms.Padding(20, 10, 20, 10);
             this.outOfStockPanel.Name = "outOfStockPanel";
@@ -307,15 +307,15 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(164, 27);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Out of Stock";
+            this.label3.Text = "Non-Moving";
             // 
-            // lblOutStock
+            // lblNonMoving
             // 
-            this.lblOutStock.Font = new System.Drawing.Font("Inter", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOutStock.Location = new System.Drawing.Point(112, 77);
-            this.lblOutStock.Name = "lblOutStock";
-            this.lblOutStock.Size = new System.Drawing.Size(185, 36);
-            this.lblOutStock.TabIndex = 3;
+            this.lblNonMoving.Font = new System.Drawing.Font("Inter", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNonMoving.Location = new System.Drawing.Point(112, 77);
+            this.lblNonMoving.Name = "lblNonMoving";
+            this.lblNonMoving.Size = new System.Drawing.Size(185, 36);
+            this.lblNonMoving.TabIndex = 3;
             // 
             // btnExportPdf
             // 
@@ -438,15 +438,15 @@
         private Guna.UI2.WinForms.Guna2Panel itemsPanel;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblTotalItems;
+        private System.Windows.Forms.Label lblFastMoving;
         private Guna.UI2.WinForms.Guna2Panel lowStockPanel;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblLowStock;
+        private System.Windows.Forms.Label lblSlowMoving;
         private Guna.UI2.WinForms.Guna2Panel outOfStockPanel;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblOutStock;
+        private System.Windows.Forms.Label lblNonMoving;
         public Guna.UI2.WinForms.Guna2Button btnExportPdf;
         public Guna.UI2.WinForms.Guna2Button btnExportExcel;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse2;
