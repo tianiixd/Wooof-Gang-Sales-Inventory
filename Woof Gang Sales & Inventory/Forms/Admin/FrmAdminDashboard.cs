@@ -32,6 +32,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
         private FrmSalesHistory saleView;
         private FrmSalesReports salesReportsView;
         private FrmInventoryReports inventoryReportsView;
+        private FrmDashboard dashboardView;
         public static FrmAdminDashboard GetInstance(User? user = null)
         {
             if (formAdmin == null || formAdmin.IsDisposed)
@@ -71,6 +72,15 @@ namespace Woof_Gang_Sales___Inventory.Admin
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
+            if (btnHome.Checked)
+            {
+                if (dashboardView == null || dashboardView.IsDisposed)
+                {
+                    dashboardView = new FrmDashboard(); 
+                }
+
+                AddControls(dashboardView);
+            }
             guna2MessageDialog1.Parent = this;
             btnMaximize.PerformClick();
 
@@ -302,6 +312,17 @@ namespace Woof_Gang_Sales___Inventory.Admin
             }
 
             AddControls(inventoryReportsView);
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            
+            if (dashboardView == null || dashboardView.IsDisposed)
+            {
+                dashboardView = new FrmDashboard();
+            }
+
+            AddControls(dashboardView);
         }
     }
 }

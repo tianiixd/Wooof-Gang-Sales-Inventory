@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSupplierView));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.cmbFilterStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -187,14 +187,14 @@
             this.dgvSupplier.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSupplier.BackgroundColor = System.Drawing.Color.White;
             this.dgvSupplier.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Inter", 11.25F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Inter", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSupplier.Location = new System.Drawing.Point(29, 352);
             this.dgvSupplier.Margin = new System.Windows.Forms.Padding(20);
@@ -260,6 +260,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Inter", 13F);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
             this.label3.Location = new System.Drawing.Point(113, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(186, 27);
@@ -269,6 +270,7 @@
             // lblTotalSuppliers
             // 
             this.lblTotalSuppliers.Font = new System.Drawing.Font("Inter", 15F);
+            this.lblTotalSuppliers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
             this.lblTotalSuppliers.Location = new System.Drawing.Point(112, 77);
             this.lblTotalSuppliers.Name = "lblTotalSuppliers";
             this.lblTotalSuppliers.Size = new System.Drawing.Size(131, 36);
@@ -302,6 +304,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Inter", 13F);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
             this.label4.Location = new System.Drawing.Point(122, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(179, 27);
@@ -311,6 +314,7 @@
             // lblUnusedSuppliers
             // 
             this.lblUnusedSuppliers.Font = new System.Drawing.Font("Inter", 15F);
+            this.lblUnusedSuppliers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
             this.lblUnusedSuppliers.Location = new System.Drawing.Point(121, 77);
             this.lblUnusedSuppliers.Name = "lblUnusedSuppliers";
             this.lblUnusedSuppliers.Size = new System.Drawing.Size(131, 36);
@@ -344,6 +348,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Inter", 13F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
             this.label6.Location = new System.Drawing.Point(110, 31);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(179, 27);
@@ -353,6 +358,7 @@
             // lblTopSupplier
             // 
             this.lblTopSupplier.Font = new System.Drawing.Font("Inter", 15F);
+            this.lblTopSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
             this.lblTopSupplier.Location = new System.Drawing.Point(114, 77);
             this.lblTopSupplier.Name = "lblTopSupplier";
             this.lblTopSupplier.Size = new System.Drawing.Size(218, 36);

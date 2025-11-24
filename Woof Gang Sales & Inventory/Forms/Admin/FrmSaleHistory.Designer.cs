@@ -92,7 +92,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(10);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1662, 156);
+            this.guna2Panel1.Size = new System.Drawing.Size(1674, 156);
             this.guna2Panel1.TabIndex = 10;
             // 
             // dtpEnd
@@ -216,7 +216,7 @@
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
             this.txtSearch.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtSearch.Location = new System.Drawing.Point(482, 90);
+            this.txtSearch.Location = new System.Drawing.Point(494, 90);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 10, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = " Search by Trans #, cashier name";

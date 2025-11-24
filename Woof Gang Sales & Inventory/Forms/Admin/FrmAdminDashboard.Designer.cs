@@ -426,6 +426,7 @@
             this.btnHome.Animated = true;
             this.btnHome.BackColor = System.Drawing.Color.Transparent;
             this.btnHome.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnHome.Checked = true;
             this.btnHome.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(100)))), ((int)(((byte)(150)))));
             this.btnHome.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -450,6 +451,7 @@
             this.btnHome.TabIndex = 2;
             this.btnHome.Text = "Dashboard";
             this.btnHome.TextOffset = new System.Drawing.Point(15, 0);
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // lblUser
             // 
@@ -483,9 +485,9 @@
             this.guna2Panel1.Controls.Add(this.btnMaximize);
             this.guna2Panel1.Controls.Add(this.guna2ControlBox1);
             this.guna2Panel1.Controls.Add(this.btnExit);
-            this.guna2Panel1.Location = new System.Drawing.Point(246, 0);
+            this.guna2Panel1.Location = new System.Drawing.Point(268, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1674, 49);
+            this.guna2Panel1.Size = new System.Drawing.Size(1652, 49);
             this.guna2Panel1.TabIndex = 3;
             // 
             // btnMaximize
@@ -498,7 +500,7 @@
             this.btnMaximize.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(168)))), ((int)(((byte)(203)))));
             this.btnMaximize.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(105)))), ((int)(((byte)(165)))));
             this.btnMaximize.IconColor = System.Drawing.Color.White;
-            this.btnMaximize.Location = new System.Drawing.Point(1569, 10);
+            this.btnMaximize.Location = new System.Drawing.Point(1547, 10);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(45, 29);
             this.btnMaximize.TabIndex = 1;
@@ -513,7 +515,7 @@
             this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(168)))), ((int)(((byte)(203)))));
             this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(105)))), ((int)(((byte)(165)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(1518, 10);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(1496, 10);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.Size = new System.Drawing.Size(45, 29);
             this.guna2ControlBox1.TabIndex = 0;
@@ -528,7 +530,7 @@
             this.btnExit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnExit.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(91)))), ((int)(((byte)(91)))));
             this.btnExit.IconColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(1620, 10);
+            this.btnExit.Location = new System.Drawing.Point(1598, 10);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(45, 29);
             this.btnExit.TabIndex = 2;

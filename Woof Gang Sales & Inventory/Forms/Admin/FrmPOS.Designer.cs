@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlCart = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -50,6 +50,7 @@
             this.flpProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlCenter = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlCart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -76,14 +77,14 @@
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
             this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.dgvCart.Location = new System.Drawing.Point(-1, 91);
             this.dgvCart.MultiSelect = false;
@@ -197,6 +198,7 @@
             // 
             // pnlFilters
             // 
+            this.pnlFilters.Controls.Add(this.label2);
             this.pnlFilters.Controls.Add(this.lblDate);
             this.pnlFilters.Controls.Add(this.lblTime);
             this.pnlFilters.Controls.Add(this.guna2Separator1);
@@ -251,7 +253,7 @@
             this.cmbSubCategoryFilter.ItemHeight = 41;
             this.cmbSubCategoryFilter.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubCategoryFilter.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbSubCategoryFilter.Location = new System.Drawing.Point(647, 78);
+            this.cmbSubCategoryFilter.Location = new System.Drawing.Point(736, 78);
             this.cmbSubCategoryFilter.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbSubCategoryFilter.Name = "cmbSubCategoryFilter";
             this.cmbSubCategoryFilter.Size = new System.Drawing.Size(230, 47);
@@ -275,7 +277,7 @@
             this.cmbCategoryFilter.ItemHeight = 41;
             this.cmbCategoryFilter.ItemsAppearance.Font = new System.Drawing.Font("Nunito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategoryFilter.ItemsAppearance.ForeColor = System.Drawing.Color.Black;
-            this.cmbCategoryFilter.Location = new System.Drawing.Point(397, 78);
+            this.cmbCategoryFilter.Location = new System.Drawing.Point(486, 78);
             this.cmbCategoryFilter.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.cmbCategoryFilter.Name = "cmbCategoryFilter";
             this.cmbCategoryFilter.Size = new System.Drawing.Size(230, 47);
@@ -302,7 +304,7 @@
             this.txtSearchProduct.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearchProduct.IconLeft = global::Woof_Gang_Sales___Inventory.Properties.Resources.search;
             this.txtSearchProduct.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.txtSearchProduct.Location = new System.Drawing.Point(-53, 69);
+            this.txtSearchProduct.Location = new System.Drawing.Point(26, 69);
             this.txtSearchProduct.Margin = new System.Windows.Forms.Padding(10);
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.PlaceholderText = "Search by SKU, Product Name...";
@@ -342,6 +344,16 @@
             // 
             this.guna2Elipse1.BorderRadius = 20;
             this.guna2Elipse1.TargetControl = this.dgvCart;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Inter", 13F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(26)))));
+            this.label2.Location = new System.Drawing.Point(43, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 22);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Search";
             // 
             // FrmPOS
             // 
@@ -386,5 +398,6 @@
         private System.Windows.Forms.FlowLayoutPanel flpProducts;
         private Guna.UI2.WinForms.Guna2Panel pnlCenter;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private System.Windows.Forms.Label label2;
     }
 }

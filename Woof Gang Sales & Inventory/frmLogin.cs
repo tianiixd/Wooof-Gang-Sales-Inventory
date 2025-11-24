@@ -18,6 +18,7 @@ using Woof_Gang_Sales___Inventory.Admin;
 using Woof_Gang_Sales___Inventory.Data;
 using Woof_Gang_Sales___Inventory.Database;
 using Woof_Gang_Sales___Inventory.Forms.Admin;
+using Woof_Gang_Sales___Inventory.Forms.StoreClerk;
 using Woof_Gang_Sales___Inventory.Models;
 using Woof_Gang_Sales___Inventory.Util;
 namespace Woof_Gang_Sales___Inventory
@@ -87,7 +88,7 @@ namespace Woof_Gang_Sales___Inventory
                         FrmAdminDashboard.GetInstance(user).Show();
                         break;
                     case "StoreClerk":
-                        new FrmProductView().Show();
+                        new FrmMainStoreClerk(user).Show();
                         break;
                     default:
                         DialogHelper.ShowCustomDialog("Access Denied", "Your role is not authorized to access this application.", "error");
