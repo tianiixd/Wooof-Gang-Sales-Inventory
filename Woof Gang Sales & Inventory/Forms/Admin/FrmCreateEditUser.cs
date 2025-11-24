@@ -303,8 +303,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                 return false;
             }
 
-            // 5. Regex for Password
-            // FIXED: Changed [A-Za-z\d] to . (dot) to allow special characters like @, #, !
+            //// 5. Regex for Password
+            //// FIXED: Changed [A-Za-z\d] to . (dot) to allow special characters like @, #, !
             if (!Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d).{8,}$"))
             {
                 DialogHelper.ShowCustomDialog("Invalid Password",

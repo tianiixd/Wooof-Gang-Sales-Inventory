@@ -18,6 +18,7 @@ namespace Woof_Gang_Sales___Inventory.Admin
 {
     public partial class FrmAdminDashboard : Sample
     {
+        bool inventoryExpand = false;
 
         static FrmAdminDashboard formAdmin;
         public User? LoggedInUser { get; set; }

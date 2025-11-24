@@ -138,9 +138,22 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
                     if (dgvInventory.Columns[e.ColumnIndex].Name == "StockMovement")
                     {
                         string val = e.Value?.ToString();
-                        if (val == "Fast Moving") e.CellStyle.ForeColor = Color.Green;
-                        else if (val == "Slow Moving") e.CellStyle.ForeColor = Color.Orange;
-                        else e.CellStyle.ForeColor = Color.Gray;
+                        if (val == "Fast Moving")
+                        {
+                            e.CellStyle.ForeColor = Color.Green;
+                            e.CellStyle.SelectionForeColor = Color.Green;
+                        }
+                        else if (val == "Slow Moving") 
+                        {
+                            e.CellStyle.ForeColor = Color.Orange;
+                            e.CellStyle.SelectionForeColor = Color.Orange; 
+                        }
+                        
+                        else
+                        {
+                            e.CellStyle.ForeColor = Color.Gray;
+                            e.CellStyle.SelectionForeColor = Color.Gray;
+                        }
                     }
 
                 };

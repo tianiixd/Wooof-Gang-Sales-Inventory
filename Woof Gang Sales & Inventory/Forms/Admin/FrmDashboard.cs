@@ -12,6 +12,7 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
     public partial class FrmDashboard : Form
     {
         TimeClockHelper time = new TimeClockHelper();
+        
         public FrmDashboard()
         {
             InitializeComponent();
