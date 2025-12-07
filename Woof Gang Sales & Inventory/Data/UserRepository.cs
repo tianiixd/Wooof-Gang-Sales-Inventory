@@ -25,6 +25,7 @@ namespace Woof_Gang_Sales___Inventory.Data
 
                 using (SqlConnection conn = DBConnection.GetConnection())
                 {
+                    if (conn == null) return null;
                     conn.Open();
                     string query = "SELECT UserID, FirstName, MiddleName, LastName, Username, PasswordHash, Role, IsActive, ProfileImagePath FROM Users WHERE Username=@username AND IsActive=1";
 

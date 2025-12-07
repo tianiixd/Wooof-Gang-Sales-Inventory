@@ -111,7 +111,6 @@ namespace Woof_Gang_Sales___Inventory.Util
                 decimal subtotal = cartItems.Sum(i => i.Subtotal);
                 decimal discount = subtotal - sale.TotalAmount;
                 AddLeftRightLine("Subtotal:", subtotal.ToString("N2"), fontNormal);
-                AddLeftRightLine("Discount:", discount.ToString("N2"), fontNormal);
                 AddLeftRightLine("TOTAL:", $"P{sale.TotalAmount.ToString("N2")}", fontBold);
                 AddSpacer();
                 AddLeftRightLine("Payment Method:", sale.PaymentMethod, fontNormal);

@@ -138,7 +138,6 @@ namespace Woof_Gang_Sales___Inventory.Util
                         };
 
                     addRow(totalsTable, "Subtotal:", subtotal.ToString("N2"), fontNormal);
-                    addRow(totalsTable, "Discount:", discountAmount.ToString("N2"), fontNormal);
                     addRow(totalsTable, "TOTAL:", $"P{sale.TotalAmount.ToString("N2")}", fontNormal); 
                     
                     totalsTable.AddCell(new Cell().Add(new Paragraph(" ")).SetBorder(Border.NO_BORDER));

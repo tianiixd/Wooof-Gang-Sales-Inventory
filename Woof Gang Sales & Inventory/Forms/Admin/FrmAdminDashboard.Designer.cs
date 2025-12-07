@@ -100,7 +100,7 @@
             this.btnLogOut.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnLogOut.ImageOffset = new System.Drawing.Point(7, 0);
             this.btnLogOut.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnLogOut.Location = new System.Drawing.Point(0, 1035);
+            this.btnLogOut.Location = new System.Drawing.Point(0, 1025);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(246, 45);
