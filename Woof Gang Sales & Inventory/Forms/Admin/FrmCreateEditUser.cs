@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Woof_Gang_Sales___Inventory.Data;
 using Woof_Gang_Sales___Inventory.Models;
 using Woof_Gang_Sales___Inventory.Util;
+using System.Globalization;
 
 namespace Woof_Gang_Sales___Inventory.Forms.Admin
 {
@@ -17,6 +18,8 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
         private string previousImagePath = string.Empty;
         private bool imageChanged = false;
         private int userID = 0;
+
+        TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
         public bool IsEditMode { get; set; } = false;
 
         public FrmCreateEditUser()
@@ -157,9 +160,9 @@ namespace Woof_Gang_Sales___Inventory.Forms.Admin
             User user = new User
             {
                 UserID = userID,
-                FirstName = txtFName.Text.Trim(),
-                MiddleName = txtMName.Text.Trim(),
-                LastName = txtLName.Text.Trim(),
+                FirstName = textInfo.ToTitleCase(txtFName.Text.Trim().ToLower()),
+                MiddleName = textInfo.ToTitleCase(txtMName.Text.Trim().ToLower()),
+                LastName = textInfo.ToTitleCase(txtLName.Text.Trim().ToLower()),
                 Username = txtUsername.Text.Trim(),
                 PasswordHash = txtPassword.Text,
                 Role = cmbRole.Text,

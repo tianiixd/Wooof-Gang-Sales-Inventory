@@ -21,11 +21,13 @@ using Woof_Gang_Sales___Inventory.Forms.Admin;
 using Woof_Gang_Sales___Inventory.Forms.StoreClerk;
 using Woof_Gang_Sales___Inventory.Models;
 using Woof_Gang_Sales___Inventory.Util;
+using System.Globalization;
 namespace Woof_Gang_Sales___Inventory
 {
     public partial class frmLogin : Sample
     {
         private readonly UserRepository userRepo = new UserRepository();
+        TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
 
         private bool passwordVisible = false;
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -76,8 +78,10 @@ namespace Woof_Gang_Sales___Inventory
 
                 SessionManager.CurrentUser = user;
 
-                // Successful login
-                string fullName = $"{user.FirstName} {user.LastName}";
+                string firstName = textInfo.ToTitleCase(user.FirstName.ToLower());
+                string lastName = textInfo.ToTitleCase(user.LastName.ToLower());
+
+                string fullName = $"{firstName} {lastName}";
                 DialogHelper.ShowCustomDialog("Login Successful", $"Welcome {fullName}!", "success");
 
                 this.Hide();
